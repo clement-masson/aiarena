@@ -20,22 +20,17 @@ class GameState:
     def findPossibleMoves(self):
         return self.boardState.findPossibleMoves(self.isWhiteTurn)
 
-    def doMove(self, move, inplace=False):
-        if inplace:
-            gs = self
-        else:
-            gs = GameState()
-            gs.boardState = self.boardState.copy()
-        gs.boardState.doMove(move)
-        gs.noCaptureCounter = 0 if move.isCapture() else self.noCaptureCounter + 1
-        gs.isWhiteTurn = not self.isWhiteTurn
-        return gs
+    def doMove(self, move):
+        self.boardState.doMove(move)
+        self.noCaptureCounter = 0 if move.isCapture() else self.noCaptureCounter + 1
+        self.isWhiteTurn = not self.isWhiteTurn
+        return self
 
     def findNextStates(self):
         moves = self.findPossibleMoves()
         nextStates = []
         for move in moves:
-            nextStates.append(self.doMove(move, inplace=False))
+            nextStates.append(self.copy().doMove(move))
         return nextStates
 
     def reverse(self):
@@ -46,9 +41,9 @@ class GameState:
     def reverseMove(self, move):
         self.boardState.reverseMove(move)
 
-    # def __str__(self):
-    #     s = "W" if self.isWhiteTurn else "B"
-    #     return s + str(self.boardState) + str(self.noCaptureCounter)
+    def __repr__(self):
+        s = "W" if self.isWhiteTurn else "B"
+        return s + repr(self.boardState) + str(self.noCaptureCounter)
 
     def toDisplay(self, showBoard=False):
         s = self.boardState.toDisplay(showBoard) + '\n'

@@ -43,7 +43,26 @@ class Player:
         reverse = (not self.isWhite) and self.alwaysSeeAsWhite
         if reverse:
             gameState.reverse()
+        possibleMoves = gameState.findPossibleMoves()
 
+        chosenMove, thinking_time = self.think(gameState)
+
+        # check whether the answer is valid
+        if chosenMove.toPDN() not in [m.toPDN() for m in possibleMoves]:
+            raise InvalidMoveException(chosenMove.toPDN())
+
+        self.computingTimes.append(thinking_time)
+        if self.timeLimit and thinking_time > (self.timeLimit + 0.01):
+            self.raiseTimeOutException(thinking_time)
+        if self.showTime:
+            print(str(self) + " took " + '{:.3f}'.format(thinking_time) + "s to make a decision")
+
+        gameState.doMove(chosenMove)
+        if reverse:
+            gameState.reverse()
+        return gameState
+
+    def think(self, gameState):
         if USE_SIGNAL and self.timeLimit and self.timeLimit > 0:
             # signals only take an integer amount of seconds, so I have to ceil the time limit
             signal.alarm(math.ceil(self.timeLimit + 0.01))
@@ -53,7 +72,7 @@ class Player:
                 sys.stdout = open(os.devnull, "w")
             t1 = time.time()
             chosenMove = self.brain.play(gameState, self.timeLimit)
-            length = time.time() - t1
+            thinking_time = time.time() - t1
         except TimeOutException:
             self.raiseTimeOutException()
         finally:
@@ -62,16 +81,7 @@ class Player:
         if USE_SIGNAL:
             signal.alarm(0)
 
-        self.computingTimes.append(length)
-
-        if self.timeLimit and length > (self.timeLimit + 0.01):
-            self.raiseTimeOutException(length)
-        if self.showTime:
-            print(str(self) + " took " + '{:.3f}'.format(length) + "s to make a decision")
-
-        if reverse:
-            gameState.reverseMove(chosenMove)
-        return chosenMove
+        return chosenMove, thinking_time
 
     def raiseTimeOutException(self, duration=None):
         message = f'{self} took too much time to make a decision.'
@@ -90,5 +100,10 @@ class Player:
 
 # Unhandled exception leading to the game interuption
 class TimeOutException(Exception):
+    def __init__(self, message=None):
+        self.message = message
+
+
+class InvalidMoveException(Exception):
     def __init__(self, message=None):
         self.message = message

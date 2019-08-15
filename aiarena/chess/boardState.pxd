@@ -18,7 +18,6 @@ cdef extern from "CBoardState.h" namespace "Chess":
         vector[Cell] cells
 
         void reverse()
-        void reverseMove(CMove& m)
         # string toString()
 
         bool isValidIndex(int)

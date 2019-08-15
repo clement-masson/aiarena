@@ -41,9 +41,6 @@ cdef class BoardState:
         self.cBoardState.reverse()
         return self
 
-    def reverseMove(self, Move move):
-        self.cBoardState.reverseMove(deref(move.cMove))
-
     def __str__(self):
         raise NotImplementedError()
         # return self.cBoardState.toString().decode('UTF-8')
