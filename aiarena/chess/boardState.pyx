@@ -48,7 +48,7 @@ cdef class BoardState:
     def __repr__(self):
         return self.cBoardState.getFEN(True, True, True).decode('UTF-8')
 
-    def getFEN(self, turn=True, castle=True, counts=True):
+    def toString(self, turn=True, castle=True, counts=False):
         return self.cBoardState.getFEN(turn, castle, counts).decode('UTF-8')
 
     def RCtoIndex(self, int r, int c):
