@@ -16,12 +16,10 @@ const int NCELLS = 64;
 class CBoardState {
 public:
   // Castling information
-bool white_A_rook_moved;
-bool white_H_rook_moved;
-bool white_king_moved;
-bool black_A_rook_moved;
-bool black_H_rook_moved;
-bool black_king_moved;
+bool white_king_castle_A_side;
+bool white_king_castle_H_side;
+bool black_king_castle_A_side;
+bool black_king_castle_H_side;
 bool pawn_pushed_by_two;
 int pawn_pushed_col;
 std::vector<Cell> cells;

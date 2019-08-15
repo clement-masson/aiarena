@@ -11,12 +11,10 @@ CBoardState::CBoardState() {
 	initBoard();
 	pawn_pushed_by_two = false;
 	pawn_pushed_col = -1;
-	white_A_rook_moved = false;
-	white_H_rook_moved = false;
-	white_king_moved = false;
-	black_A_rook_moved = false;
-	black_H_rook_moved = false;
-	black_king_moved = false;
+	white_king_castle_A_side = true;
+	white_king_castle_H_side = true;
+	black_king_castle_A_side = true;
+	black_king_castle_H_side = true;
 }
 
 void CBoardState::initBoard(){
@@ -57,17 +55,12 @@ void CBoardState::reverse(){
 		pawn_pushed_col = NCOLUMNS - 1 - pawn_pushed_col;
 
 	// inversion des infos de roque
-	tmp = white_A_rook_moved;
-	white_A_rook_moved = black_A_rook_moved;
-	black_A_rook_moved = tmp;
-
-	tmp = white_H_rook_moved;
-	white_H_rook_moved = black_H_rook_moved;
-	black_H_rook_moved = tmp;
-
-	tmp = white_king_moved;
-	white_king_moved = black_king_moved;
-	black_king_moved = tmp;
+	tmp = white_king_castle_A_side;
+	white_king_castle_A_side = black_king_castle_A_side;
+	black_king_castle_A_side = tmp;
+	tmp = white_king_castle_H_side;
+	white_king_castle_H_side = black_king_castle_H_side;
+	black_king_castle_H_side = tmp;
 }
 
 // std::string CBoardState::toString(){
@@ -317,15 +310,10 @@ std::vector<CMove*> CBoardState::getKingMovesFrom(const int cellIndex, const boo
 
 
 std::vector<CMove*> CBoardState::getCastleMoves(const int kingPosition, const bool whiteKing){
-	bool king_moved, A_rook_moved, H_rook_moved;
 	std::vector<CMove*> possibleMoves;
 
-	king_moved = whiteKing ? white_king_moved : black_king_moved;
-	A_rook_moved = whiteKing ? white_A_rook_moved : black_A_rook_moved;
-	H_rook_moved = whiteKing ? white_H_rook_moved : black_H_rook_moved;
-
-	bool try_Aside = !king_moved && !A_rook_moved;
-	bool try_Hside = !king_moved && !H_rook_moved;
+	bool try_Aside = whiteKing ? white_king_castle_A_side : black_king_castle_A_side;
+	bool try_Hside = whiteKing ? white_king_castle_H_side : black_king_castle_H_side;
 
 	// Si le roi ou les deux tours ont bougés, alors on sait deja qu'on ne peut pas roquer
 	if (!try_Aside && !try_Hside)
@@ -335,7 +323,7 @@ std::vector<CMove*> CBoardState::getCastleMoves(const int kingPosition, const bo
 	int king_row = rc.first;
 	int king_col = rc.second;
 	assert((whiteKing && king_row == 0) || (king_row == NROWS - 1));
-	assert(king_col == 3 || king_col == 4); // col may not be equal to 4 because of state reversing
+	assert(king_col == 3 || king_col == 4);     // col may not be equal to 4 because of state reversing
 
 	if (try_Aside) {
 		for(int col = 1; col<king_col; ++col) {
@@ -536,13 +524,13 @@ void CBoardState::doMove(const CMove& move){
 	}
 
 	// Gerer le roque
-    if(roque){
-        setCell((move.from_index + move.to_index)/2, Cell(PieceType::rook, piece.isWhite));
-        if(from_column < to_column)
-            setCell(from_row, NCOLUMNS-1, Cell(PieceType::none));
-        else
-            setCell(from_row, 0, Cell(PieceType::none));
-    }
+	if(roque) {
+		setCell((move.from_index + move.to_index)/2, Cell(PieceType::rook, piece.isWhite));
+		if(from_column < to_column)
+			setCell(from_row, NCOLUMNS-1, Cell(PieceType::none));
+		else
+			setCell(from_row, 0, Cell(PieceType::none));
+	}
 
 	// mettre à jour pawn_pushed_col
 	if(piece.pieceType == PieceType::pawn && abs(from_row - to_row) == 2) {
@@ -555,17 +543,19 @@ void CBoardState::doMove(const CMove& move){
 
 	// mettre à jour les infos de roque
 	if(piece.pieceType == PieceType::king && piece.isWhite)
-		white_king_moved = true;
+		white_king_castle_A_side = false;
+	white_king_castle_H_side = false;
 	else if(piece.pieceType == PieceType::king && !piece.isWhite)
-		black_king_moved = true;
+		black_king_castle_A_side = false;
+	black_king_castle_H_side = false;
 	else if(piece.pieceType == PieceType::rook && piece.isWhite && from_column == 0)
-		white_A_rook_moved = true;
+		white_king_castle_A_side = false;
 	else if(piece.pieceType == PieceType::rook && piece.isWhite && from_column == NCOLUMNS-1)
-		white_H_rook_moved = true;
+		white_king_castle_H_side = false;
 	else if(piece.pieceType == PieceType::rook && !piece.isWhite && from_column == 0)
-		black_A_rook_moved = true;
+		black_king_castle_A_side = false;
 	else if(piece.pieceType == PieceType::rook && !piece.isWhite && from_column == NCOLUMNS-1)
-		black_H_rook_moved = true;
+		black_king_castle_H_side = true;
 
 	// std::cout << "CBoardState : domove " << move.toPDN() << " SUCCESSFUL" << std::endl;
 }
