@@ -320,11 +320,9 @@ std::vector<CMove*> CBoardState::getCastleMoves(const int kingPosition, const bo
 	bool king_moved, A_rook_moved, H_rook_moved;
 	std::vector<CMove*> possibleMoves;
 
-	if(whiteKing) {
-		king_moved = whiteKing ? white_king_moved : black_king_moved;
-		A_rook_moved = whiteKing ? white_A_rook_moved : black_A_rook_moved;
-		H_rook_moved = whiteKing ? white_H_rook_moved : black_H_rook_moved;
-	}
+	king_moved = whiteKing ? white_king_moved : black_king_moved;
+	A_rook_moved = whiteKing ? white_A_rook_moved : black_A_rook_moved;
+	H_rook_moved = whiteKing ? white_H_rook_moved : black_H_rook_moved;
 
 	bool try_Aside = !king_moved && !A_rook_moved;
 	bool try_Hside = !king_moved && !H_rook_moved;
