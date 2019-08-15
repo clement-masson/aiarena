@@ -906,7 +906,7 @@ struct __pyx_obj_7aiarena_5chess_4cell_PyCell {
 };
 
 
-/* "aiarena/chess/boardState.pxd":37
+/* "aiarena/chess/boardState.pxd":38
  * 
  * 
  * cdef class BoardState:             # <<<<<<<<<<<<<<
@@ -1450,6 +1450,7 @@ static const char __pyx_k_0[] = "{0:";
   static const char __pyx_k_B[] = "B";
   static const char __pyx_k_K[] = "K";
   static const char __pyx_k_N[] = "N";
+  static const char __pyx_k_P[] = "P";
   static const char __pyx_k_Q[] = "Q";
   static const char __pyx_k_R[] = "R";
   static const char __pyx_k_c[] = "c";
@@ -1550,6 +1551,7 @@ static PyObject *__pyx_n_s_Fore;
 static PyObject *__pyx_n_u_K;
 static PyObject *__pyx_n_s_LIGHTBLUE_EX;
 static PyObject *__pyx_n_u_N;
+static PyObject *__pyx_n_u_P;
 static PyObject *__pyx_n_s_PyCell;
 static PyObject *__pyx_n_u_Q;
 static PyObject *__pyx_n_u_R;
@@ -1641,12 +1643,14 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_14indexToRC(
 static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_16findPossibleMoves(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_18doMove(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_move); /* proto */
 static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_20findNextStates(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, PyObject *__pyx_v_showBoard); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_24display(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, PyObject *__pyx_v_showBoard); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_26__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_28__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22checkTermination(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_24toDisplay(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, PyObject *__pyx_v_showBoard); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_26display(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, PyObject *__pyx_v_showBoard); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_28__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_30__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_7aiarena_5chess_10boardState_get_ascii(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_piece, PyObject *__pyx_v_isWhite); /* proto */
 static PyObject *__pyx_tp_new_7aiarena_5chess_10boardState_BoardState(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
 static PyObject *__pyx_int_3;
@@ -2728,7 +2732,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_20findNextSt
  *             nextStates.append( self.copy().doMove(m) )
  *         return nextStates             # <<<<<<<<<<<<<<
  * 
- * 
+ *     def checkTermination(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_nextStates);
@@ -2761,7 +2765,181 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_20findNextSt
   return __pyx_r;
 }
 
-/* "aiarena/chess/boardState.pyx":84
+/* "aiarena/chess/boardState.pyx":80
+ *         return nextStates
+ * 
+ *     def checkTermination(self):             # <<<<<<<<<<<<<<
+ *         nomoves = len(self.findPossibleMoves()) == 0
+ *         if not nomoves:
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_23checkTermination(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_23checkTermination(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("checkTermination (wrapper)", 0);
+  __pyx_r = __pyx_pf_7aiarena_5chess_10boardState_10BoardState_22checkTermination(((struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22checkTermination(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self) {
+  PyObject *__pyx_v_nomoves = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_4;
+  int __pyx_t_5;
+  int __pyx_t_6;
+  __Pyx_RefNannySetupContext("checkTermination", 0);
+
+  /* "aiarena/chess/boardState.pyx":81
+ * 
+ *     def checkTermination(self):
+ *         nomoves = len(self.findPossibleMoves()) == 0             # <<<<<<<<<<<<<<
+ *         if not nomoves:
+ *             return 0
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_findPossibleMoves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_4 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_t_4 == 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_nomoves = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "aiarena/chess/boardState.pyx":82
+ *     def checkTermination(self):
+ *         nomoves = len(self.findPossibleMoves()) == 0
+ *         if not nomoves:             # <<<<<<<<<<<<<<
+ *             return 0
+ *         if self.cBoardState.isInCheck():
+ */
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_nomoves); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_6 = ((!__pyx_t_5) != 0);
+  if (__pyx_t_6) {
+
+    /* "aiarena/chess/boardState.pyx":83
+ *         nomoves = len(self.findPossibleMoves()) == 0
+ *         if not nomoves:
+ *             return 0             # <<<<<<<<<<<<<<
+ *         if self.cBoardState.isInCheck():
+ *             return 2 if self.isWhiteTurn else 1
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_int_0);
+    __pyx_r = __pyx_int_0;
+    goto __pyx_L0;
+
+    /* "aiarena/chess/boardState.pyx":82
+ *     def checkTermination(self):
+ *         nomoves = len(self.findPossibleMoves()) == 0
+ *         if not nomoves:             # <<<<<<<<<<<<<<
+ *             return 0
+ *         if self.cBoardState.isInCheck():
+ */
+  }
+
+  /* "aiarena/chess/boardState.pyx":84
+ *         if not nomoves:
+ *             return 0
+ *         if self.cBoardState.isInCheck():             # <<<<<<<<<<<<<<
+ *             return 2 if self.isWhiteTurn else 1
+ *         else:
+ */
+  __pyx_t_6 = (__pyx_v_self->cBoardState->isInCheck() != 0);
+  if (__pyx_t_6) {
+
+    /* "aiarena/chess/boardState.pyx":85
+ *             return 0
+ *         if self.cBoardState.isInCheck():
+ *             return 2 if self.isWhiteTurn else 1             # <<<<<<<<<<<<<<
+ *         else:
+ *             return 3
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_isWhiteTurn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (__pyx_t_6) {
+      __Pyx_INCREF(__pyx_int_2);
+      __pyx_t_1 = __pyx_int_2;
+    } else {
+      __Pyx_INCREF(__pyx_int_1);
+      __pyx_t_1 = __pyx_int_1;
+    }
+    __pyx_r = __pyx_t_1;
+    __pyx_t_1 = 0;
+    goto __pyx_L0;
+
+    /* "aiarena/chess/boardState.pyx":84
+ *         if not nomoves:
+ *             return 0
+ *         if self.cBoardState.isInCheck():             # <<<<<<<<<<<<<<
+ *             return 2 if self.isWhiteTurn else 1
+ *         else:
+ */
+  }
+
+  /* "aiarena/chess/boardState.pyx":87
+ *             return 2 if self.isWhiteTurn else 1
+ *         else:
+ *             return 3             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  /*else*/ {
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_int_3);
+    __pyx_r = __pyx_int_3;
+    goto __pyx_L0;
+  }
+
+  /* "aiarena/chess/boardState.pyx":80
+ *         return nextStates
+ * 
+ *     def checkTermination(self):             # <<<<<<<<<<<<<<
+ *         nomoves = len(self.findPossibleMoves()) == 0
+ *         if not nomoves:
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("aiarena.chess.boardState.BoardState.checkTermination", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_nomoves);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "aiarena/chess/boardState.pyx":93
  *     Visualization methods
  *     '''
  *     def toDisplay(self, showBoard = False):             # <<<<<<<<<<<<<<
@@ -2770,9 +2948,9 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_20findNextSt
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_23toDisplay(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_7aiarena_5chess_10boardState_10BoardState_22toDisplay[] = " Return a string suitable for state visualization in text mode (like the one at the top of this file)\n        If showBard is True, then a board with cell indices is shown next to the state";
-static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_23toDisplay(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_25toDisplay(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_7aiarena_5chess_10boardState_10BoardState_24toDisplay[] = " Return a string suitable for state visualization in text mode (like the one at the top of this file)\n        If showBard is True, then a board with cell indices is shown next to the state";
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_25toDisplay(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_showBoard = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2799,7 +2977,7 @@ static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_23toDisplay(
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "toDisplay") < 0)) __PYX_ERR(0, 84, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "toDisplay") < 0)) __PYX_ERR(0, 93, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -2813,20 +2991,20 @@ static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_23toDisplay(
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("toDisplay", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 84, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("toDisplay", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 93, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.chess.boardState.BoardState.toDisplay", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(((struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *)__pyx_v_self), __pyx_v_showBoard);
+  __pyx_r = __pyx_pf_7aiarena_5chess_10boardState_10BoardState_24toDisplay(((struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *)__pyx_v_self), __pyx_v_showBoard);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, PyObject *__pyx_v_showBoard) {
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_24toDisplay(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, PyObject *__pyx_v_showBoard) {
   PyObject *__pyx_v_piece_asci_len = NULL;
   PyObject *__pyx_v_number_len = NULL;
   PyObject *__pyx_v_formater = NULL;
@@ -2860,16 +3038,16 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
   unsigned char const *__pyx_t_20;
   __Pyx_RefNannySetupContext("toDisplay", 0);
 
-  /* "aiarena/chess/boardState.pyx":88
+  /* "aiarena/chess/boardState.pyx":97
  *         If showBard is True, then a board with cell indices is shown next to the state'''
  * 
  *         piece_asci_len = 3 if ASCI_TXT else 2             # <<<<<<<<<<<<<<
  *         number_len = 3
  *         formater = '{0:'+str(number_len)+'d}'
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ASCI_TXT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ASCI_TXT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
     __Pyx_INCREF(__pyx_int_3);
@@ -2881,7 +3059,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
   __pyx_v_piece_asci_len = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "aiarena/chess/boardState.pyx":89
+  /* "aiarena/chess/boardState.pyx":98
  * 
  *         piece_asci_len = 3 if ASCI_TXT else 2
  *         number_len = 3             # <<<<<<<<<<<<<<
@@ -2891,86 +3069,86 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
   __Pyx_INCREF(__pyx_int_3);
   __pyx_v_number_len = __pyx_int_3;
 
-  /* "aiarena/chess/boardState.pyx":90
+  /* "aiarena/chess/boardState.pyx":99
  *         piece_asci_len = 3 if ASCI_TXT else 2
  *         number_len = 3
  *         formater = '{0:'+str(number_len)+'d}'             # <<<<<<<<<<<<<<
  * 
  *         s = " ,"+('-'*piece_asci_len*NCOLUMNS)+","
  */
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_number_len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_number_len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_kp_u_0, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_kp_u_0, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_t_2, __pyx_kp_u_d); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_t_2, __pyx_kp_u_d); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_formater = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "aiarena/chess/boardState.pyx":92
+  /* "aiarena/chess/boardState.pyx":101
  *         formater = '{0:'+str(number_len)+'d}'
  * 
  *         s = " ,"+('-'*piece_asci_len*NCOLUMNS)+","             # <<<<<<<<<<<<<<
  *         if showBoard:
  *             s+= "    ,"+('-'*number_len*NCOLUMNS)+","
  */
-  __pyx_t_1 = PyNumber_Multiply(__pyx_kp_u__2, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_kp_u__2, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Add(__pyx_kp_u_, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_kp_u_, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_kp_u__3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_kp_u__3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_s = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "aiarena/chess/boardState.pyx":93
+  /* "aiarena/chess/boardState.pyx":102
  * 
  *         s = " ,"+('-'*piece_asci_len*NCOLUMNS)+","
  *         if showBoard:             # <<<<<<<<<<<<<<
  *             s+= "    ,"+('-'*number_len*NCOLUMNS)+","
  *         s +="\n"
  */
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 102, __pyx_L1_error)
   if (__pyx_t_3) {
 
-    /* "aiarena/chess/boardState.pyx":94
+    /* "aiarena/chess/boardState.pyx":103
  *         s = " ,"+('-'*piece_asci_len*NCOLUMNS)+","
  *         if showBoard:
  *             s+= "    ,"+('-'*number_len*NCOLUMNS)+","             # <<<<<<<<<<<<<<
  *         s +="\n"
  *         for r in reversed(range(NROWS)):
  */
-    __pyx_t_4 = PyNumber_Multiply(__pyx_kp_u__2, __pyx_v_number_len); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Multiply(__pyx_kp_u__2, __pyx_v_number_len); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_kp_u__4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_kp_u__4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_kp_u__3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_kp_u__3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "aiarena/chess/boardState.pyx":93
+    /* "aiarena/chess/boardState.pyx":102
  * 
  *         s = " ,"+('-'*piece_asci_len*NCOLUMNS)+","
  *         if showBoard:             # <<<<<<<<<<<<<<
@@ -2979,40 +3157,40 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
  */
   }
 
-  /* "aiarena/chess/boardState.pyx":95
+  /* "aiarena/chess/boardState.pyx":104
  *         if showBoard:
  *             s+= "    ,"+('-'*number_len*NCOLUMNS)+","
  *         s +="\n"             # <<<<<<<<<<<<<<
  *         for r in reversed(range(NROWS)):
  *             s += str(r+1) + '|'
  */
-  __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "aiarena/chess/boardState.pyx":96
+  /* "aiarena/chess/boardState.pyx":105
  *             s+= "    ,"+('-'*number_len*NCOLUMNS)+","
  *         s +="\n"
  *         for r in reversed(range(NROWS)):             # <<<<<<<<<<<<<<
  *             s += str(r+1) + '|'
  *             for c in range(NCOLUMNS):
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NROWS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NROWS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_reversed, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_reversed, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
     __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
   } else {
-    __pyx_t_5 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_5 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_6 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 105, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
@@ -3020,17 +3198,17 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 96, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 96, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -3040,7 +3218,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 96, __pyx_L1_error)
+          else __PYX_ERR(0, 105, __pyx_L1_error)
         }
         break;
       }
@@ -3049,46 +3227,46 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
     __Pyx_XDECREF_SET(__pyx_v_r, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "aiarena/chess/boardState.pyx":97
+    /* "aiarena/chess/boardState.pyx":106
  *         s +="\n"
  *         for r in reversed(range(NROWS)):
  *             s += str(r+1) + '|'             # <<<<<<<<<<<<<<
  *             for c in range(NCOLUMNS):
  *                 cell = self.cBoardState.getCell(r,c)
  */
-    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_r, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_r, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_t_4, __pyx_kp_u__6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_t_4, __pyx_kp_u__6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "aiarena/chess/boardState.pyx":98
+    /* "aiarena/chess/boardState.pyx":107
  *         for r in reversed(range(NROWS)):
  *             s += str(r+1) + '|'
  *             for c in range(NCOLUMNS):             # <<<<<<<<<<<<<<
  *                 cell = self.cBoardState.getCell(r,c)
  *                 back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
  */
-    __pyx_t_4 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
       __pyx_t_4 = __pyx_t_2; __Pyx_INCREF(__pyx_t_4); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
     } else {
-      __pyx_t_7 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
+      __pyx_t_7 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_8 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 98, __pyx_L1_error)
+      __pyx_t_8 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 107, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     for (;;) {
@@ -3096,17 +3274,17 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
         if (likely(PyList_CheckExact(__pyx_t_4))) {
           if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_4)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 98, __pyx_L1_error)
+          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 107, __pyx_L1_error)
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         } else {
           if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_4)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 98, __pyx_L1_error)
+          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 107, __pyx_L1_error)
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         }
@@ -3116,7 +3294,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 98, __pyx_L1_error)
+            else __PYX_ERR(0, 107, __pyx_L1_error)
           }
           break;
         }
@@ -3125,51 +3303,51 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
       __Pyx_XDECREF_SET(__pyx_v_c, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "aiarena/chess/boardState.pyx":99
+      /* "aiarena/chess/boardState.pyx":108
  *             s += str(r+1) + '|'
  *             for c in range(NCOLUMNS):
  *                 cell = self.cBoardState.getCell(r,c)             # <<<<<<<<<<<<<<
  *                 back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
  *                 s +=  back + get_ascii(chr(cell.pieceType), cell.isWhite)
  */
-      __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_v_r); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L1_error)
-      __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_v_c); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_v_r); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_v_c); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L1_error)
       try {
         __pyx_t_11 = __pyx_v_self->cBoardState->getCell(__pyx_t_9, __pyx_t_10);
       } catch(...) {
         __Pyx_CppExn2PyErr();
-        __PYX_ERR(0, 99, __pyx_L1_error)
+        __PYX_ERR(0, 108, __pyx_L1_error)
       }
       __pyx_v_cell = __pyx_t_11;
 
-      /* "aiarena/chess/boardState.pyx":100
+      /* "aiarena/chess/boardState.pyx":109
  *             for c in range(NCOLUMNS):
  *                 cell = self.cBoardState.getCell(r,c)
  *                 back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX             # <<<<<<<<<<<<<<
  *                 s +=  back + get_ascii(chr(cell.pieceType), cell.isWhite)
  *             s += Style.RESET_ALL + '|'
  */
-      __pyx_t_12 = __Pyx_PyInt_RemainderObjC(__pyx_v_c, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyInt_RemainderObjC(__pyx_v_c, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 109, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
-      __pyx_t_13 = __Pyx_PyInt_RemainderObjC(__pyx_v_r, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyInt_RemainderObjC(__pyx_v_r, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 109, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_13);
-      __pyx_t_14 = PyObject_RichCompare(__pyx_t_12, __pyx_t_13, Py_EQ); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_14 = PyObject_RichCompare(__pyx_t_12, __pyx_t_13, Py_EQ); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 109, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
       __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-      __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 109, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       if (__pyx_t_3) {
-        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_Back); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_Back); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 109, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_BLUE); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_BLUE); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 109, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         __pyx_t_2 = __pyx_t_13;
         __pyx_t_13 = 0;
       } else {
-        __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_Back); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_Back); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 109, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
-        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_LIGHTBLUE_EX); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_LIGHTBLUE_EX); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 109, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __pyx_t_2 = __pyx_t_14;
@@ -3178,21 +3356,21 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
       __Pyx_XDECREF_SET(__pyx_v_back, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "aiarena/chess/boardState.pyx":101
+      /* "aiarena/chess/boardState.pyx":110
  *                 cell = self.cBoardState.getCell(r,c)
  *                 back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
  *                 s +=  back + get_ascii(chr(cell.pieceType), cell.isWhite)             # <<<<<<<<<<<<<<
  *             s += Style.RESET_ALL + '|'
  *             if showBoard:
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_get_ascii); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 101, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_get_ascii); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 110, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
-      __pyx_t_13 = __Pyx_PyInt_From_char(__pyx_v_cell.pieceType); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 101, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyInt_From_char(__pyx_v_cell.pieceType); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 110, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_13);
-      __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_builtin_chr, __pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 101, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_builtin_chr, __pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 110, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-      __pyx_t_13 = __Pyx_PyBool_FromLong(__pyx_v_cell.isWhite); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 101, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyBool_FromLong(__pyx_v_cell.isWhite); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 110, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_13);
       __pyx_t_15 = NULL;
       __pyx_t_10 = 0;
@@ -3209,7 +3387,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_14)) {
         PyObject *__pyx_temp[3] = {__pyx_t_15, __pyx_t_12, __pyx_t_13};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
@@ -3219,7 +3397,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_14)) {
         PyObject *__pyx_temp[3] = {__pyx_t_15, __pyx_t_12, __pyx_t_13};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
@@ -3227,7 +3405,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
       } else
       #endif
       {
-        __pyx_t_16 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __pyx_t_16 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 110, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_16);
         if (__pyx_t_15) {
           __Pyx_GIVEREF(__pyx_t_15); PyTuple_SET_ITEM(__pyx_t_16, 0, __pyx_t_15); __pyx_t_15 = NULL;
@@ -3238,21 +3416,21 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
         PyTuple_SET_ITEM(__pyx_t_16, 1+__pyx_t_10, __pyx_t_13);
         __pyx_t_12 = 0;
         __pyx_t_13 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_16, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_16, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
       }
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-      __pyx_t_14 = PyNumber_Add(__pyx_v_back, __pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 101, __pyx_L1_error)
+      __pyx_t_14 = PyNumber_Add(__pyx_v_back, __pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 110, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "aiarena/chess/boardState.pyx":98
+      /* "aiarena/chess/boardState.pyx":107
  *         for r in reversed(range(NROWS)):
  *             s += str(r+1) + '|'
  *             for c in range(NCOLUMNS):             # <<<<<<<<<<<<<<
@@ -3262,68 +3440,68 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "aiarena/chess/boardState.pyx":102
+    /* "aiarena/chess/boardState.pyx":111
  *                 back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
  *                 s +=  back + get_ascii(chr(cell.pieceType), cell.isWhite)
  *             s += Style.RESET_ALL + '|'             # <<<<<<<<<<<<<<
  *             if showBoard:
  *                 s+='    |'
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Style); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Style); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_kp_u__6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_kp_u__6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "aiarena/chess/boardState.pyx":103
+    /* "aiarena/chess/boardState.pyx":112
  *                 s +=  back + get_ascii(chr(cell.pieceType), cell.isWhite)
  *             s += Style.RESET_ALL + '|'
  *             if showBoard:             # <<<<<<<<<<<<<<
  *                 s+='    |'
  *                 for c in range(NCOLUMNS):
  */
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 103, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
     if (__pyx_t_3) {
 
-      /* "aiarena/chess/boardState.pyx":104
+      /* "aiarena/chess/boardState.pyx":113
  *             s += Style.RESET_ALL + '|'
  *             if showBoard:
  *                 s+='    |'             # <<<<<<<<<<<<<<
  *                 for c in range(NCOLUMNS):
  *                     back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
  */
-      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "aiarena/chess/boardState.pyx":105
+      /* "aiarena/chess/boardState.pyx":114
  *             if showBoard:
  *                 s+='    |'
  *                 for c in range(NCOLUMNS):             # <<<<<<<<<<<<<<
  *                     back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
  *                     s += back + formater.format(self.RCtoIndex(r,c))
  */
-      __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
         __pyx_t_2 = __pyx_t_4; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
         __pyx_t_8 = NULL;
       } else {
-        __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+        __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 105, __pyx_L1_error)
+        __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 114, __pyx_L1_error)
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       for (;;) {
@@ -3331,17 +3509,17 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
           if (likely(PyList_CheckExact(__pyx_t_2))) {
             if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
+            __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 114, __pyx_L1_error)
             #else
-            __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
+            __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_4);
             #endif
           } else {
             if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
+            __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 114, __pyx_L1_error)
             #else
-            __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
+            __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_4);
             #endif
           }
@@ -3351,7 +3529,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(0, 105, __pyx_L1_error)
+              else __PYX_ERR(0, 114, __pyx_L1_error)
             }
             break;
           }
@@ -3360,34 +3538,34 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
         __Pyx_XDECREF_SET(__pyx_v_c, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "aiarena/chess/boardState.pyx":106
+        /* "aiarena/chess/boardState.pyx":115
  *                 s+='    |'
  *                 for c in range(NCOLUMNS):
  *                     back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX             # <<<<<<<<<<<<<<
  *                     s += back + formater.format(self.RCtoIndex(r,c))
  *                 s += Style.RESET_ALL + '|'
  */
-        __pyx_t_14 = __Pyx_PyInt_RemainderObjC(__pyx_v_c, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 106, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyInt_RemainderObjC(__pyx_v_c, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 115, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
-        __pyx_t_16 = __Pyx_PyInt_RemainderObjC(__pyx_v_r, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 106, __pyx_L1_error)
+        __pyx_t_16 = __Pyx_PyInt_RemainderObjC(__pyx_v_r, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 115, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_16);
-        __pyx_t_13 = PyObject_RichCompare(__pyx_t_14, __pyx_t_16, Py_EQ); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 106, __pyx_L1_error)
+        __pyx_t_13 = PyObject_RichCompare(__pyx_t_14, __pyx_t_16, Py_EQ); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 115, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-        __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 106, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 115, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         if (__pyx_t_3) {
-          __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_Back); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 106, __pyx_L1_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_Back); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 115, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_13);
-          __pyx_t_16 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_BLUE); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 106, __pyx_L1_error)
+          __pyx_t_16 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_BLUE); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 115, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_16);
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
           __pyx_t_4 = __pyx_t_16;
           __pyx_t_16 = 0;
         } else {
-          __Pyx_GetModuleGlobalName(__pyx_t_16, __pyx_n_s_Back); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 106, __pyx_L1_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_16, __pyx_n_s_Back); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 115, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_16);
-          __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_n_s_LIGHTBLUE_EX); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 106, __pyx_L1_error)
+          __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_n_s_LIGHTBLUE_EX); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 115, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_13);
           __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
           __pyx_t_4 = __pyx_t_13;
@@ -3396,16 +3574,16 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
         __Pyx_XDECREF_SET(__pyx_v_back, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "aiarena/chess/boardState.pyx":107
+        /* "aiarena/chess/boardState.pyx":116
  *                 for c in range(NCOLUMNS):
  *                     back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
  *                     s += back + formater.format(self.RCtoIndex(r,c))             # <<<<<<<<<<<<<<
  *                 s += Style.RESET_ALL + '|'
  *             s += '\n'
  */
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_formater, __pyx_n_s_format); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 107, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_formater, __pyx_n_s_format); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 116, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
-        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_RCtoIndex); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 107, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_RCtoIndex); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 116, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __pyx_t_12 = NULL;
         __pyx_t_10 = 0;
@@ -3422,7 +3600,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_14)) {
           PyObject *__pyx_temp[3] = {__pyx_t_12, __pyx_v_r, __pyx_v_c};
-          __pyx_t_16 = __Pyx_PyFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 107, __pyx_L1_error)
+          __pyx_t_16 = __Pyx_PyFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 116, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_GOTREF(__pyx_t_16);
         } else
@@ -3430,13 +3608,13 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_14)) {
           PyObject *__pyx_temp[3] = {__pyx_t_12, __pyx_v_r, __pyx_v_c};
-          __pyx_t_16 = __Pyx_PyCFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 107, __pyx_L1_error)
+          __pyx_t_16 = __Pyx_PyCFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 116, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_GOTREF(__pyx_t_16);
         } else
         #endif
         {
-          __pyx_t_15 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 107, __pyx_L1_error)
+          __pyx_t_15 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 116, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_15);
           if (__pyx_t_12) {
             __Pyx_GIVEREF(__pyx_t_12); PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_12); __pyx_t_12 = NULL;
@@ -3447,7 +3625,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
           __Pyx_INCREF(__pyx_v_c);
           __Pyx_GIVEREF(__pyx_v_c);
           PyTuple_SET_ITEM(__pyx_t_15, 1+__pyx_t_10, __pyx_v_c);
-          __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_15, NULL); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 107, __pyx_L1_error)
+          __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_15, NULL); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 116, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_16);
           __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
         }
@@ -3465,19 +3643,19 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
         __pyx_t_4 = (__pyx_t_14) ? __Pyx_PyObject_Call2Args(__pyx_t_13, __pyx_t_14, __pyx_t_16) : __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_t_16);
         __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
         __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        __pyx_t_13 = PyNumber_Add(__pyx_v_back, __pyx_t_4); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 107, __pyx_L1_error)
+        __pyx_t_13 = PyNumber_Add(__pyx_v_back, __pyx_t_4); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 116, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_13); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_13); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "aiarena/chess/boardState.pyx":105
+        /* "aiarena/chess/boardState.pyx":114
  *             if showBoard:
  *                 s+='    |'
  *                 for c in range(NCOLUMNS):             # <<<<<<<<<<<<<<
@@ -3487,28 +3665,28 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
       }
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "aiarena/chess/boardState.pyx":108
+      /* "aiarena/chess/boardState.pyx":117
  *                     back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
  *                     s += back + formater.format(self.RCtoIndex(r,c))
  *                 s += Style.RESET_ALL + '|'             # <<<<<<<<<<<<<<
  *             s += '\n'
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*NCOLUMNS)+"'"
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Style); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Style); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_kp_u__6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_kp_u__6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "aiarena/chess/boardState.pyx":103
+      /* "aiarena/chess/boardState.pyx":112
  *                 s +=  back + get_ascii(chr(cell.pieceType), cell.isWhite)
  *             s += Style.RESET_ALL + '|'
  *             if showBoard:             # <<<<<<<<<<<<<<
@@ -3517,19 +3695,19 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
  */
     }
 
-    /* "aiarena/chess/boardState.pyx":109
+    /* "aiarena/chess/boardState.pyx":118
  *                     s += back + formater.format(self.RCtoIndex(r,c))
  *                 s += Style.RESET_ALL + '|'
  *             s += '\n'             # <<<<<<<<<<<<<<
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*NCOLUMNS)+"'"
  *         if showBoard:
  */
-    __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "aiarena/chess/boardState.pyx":96
+    /* "aiarena/chess/boardState.pyx":105
  *             s+= "    ,"+('-'*number_len*NCOLUMNS)+","
  *         s +="\n"
  *         for r in reversed(range(NROWS)):             # <<<<<<<<<<<<<<
@@ -3539,80 +3717,80 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "aiarena/chess/boardState.pyx":110
+  /* "aiarena/chess/boardState.pyx":119
  *                 s += Style.RESET_ALL + '|'
  *             s += '\n'
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*NCOLUMNS)+"'"             # <<<<<<<<<<<<<<
  *         if showBoard:
  *             s += "    '"+('-'*number_len*NCOLUMNS)+"'"
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Style); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Style); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Add(__pyx_t_4, __pyx_kp_u__8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_t_4, __pyx_kp_u__8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Multiply(__pyx_kp_u__2, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_kp_u__2, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_13 = PyNumber_Multiply(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_13 = PyNumber_Multiply(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_t_13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_t_13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-  __pyx_t_13 = PyNumber_Add(__pyx_t_2, __pyx_kp_u__9); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_13 = PyNumber_Add(__pyx_t_2, __pyx_kp_u__9); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
   __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "aiarena/chess/boardState.pyx":111
+  /* "aiarena/chess/boardState.pyx":120
  *             s += '\n'
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*NCOLUMNS)+"'"
  *         if showBoard:             # <<<<<<<<<<<<<<
  *             s += "    '"+('-'*number_len*NCOLUMNS)+"'"
  *         s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(e) for e in 'ABCDEFGH']) + " "
  */
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 120, __pyx_L1_error)
   if (__pyx_t_3) {
 
-    /* "aiarena/chess/boardState.pyx":112
+    /* "aiarena/chess/boardState.pyx":121
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*NCOLUMNS)+"'"
  *         if showBoard:
  *             s += "    '"+('-'*number_len*NCOLUMNS)+"'"             # <<<<<<<<<<<<<<
  *         s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(e) for e in 'ABCDEFGH']) + " "
  * 
  */
-    __pyx_t_2 = PyNumber_Multiply(__pyx_kp_u__2, __pyx_v_number_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Multiply(__pyx_kp_u__2, __pyx_v_number_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_13 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyInt_From_int(Chess::NCOLUMNS); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
-    __pyx_t_1 = PyNumber_Multiply(__pyx_t_2, __pyx_t_13); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(__pyx_t_2, __pyx_t_13); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    __pyx_t_13 = PyNumber_Add(__pyx_kp_u__10, __pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_13 = PyNumber_Add(__pyx_kp_u__10, __pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_13, __pyx_kp_u__9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_13, __pyx_kp_u__9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_13);
     __pyx_t_13 = 0;
 
-    /* "aiarena/chess/boardState.pyx":111
+    /* "aiarena/chess/boardState.pyx":120
  *             s += '\n'
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*NCOLUMNS)+"'"
  *         if showBoard:             # <<<<<<<<<<<<<<
@@ -3621,7 +3799,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
  */
   }
 
-  /* "aiarena/chess/boardState.pyx":113
+  /* "aiarena/chess/boardState.pyx":122
  *         if showBoard:
  *             s += "    '"+('-'*number_len*NCOLUMNS)+"'"
  *         s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(e) for e in 'ABCDEFGH']) + " "             # <<<<<<<<<<<<<<
@@ -3629,25 +3807,25 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
  *         if self.isWhiteTurn:
  */
   { /* enter inner scope */
-    __pyx_t_13 = PyList_New(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __pyx_t_13 = PyList_New(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 122, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __pyx_t_18 = ((unsigned char const *)((char const *)"ABCDEFGH"));
     __pyx_t_19 = (__pyx_t_18 + 8);
     for (__pyx_t_20 = __pyx_t_18; __pyx_t_20 < __pyx_t_19; __pyx_t_20++) {
       __pyx_t_17 = __pyx_t_20;
       __pyx_8genexpr1__pyx_v_e = (__pyx_t_17[0]);
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u__13, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u__13, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_t_4, __pyx_kp_u_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_t_4, __pyx_kp_u_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_format); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_format); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyUnicode_FromOrdinal(__pyx_8genexpr1__pyx_v_e); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+      __pyx_t_2 = PyUnicode_FromOrdinal(__pyx_8genexpr1__pyx_v_e); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_16 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -3662,54 +3840,54 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
       __pyx_t_1 = (__pyx_t_16) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_16, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2);
       __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_13, (PyObject*)__pyx_t_1))) __PYX_ERR(0, 113, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_13, (PyObject*)__pyx_t_1))) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     }
   } /* exit inner scope */
-  __pyx_t_1 = PyUnicode_Join(__pyx_kp_u__12, __pyx_t_13); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_1 = PyUnicode_Join(__pyx_kp_u__12, __pyx_t_13); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-  __pyx_t_13 = __Pyx_PyUnicode_Concat(__pyx_kp_u__11, __pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyUnicode_Concat(__pyx_kp_u__11, __pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_t_13, __pyx_kp_u__14); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_t_13, __pyx_kp_u__14); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-  __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_13);
   __pyx_t_13 = 0;
 
-  /* "aiarena/chess/boardState.pyx":115
+  /* "aiarena/chess/boardState.pyx":124
  *         s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(e) for e in 'ABCDEFGH']) + " "
  * 
  *         if self.isWhiteTurn:             # <<<<<<<<<<<<<<
  *             s += "White's turn to play."
  *         else:
  */
-  __pyx_t_13 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_isWhiteTurn); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_isWhiteTurn); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
   if (__pyx_t_3) {
 
-    /* "aiarena/chess/boardState.pyx":116
+    /* "aiarena/chess/boardState.pyx":125
  * 
  *         if self.isWhiteTurn:
  *             s += "White's turn to play."             # <<<<<<<<<<<<<<
  *         else:
  *             s += "Black's turn to play."
  */
-    __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u_White_s_turn_to_play); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u_White_s_turn_to_play); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_13);
     __pyx_t_13 = 0;
 
-    /* "aiarena/chess/boardState.pyx":115
+    /* "aiarena/chess/boardState.pyx":124
  *         s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(e) for e in 'ABCDEFGH']) + " "
  * 
  *         if self.isWhiteTurn:             # <<<<<<<<<<<<<<
@@ -3719,7 +3897,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
     goto __pyx_L14;
   }
 
-  /* "aiarena/chess/boardState.pyx":118
+  /* "aiarena/chess/boardState.pyx":127
  *             s += "White's turn to play."
  *         else:
  *             s += "Black's turn to play."             # <<<<<<<<<<<<<<
@@ -3727,14 +3905,14 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
  * 
  */
   /*else*/ {
-    __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u_Black_s_turn_to_play); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 118, __pyx_L1_error)
+    __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u_Black_s_turn_to_play); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_13);
     __pyx_t_13 = 0;
   }
   __pyx_L14:;
 
-  /* "aiarena/chess/boardState.pyx":119
+  /* "aiarena/chess/boardState.pyx":128
  *         else:
  *             s += "Black's turn to play."
  *         return s             # <<<<<<<<<<<<<<
@@ -3746,7 +3924,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
   __pyx_r = __pyx_v_s;
   goto __pyx_L0;
 
-  /* "aiarena/chess/boardState.pyx":84
+  /* "aiarena/chess/boardState.pyx":93
  *     Visualization methods
  *     '''
  *     def toDisplay(self, showBoard = False):             # <<<<<<<<<<<<<<
@@ -3779,7 +3957,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
   return __pyx_r;
 }
 
-/* "aiarena/chess/boardState.pyx":121
+/* "aiarena/chess/boardState.pyx":130
  *         return s
  * 
  *     def display(self, showBoard = False):             # <<<<<<<<<<<<<<
@@ -3788,8 +3966,8 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_22toDisplay(
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_25display(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_25display(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_27display(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_27display(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_showBoard = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -3816,7 +3994,7 @@ static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_25display(Py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "display") < 0)) __PYX_ERR(0, 121, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "display") < 0)) __PYX_ERR(0, 130, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -3830,20 +4008,20 @@ static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_25display(Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("display", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 121, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("display", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 130, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.chess.boardState.BoardState.display", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7aiarena_5chess_10boardState_10BoardState_24display(((struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *)__pyx_v_self), __pyx_v_showBoard);
+  __pyx_r = __pyx_pf_7aiarena_5chess_10boardState_10BoardState_26display(((struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *)__pyx_v_self), __pyx_v_showBoard);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_24display(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, PyObject *__pyx_v_showBoard) {
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_26display(struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, PyObject *__pyx_v_showBoard) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3851,14 +4029,14 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_24display(st
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("display", 0);
 
-  /* "aiarena/chess/boardState.pyx":122
+  /* "aiarena/chess/boardState.pyx":131
  * 
  *     def display(self, showBoard = False):
  *         print(self.toDisplay(showBoard))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_toDisplay); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_toDisplay); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3872,15 +4050,15 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_24display(st
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_showBoard) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_showBoard);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "aiarena/chess/boardState.pyx":121
+  /* "aiarena/chess/boardState.pyx":130
  *         return s
  * 
  *     def display(self, showBoard = False):             # <<<<<<<<<<<<<<
@@ -3910,19 +4088,19 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_24display(st
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_27__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_27__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_29__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_29__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_10boardState_10BoardState_26__reduce_cython__(((struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *)__pyx_v_self));
+  __pyx_r = __pyx_pf_7aiarena_5chess_10boardState_10BoardState_28__reduce_cython__(((struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_26__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self) {
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_28__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3964,19 +4142,19 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_26__reduce_c
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_29__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_29__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_31__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_10boardState_10BoardState_31__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_10boardState_10BoardState_28__setstate_cython__(((struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_7aiarena_5chess_10boardState_10BoardState_30__setstate_cython__(((struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_28__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_30__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_10boardState_BoardState *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4010,7 +4188,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_10BoardState_28__setstate
   return __pyx_r;
 }
 
-/* "aiarena/chess/boardState.pyx":143
+/* "aiarena/chess/boardState.pyx":152
  * 
  * 
  * def get_ascii(piece, isWhite):             # <<<<<<<<<<<<<<
@@ -4050,11 +4228,11 @@ static PyObject *__pyx_pw_7aiarena_5chess_10boardState_1get_ascii(PyObject *__py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_isWhite)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_ascii", 1, 2, 2, 1); __PYX_ERR(0, 143, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_ascii", 1, 2, 2, 1); __PYX_ERR(0, 152, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_ascii") < 0)) __PYX_ERR(0, 143, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_ascii") < 0)) __PYX_ERR(0, 152, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4067,7 +4245,7 @@ static PyObject *__pyx_pw_7aiarena_5chess_10boardState_1get_ascii(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_ascii", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 143, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_ascii", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 152, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.chess.boardState.get_ascii", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4091,39 +4269,39 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_get_ascii(CYTHON_UNUSED P
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("get_ascii", 0);
 
-  /* "aiarena/chess/boardState.pyx":144
+  /* "aiarena/chess/boardState.pyx":153
  * 
  * def get_ascii(piece, isWhite):
  *   if ASCI_TXT:             # <<<<<<<<<<<<<<
  *     fore = Fore.WHITE if isWhite else Fore.RED
  *     return Style.BRIGHT + fore + ' ' + piece + ' '
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ASCI_TXT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ASCI_TXT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "aiarena/chess/boardState.pyx":145
+    /* "aiarena/chess/boardState.pyx":154
  * def get_ascii(piece, isWhite):
  *   if ASCI_TXT:
  *     fore = Fore.WHITE if isWhite else Fore.RED             # <<<<<<<<<<<<<<
  *     return Style.BRIGHT + fore + ' ' + piece + ' '
  *   else:
  */
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_isWhite); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_isWhite); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 154, __pyx_L1_error)
     if (__pyx_t_2) {
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Fore); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Fore); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_1 = __pyx_t_4;
       __pyx_t_4 = 0;
     } else {
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Fore); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Fore); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_RED); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_RED); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_1 = __pyx_t_3;
@@ -4132,7 +4310,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_get_ascii(CYTHON_UNUSED P
     __pyx_v_fore = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "aiarena/chess/boardState.pyx":146
+    /* "aiarena/chess/boardState.pyx":155
  *   if ASCI_TXT:
  *     fore = Fore.WHITE if isWhite else Fore.RED
  *     return Style.BRIGHT + fore + ' ' + piece + ' '             # <<<<<<<<<<<<<<
@@ -4140,28 +4318,28 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_get_ascii(CYTHON_UNUSED P
  *     fore = Fore.WHITE if isWhite else Fore.RED
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Style); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Style); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_BRIGHT); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_BRIGHT); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_v_fore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_v_fore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__14); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__14); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_v_piece); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_v_piece); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__14); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__14); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "aiarena/chess/boardState.pyx":144
+    /* "aiarena/chess/boardState.pyx":153
  * 
  * def get_ascii(piece, isWhite):
  *   if ASCI_TXT:             # <<<<<<<<<<<<<<
@@ -4170,26 +4348,26 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_get_ascii(CYTHON_UNUSED P
  */
   }
 
-  /* "aiarena/chess/boardState.pyx":148
+  /* "aiarena/chess/boardState.pyx":157
  *     return Style.BRIGHT + fore + ' ' + piece + ' '
  *   else:
  *     fore = Fore.WHITE if isWhite else Fore.RED             # <<<<<<<<<<<<<<
  *     return Style.BRIGHT + fore + asci_symbols[(piece, False)]
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_isWhite); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_isWhite); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 157, __pyx_L1_error)
     if (__pyx_t_2) {
-      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Fore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Fore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 148, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_3 = __pyx_t_4;
       __pyx_t_4 = 0;
     } else {
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Fore); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 148, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Fore); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_RED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_RED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_3 = __pyx_t_1;
@@ -4198,23 +4376,23 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_get_ascii(CYTHON_UNUSED P
     __pyx_v_fore = __pyx_t_3;
     __pyx_t_3 = 0;
 
-    /* "aiarena/chess/boardState.pyx":149
+    /* "aiarena/chess/boardState.pyx":158
  *   else:
  *     fore = Fore.WHITE if isWhite else Fore.RED
  *     return Style.BRIGHT + fore + asci_symbols[(piece, False)]             # <<<<<<<<<<<<<<
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Style); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Style); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_BRIGHT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_BRIGHT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_v_fore); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_v_fore); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_asci_symbols); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_asci_symbols); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_v_piece);
     __Pyx_GIVEREF(__pyx_v_piece);
@@ -4222,11 +4400,11 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_get_ascii(CYTHON_UNUSED P
     __Pyx_INCREF(Py_False);
     __Pyx_GIVEREF(Py_False);
     PyTuple_SET_ITEM(__pyx_t_4, 1, Py_False);
-    __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -4235,7 +4413,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_10boardState_get_ascii(CYTHON_UNUSED P
     goto __pyx_L0;
   }
 
-  /* "aiarena/chess/boardState.pyx":143
+  /* "aiarena/chess/boardState.pyx":152
  * 
  * 
  * def get_ascii(piece, isWhite):             # <<<<<<<<<<<<<<
@@ -4622,10 +4800,11 @@ static PyMethodDef __pyx_methods_7aiarena_5chess_10boardState_BoardState[] = {
   {"findPossibleMoves", (PyCFunction)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_17findPossibleMoves, METH_NOARGS, 0},
   {"doMove", (PyCFunction)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_19doMove, METH_O, 0},
   {"findNextStates", (PyCFunction)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_21findNextStates, METH_NOARGS, 0},
-  {"toDisplay", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_23toDisplay, METH_VARARGS|METH_KEYWORDS, __pyx_doc_7aiarena_5chess_10boardState_10BoardState_22toDisplay},
-  {"display", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_25display, METH_VARARGS|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_27__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_29__setstate_cython__, METH_O, 0},
+  {"checkTermination", (PyCFunction)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_23checkTermination, METH_NOARGS, 0},
+  {"toDisplay", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_25toDisplay, METH_VARARGS|METH_KEYWORDS, __pyx_doc_7aiarena_5chess_10boardState_10BoardState_24toDisplay},
+  {"display", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_27display, METH_VARARGS|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_29__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_10boardState_10BoardState_31__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -4751,6 +4930,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_u_K, __pyx_k_K, sizeof(__pyx_k_K), 0, 1, 0, 1},
   {&__pyx_n_s_LIGHTBLUE_EX, __pyx_k_LIGHTBLUE_EX, sizeof(__pyx_k_LIGHTBLUE_EX), 0, 0, 1, 1},
   {&__pyx_n_u_N, __pyx_k_N, sizeof(__pyx_k_N), 0, 1, 0, 1},
+  {&__pyx_n_u_P, __pyx_k_P, sizeof(__pyx_k_P), 0, 1, 0, 1},
   {&__pyx_n_s_PyCell, __pyx_k_PyCell, sizeof(__pyx_k_PyCell), 0, 0, 1, 1},
   {&__pyx_n_u_Q, __pyx_k_Q, sizeof(__pyx_k_Q), 0, 1, 0, 1},
   {&__pyx_n_u_R, __pyx_k_R, sizeof(__pyx_k_R), 0, 1, 0, 1},
@@ -4833,10 +5013,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_reversed = __Pyx_GetBuiltinName(__pyx_n_s_reversed); if (!__pyx_builtin_reversed) __PYX_ERR(0, 96, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 96, __pyx_L1_error)
-  __pyx_builtin_chr = __Pyx_GetBuiltinName(__pyx_n_s_chr); if (!__pyx_builtin_chr) __PYX_ERR(0, 101, __pyx_L1_error)
-  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_builtin_reversed = __Pyx_GetBuiltinName(__pyx_n_s_reversed); if (!__pyx_builtin_reversed) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_builtin_chr = __Pyx_GetBuiltinName(__pyx_n_s_chr); if (!__pyx_builtin_chr) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 131, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -4866,171 +5046,171 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
 
-  /* "aiarena/chess/boardState.pyx":126
+  /* "aiarena/chess/boardState.pyx":135
  * 
  * asci_symbols = {
  *   ('R', True): '\u2656 ',             # <<<<<<<<<<<<<<
  *   ('N', True): '\u2658 ',
  *   ('B', True): '\u2657 ',
  */
-  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_n_u_R, Py_True); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_n_u_R, Py_True); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
 
-  /* "aiarena/chess/boardState.pyx":127
+  /* "aiarena/chess/boardState.pyx":136
  * asci_symbols = {
  *   ('R', True): '\u2656 ',
  *   ('N', True): '\u2658 ',             # <<<<<<<<<<<<<<
  *   ('B', True): '\u2657 ',
  *   ('Q', True): '\u2655 ',
  */
-  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_n_u_N, Py_True); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_n_u_N, Py_True); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
 
-  /* "aiarena/chess/boardState.pyx":128
+  /* "aiarena/chess/boardState.pyx":137
  *   ('R', True): '\u2656 ',
  *   ('N', True): '\u2658 ',
  *   ('B', True): '\u2657 ',             # <<<<<<<<<<<<<<
  *   ('Q', True): '\u2655 ',
  *   ('K', True): '\u2654 ',
  */
-  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_n_u_B, Py_True); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_n_u_B, Py_True); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "aiarena/chess/boardState.pyx":129
+  /* "aiarena/chess/boardState.pyx":138
  *   ('N', True): '\u2658 ',
  *   ('B', True): '\u2657 ',
  *   ('Q', True): '\u2655 ',             # <<<<<<<<<<<<<<
  *   ('K', True): '\u2654 ',
  *   ('o', True): '\u2659 ',
  */
-  __pyx_tuple__23 = PyTuple_Pack(2, __pyx_n_u_Q, Py_True); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(2, __pyx_n_u_Q, Py_True); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "aiarena/chess/boardState.pyx":130
+  /* "aiarena/chess/boardState.pyx":139
  *   ('B', True): '\u2657 ',
  *   ('Q', True): '\u2655 ',
  *   ('K', True): '\u2654 ',             # <<<<<<<<<<<<<<
  *   ('o', True): '\u2659 ',
  *   ('R', False): '\u265C ',
  */
-  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_n_u_K, Py_True); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_n_u_K, Py_True); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
 
-  /* "aiarena/chess/boardState.pyx":131
+  /* "aiarena/chess/boardState.pyx":140
  *   ('Q', True): '\u2655 ',
  *   ('K', True): '\u2654 ',
  *   ('o', True): '\u2659 ',             # <<<<<<<<<<<<<<
  *   ('R', False): '\u265C ',
  *   ('N', False): '\u265E ',
  */
-  __pyx_tuple__27 = PyTuple_Pack(2, __pyx_n_u_o, Py_True); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_tuple__27 = PyTuple_Pack(2, __pyx_n_u_o, Py_True); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
 
-  /* "aiarena/chess/boardState.pyx":132
+  /* "aiarena/chess/boardState.pyx":141
  *   ('K', True): '\u2654 ',
  *   ('o', True): '\u2659 ',
  *   ('R', False): '\u265C ',             # <<<<<<<<<<<<<<
  *   ('N', False): '\u265E ',
  *   ('B', False): '\u265D ',
  */
-  __pyx_tuple__29 = PyTuple_Pack(2, __pyx_n_u_R, Py_False); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_tuple__29 = PyTuple_Pack(2, __pyx_n_u_R, Py_False); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
 
-  /* "aiarena/chess/boardState.pyx":133
+  /* "aiarena/chess/boardState.pyx":142
  *   ('o', True): '\u2659 ',
  *   ('R', False): '\u265C ',
  *   ('N', False): '\u265E ',             # <<<<<<<<<<<<<<
  *   ('B', False): '\u265D ',
  *   ('Q', False): '\u265B ',
  */
-  __pyx_tuple__31 = PyTuple_Pack(2, __pyx_n_u_N, Py_False); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(2, __pyx_n_u_N, Py_False); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
 
-  /* "aiarena/chess/boardState.pyx":134
+  /* "aiarena/chess/boardState.pyx":143
  *   ('R', False): '\u265C ',
  *   ('N', False): '\u265E ',
  *   ('B', False): '\u265D ',             # <<<<<<<<<<<<<<
  *   ('Q', False): '\u265B ',
  *   ('K', False): '\u265A ',
  */
-  __pyx_tuple__33 = PyTuple_Pack(2, __pyx_n_u_B, Py_False); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_tuple__33 = PyTuple_Pack(2, __pyx_n_u_B, Py_False); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__33);
   __Pyx_GIVEREF(__pyx_tuple__33);
 
-  /* "aiarena/chess/boardState.pyx":135
+  /* "aiarena/chess/boardState.pyx":144
  *   ('N', False): '\u265E ',
  *   ('B', False): '\u265D ',
  *   ('Q', False): '\u265B ',             # <<<<<<<<<<<<<<
  *   ('K', False): '\u265A ',
- *   ('o', False): '\u265F ',
+ *   ('P', False): '\u265F ',
  */
-  __pyx_tuple__35 = PyTuple_Pack(2, __pyx_n_u_Q, Py_False); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_tuple__35 = PyTuple_Pack(2, __pyx_n_u_Q, Py_False); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__35);
   __Pyx_GIVEREF(__pyx_tuple__35);
 
-  /* "aiarena/chess/boardState.pyx":136
+  /* "aiarena/chess/boardState.pyx":145
  *   ('B', False): '\u265D ',
  *   ('Q', False): '\u265B ',
  *   ('K', False): '\u265A ',             # <<<<<<<<<<<<<<
- *   ('o', False): '\u265F ',
+ *   ('P', False): '\u265F ',
  *   (' ', True): '  ',
  */
-  __pyx_tuple__37 = PyTuple_Pack(2, __pyx_n_u_K, Py_False); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_tuple__37 = PyTuple_Pack(2, __pyx_n_u_K, Py_False); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__37);
   __Pyx_GIVEREF(__pyx_tuple__37);
 
-  /* "aiarena/chess/boardState.pyx":137
+  /* "aiarena/chess/boardState.pyx":146
  *   ('Q', False): '\u265B ',
  *   ('K', False): '\u265A ',
- *   ('o', False): '\u265F ',             # <<<<<<<<<<<<<<
+ *   ('P', False): '\u265F ',             # <<<<<<<<<<<<<<
  *   (' ', True): '  ',
  *   (' ', False): '  '
  */
-  __pyx_tuple__39 = PyTuple_Pack(2, __pyx_n_u_o, Py_False); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_tuple__39 = PyTuple_Pack(2, __pyx_n_u_P, Py_False); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__39);
   __Pyx_GIVEREF(__pyx_tuple__39);
 
-  /* "aiarena/chess/boardState.pyx":138
+  /* "aiarena/chess/boardState.pyx":147
  *   ('K', False): '\u265A ',
- *   ('o', False): '\u265F ',
+ *   ('P', False): '\u265F ',
  *   (' ', True): '  ',             # <<<<<<<<<<<<<<
  *   (' ', False): '  '
  * }
  */
-  __pyx_tuple__41 = PyTuple_Pack(2, __pyx_kp_u__14, Py_True); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_tuple__41 = PyTuple_Pack(2, __pyx_kp_u__14, Py_True); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__41);
   __Pyx_GIVEREF(__pyx_tuple__41);
 
-  /* "aiarena/chess/boardState.pyx":139
- *   ('o', False): '\u265F ',
+  /* "aiarena/chess/boardState.pyx":148
+ *   ('P', False): '\u265F ',
  *   (' ', True): '  ',
  *   (' ', False): '  '             # <<<<<<<<<<<<<<
  * }
  * 
  */
-  __pyx_tuple__43 = PyTuple_Pack(2, __pyx_kp_u__14, Py_False); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_tuple__43 = PyTuple_Pack(2, __pyx_kp_u__14, Py_False); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__43);
   __Pyx_GIVEREF(__pyx_tuple__43);
 
-  /* "aiarena/chess/boardState.pyx":143
+  /* "aiarena/chess/boardState.pyx":152
  * 
  * 
  * def get_ascii(piece, isWhite):             # <<<<<<<<<<<<<<
  *   if ASCI_TXT:
  *     fore = Fore.WHITE if isWhite else Fore.RED
  */
-  __pyx_tuple__44 = PyTuple_Pack(3, __pyx_n_s_piece, __pyx_n_s_isWhite, __pyx_n_s_fore); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_tuple__44 = PyTuple_Pack(3, __pyx_n_s_piece, __pyx_n_s_isWhite, __pyx_n_s_fore); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__44);
   __Pyx_GIVEREF(__pyx_tuple__44);
-  __pyx_codeobj__45 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__44, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_aiarena_chess_boardState_pyx, __pyx_n_s_get_ascii, 143, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__45)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_codeobj__45 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__44, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_aiarena_chess_boardState_pyx, __pyx_n_s_get_ascii, 152, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__45)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -5040,6 +5220,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
 static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_2 = PyInt_FromLong(2); if (unlikely(!__pyx_int_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_3 = PyInt_FromLong(3); if (unlikely(!__pyx_int_3)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -5430,146 +5611,146 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_7aiarena_5chess_10boardState_BoardState);
 
-  /* "aiarena/chess/boardState.pyx":126
+  /* "aiarena/chess/boardState.pyx":135
  * 
  * asci_symbols = {
  *   ('R', True): '\u2656 ',             # <<<<<<<<<<<<<<
  *   ('N', True): '\u2658 ',
  *   ('B', True): '\u2657 ',
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(14); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(14); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__17, __pyx_kp_u__18) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__17, __pyx_kp_u__18) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":127
+  /* "aiarena/chess/boardState.pyx":136
  * asci_symbols = {
  *   ('R', True): '\u2656 ',
  *   ('N', True): '\u2658 ',             # <<<<<<<<<<<<<<
  *   ('B', True): '\u2657 ',
  *   ('Q', True): '\u2655 ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__19, __pyx_kp_u__20) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__19, __pyx_kp_u__20) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":128
+  /* "aiarena/chess/boardState.pyx":137
  *   ('R', True): '\u2656 ',
  *   ('N', True): '\u2658 ',
  *   ('B', True): '\u2657 ',             # <<<<<<<<<<<<<<
  *   ('Q', True): '\u2655 ',
  *   ('K', True): '\u2654 ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__21, __pyx_kp_u__22) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__21, __pyx_kp_u__22) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":129
+  /* "aiarena/chess/boardState.pyx":138
  *   ('N', True): '\u2658 ',
  *   ('B', True): '\u2657 ',
  *   ('Q', True): '\u2655 ',             # <<<<<<<<<<<<<<
  *   ('K', True): '\u2654 ',
  *   ('o', True): '\u2659 ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__23, __pyx_kp_u__24) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__23, __pyx_kp_u__24) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":130
+  /* "aiarena/chess/boardState.pyx":139
  *   ('B', True): '\u2657 ',
  *   ('Q', True): '\u2655 ',
  *   ('K', True): '\u2654 ',             # <<<<<<<<<<<<<<
  *   ('o', True): '\u2659 ',
  *   ('R', False): '\u265C ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__25, __pyx_kp_u__26) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__25, __pyx_kp_u__26) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":131
+  /* "aiarena/chess/boardState.pyx":140
  *   ('Q', True): '\u2655 ',
  *   ('K', True): '\u2654 ',
  *   ('o', True): '\u2659 ',             # <<<<<<<<<<<<<<
  *   ('R', False): '\u265C ',
  *   ('N', False): '\u265E ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__27, __pyx_kp_u__28) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__27, __pyx_kp_u__28) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":132
+  /* "aiarena/chess/boardState.pyx":141
  *   ('K', True): '\u2654 ',
  *   ('o', True): '\u2659 ',
  *   ('R', False): '\u265C ',             # <<<<<<<<<<<<<<
  *   ('N', False): '\u265E ',
  *   ('B', False): '\u265D ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__29, __pyx_kp_u__30) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__29, __pyx_kp_u__30) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":133
+  /* "aiarena/chess/boardState.pyx":142
  *   ('o', True): '\u2659 ',
  *   ('R', False): '\u265C ',
  *   ('N', False): '\u265E ',             # <<<<<<<<<<<<<<
  *   ('B', False): '\u265D ',
  *   ('Q', False): '\u265B ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__31, __pyx_kp_u__32) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__31, __pyx_kp_u__32) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":134
+  /* "aiarena/chess/boardState.pyx":143
  *   ('R', False): '\u265C ',
  *   ('N', False): '\u265E ',
  *   ('B', False): '\u265D ',             # <<<<<<<<<<<<<<
  *   ('Q', False): '\u265B ',
  *   ('K', False): '\u265A ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__33, __pyx_kp_u__34) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__33, __pyx_kp_u__34) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":135
+  /* "aiarena/chess/boardState.pyx":144
  *   ('N', False): '\u265E ',
  *   ('B', False): '\u265D ',
  *   ('Q', False): '\u265B ',             # <<<<<<<<<<<<<<
  *   ('K', False): '\u265A ',
- *   ('o', False): '\u265F ',
+ *   ('P', False): '\u265F ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__35, __pyx_kp_u__36) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__35, __pyx_kp_u__36) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":136
+  /* "aiarena/chess/boardState.pyx":145
  *   ('B', False): '\u265D ',
  *   ('Q', False): '\u265B ',
  *   ('K', False): '\u265A ',             # <<<<<<<<<<<<<<
- *   ('o', False): '\u265F ',
+ *   ('P', False): '\u265F ',
  *   (' ', True): '  ',
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__37, __pyx_kp_u__38) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__37, __pyx_kp_u__38) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":137
+  /* "aiarena/chess/boardState.pyx":146
  *   ('Q', False): '\u265B ',
  *   ('K', False): '\u265A ',
- *   ('o', False): '\u265F ',             # <<<<<<<<<<<<<<
+ *   ('P', False): '\u265F ',             # <<<<<<<<<<<<<<
  *   (' ', True): '  ',
  *   (' ', False): '  '
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__39, __pyx_kp_u__40) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__39, __pyx_kp_u__40) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":138
+  /* "aiarena/chess/boardState.pyx":147
  *   ('K', False): '\u265A ',
- *   ('o', False): '\u265F ',
+ *   ('P', False): '\u265F ',
  *   (' ', True): '  ',             # <<<<<<<<<<<<<<
  *   (' ', False): '  '
  * }
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__41, __pyx_kp_u__42) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__41, __pyx_kp_u__42) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "aiarena/chess/boardState.pyx":139
- *   ('o', False): '\u265F ',
+  /* "aiarena/chess/boardState.pyx":148
+ *   ('P', False): '\u265F ',
  *   (' ', True): '  ',
  *   (' ', False): '  '             # <<<<<<<<<<<<<<
  * }
  * 
  */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__43, __pyx_kp_u__42) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_asci_symbols, __pyx_t_1) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_tuple__43, __pyx_kp_u__42) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_asci_symbols, __pyx_t_1) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "aiarena/chess/boardState.pyx":143
+  /* "aiarena/chess/boardState.pyx":152
  * 
  * 
  * def get_ascii(piece, isWhite):             # <<<<<<<<<<<<<<
  *   if ASCI_TXT:
  *     fore = Fore.WHITE if isWhite else Fore.RED
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7aiarena_5chess_10boardState_1get_ascii, NULL, __pyx_n_s_aiarena_chess_boardState); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7aiarena_5chess_10boardState_1get_ascii, NULL, __pyx_n_s_aiarena_chess_boardState); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_ascii, __pyx_t_1) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_ascii, __pyx_t_1) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "aiarena/chess/boardState.pyx":1

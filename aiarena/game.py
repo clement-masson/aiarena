@@ -55,13 +55,21 @@ class Game:
             playerNumber = 1 if player is self.player1 else 2
 
             # Check whether the game is ended
-            possibleMoves = self.gameState.findPossibleMoves()
-            if not possibleMoves:
-                result = '0-1' if player is self.player1 else '1-0'
+            termination = self.gameState.checkTermination()
+            if termination == 3:
+                result = '1/2-1/2'
                 self.status['success'] = True
-                self.status['winner'] = 3 - playerNumber
+                self.status['draw'] = True
+                self.addToLog('Draw', 1)
+                break
+            elif termination > 0:
+                assert termination in (1, 2)
+                result = '1-0' if termination == 1 else '0-1'
+                self.status['success'] = True
+                self.status['winner'] = termination
                 self.addToLog('End of Game !', 1)
                 break
+            possibleMoves = self.gameState.findPossibleMoves()
             self.logChoices(possibleMoves)
 
             time.sleep(max(0, t - time.time()))
@@ -97,14 +105,6 @@ class Game:
                         pgnMoves += str(turn // 2 + 1) + "."
                     pgnMoves += move.toPDN() + " "
                     break
-
-            # Check if it is a Draw
-            if self.gameState.noCaptureCounter >= self.noCaptureMax:
-                result = '1/2-1/2'
-                self.status['success'] = True
-                self.status['draw'] = True
-                self.addToLog('Draw', 1)
-                break
 
             self.gameState = chosenState
 

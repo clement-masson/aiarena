@@ -498,6 +498,10 @@ std::vector<CMove*> CBoardState::findPossibleMoves(const bool white){
 	return moves;
 }
 
+bool CBoardState::isInCheck(){
+    return isInCheck(isWhiteTurn);
+}
+
 bool CBoardState::isInCheck(const bool whiteKing){
 	// Recherche de la position du roi
 	Cell dest;

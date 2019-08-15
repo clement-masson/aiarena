@@ -32,6 +32,7 @@ cdef extern from "CBoardState.h" namespace "Chess":
 
         vector[CMove*] findPossibleMoves() except +
         void doMove(CMove& m) except +
+        bool isInCheck()
 
 
 cdef class BoardState:

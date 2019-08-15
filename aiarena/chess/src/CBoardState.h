@@ -44,6 +44,7 @@ Cell getCell(const int r, const int c);
 void setCell(const int i, const Cell c);
 void setCell(const int r, const int c, const Cell cell);
 
+bool isInCheck();
 bool isInCheck(const bool whiteKing);
 bool isInCheck(const int position, const bool whiteKing);
 

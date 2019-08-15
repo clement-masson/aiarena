@@ -77,6 +77,15 @@ cdef class BoardState:
             nextStates.append( self.copy().doMove(m) )
         return nextStates
 
+    def checkTermination(self):
+        nomoves = len(self.findPossibleMoves()) == 0
+        if not nomoves:
+            return 0
+        if self.cBoardState.isInCheck():
+            return 2 if self.isWhiteTurn else 1
+        else:
+            return 3
+
 
     '''
     Visualization methods
@@ -128,13 +137,13 @@ asci_symbols = {
   ('B', True): '\u2657 ',
   ('Q', True): '\u2655 ',
   ('K', True): '\u2654 ',
-  ('o', True): '\u2659 ',
+  ('P', True): '\u2659 ',
   ('R', False): '\u265C ',
   ('N', False): '\u265E ',
   ('B', False): '\u265D ',
   ('Q', False): '\u265B ',
   ('K', False): '\u265A ',
-  ('o', False): '\u265F ',
+  ('P', False): '\u265F ',
   (' ', True): '  ',
   (' ', False): '  '
 }
