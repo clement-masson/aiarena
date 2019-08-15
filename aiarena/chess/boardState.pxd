@@ -16,9 +16,12 @@ cdef extern from "CBoardState.h" namespace "Chess":
         CBoardState() except +
         CBoardState(CBoardState&) except +
         vector[Cell] cells
+        bool isWhiteTurn
+        int turnCounter
+        int noPawnNoCapture
 
         void reverse()
-        # string toString()
+        string getFEN(bool, bool, bool);
 
         bool isValidIndex(int)
         bool isValidRC(int, int)
@@ -27,7 +30,7 @@ cdef extern from "CBoardState.h" namespace "Chess":
         int RCtoIndex(int, int)
         pair[int,int] indexToRC(int)
 
-        vector[CMove*] findPossibleMoves(bool) except +
+        vector[CMove*] findPossibleMoves() except +
         void doMove(CMove& m) except +
 
 

@@ -27,6 +27,10 @@ cdef class BoardState:
         copy.cBoardState = new CBoardState( deref(self.cBoardState) )
         return copy
 
+    @property
+    def isWhiteTurn(self):
+      return self.cBoardState.isWhiteTurn
+
     # @property
     # def cells(self):
     #   return [PyCell.wrap(e) for e in self.cBoardState.cells]
@@ -34,16 +38,18 @@ cdef class BoardState:
     # cdef getCell(BoardState self, int i, int j):
       # return
 
-    def getCell2(self, i, j):
-        return self.getCell(i, j)
+    # def getCell2(self, i, j):
+    #     return self.getCell(i, j)
 
     def reverse(self):
         self.cBoardState.reverse()
         return self
 
-    def __str__(self):
-        raise NotImplementedError()
-        # return self.cBoardState.toString().decode('UTF-8')
+    def __repr__(self):
+        return self.cBoardState.getFEN(True, True, True).decode('UTF-8')
+
+    def getFEN(self, turn=True, castle=True, counts=True):
+        return self.cBoardState.getFEN(turn, castle, counts).decode('UTF-8')
 
     def RCtoIndex(self, int r, int c):
         return self.cBoardState.RCtoIndex(r,c)
@@ -55,8 +61,8 @@ cdef class BoardState:
     Core methods
     '''
 
-    def findPossibleMoves(self, bool white):
-        cdef vector[CMove*] cmoves = self.cBoardState.findPossibleMoves(white)
+    def findPossibleMoves(self):
+        cdef vector[CMove*] cmoves = self.cBoardState.findPossibleMoves()
         return [Move.wrap(m) for m in cmoves]
 
     def doMove(self, Move move):
@@ -64,8 +70,8 @@ cdef class BoardState:
         self.cBoardState.doMove( deref(c) )
         return self
 
-    def findNextStates(self, bool white):
-        moves = self.findPossibleMoves(white)
+    def findNextStates(self):
+        moves = self.findPossibleMoves()
         nextStates = []
         for m in moves:
             nextStates.append( self.copy().doMove(m) )
@@ -105,6 +111,11 @@ cdef class BoardState:
         if showBoard:
             s += "    '"+('-'*number_len*NCOLUMNS)+"'"
         s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(e) for e in 'ABCDEFGH']) + " "
+
+        if self.isWhiteTurn:
+            s += "White's turn to play."
+        else:
+            s += "Black's turn to play."
         return s
 
     def display(self, showBoard = False):
