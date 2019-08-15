@@ -334,7 +334,7 @@ std::vector<CMove*> CBoardState::getCastleMoves(const int kingPosition, const bo
 	std::pair<int,int> rc = indexToRC(kingPosition);
 	int king_row = rc.first;
 	int king_col = rc.second;
-	assert(whiteKing && king_row == 0 || king_row == NROWS - 1);
+	assert((whiteKing && king_row == 0) || (king_row == NROWS - 1));
 	assert(king_col == 3 || king_col == 4); // col may not be equal to 4 because of state reversing
 
 	if (try_Aside) {
