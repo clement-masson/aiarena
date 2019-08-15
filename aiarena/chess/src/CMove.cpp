@@ -26,9 +26,4 @@ std::string CMove::toPDN() const {
     }
 	return ss.str();
 }
-
-void CMove::reverse(){
-    from_index = 63-from_index;
-    to_index = 63-to_index;
-}
 }

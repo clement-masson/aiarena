@@ -11,7 +11,6 @@ cdef extern from "CMove.h" namespace "Chess":
 
         CMove(int, int, bool, char, bool, int) except +
         string toPDN()
-        void reverse()
 
 
 cdef class Move:

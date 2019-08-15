@@ -87,7 +87,7 @@ class Game:
             # check whether the answer is valid
             move = None
             for m in possibleMoves:
-                if chosenMove == m.toPDN():
+                if chosenMove.toPDN() == m.toPDN():
                     move = m
                     break
             if not move:

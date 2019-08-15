@@ -43,6 +43,12 @@ void CBoardState::initBoard(){
 }
 
 
+void CBoardState::reverseMove(CMove& move){
+    move.from_index = 63-move.from_index;
+    move.to_index = 63-move.to_index;
+}
+
+
 void CBoardState::reverse(){
 	Cell x;
 	bool tmp;

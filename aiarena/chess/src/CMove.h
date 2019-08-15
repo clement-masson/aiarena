@@ -20,7 +20,6 @@ CMove(const int from_index, const int to_index,
     const bool enpassant = false,
     const int castle = 0);
 std::string toPDN() const;
-void reverse();
 };
 
 }

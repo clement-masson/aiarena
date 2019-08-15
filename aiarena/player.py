@@ -70,7 +70,7 @@ class Player:
             print(str(self) + " took " + '{:.3f}'.format(length) + "s to make a decision")
 
         if reverse:
-            chosenMove.reverse()
+            gameState.reverseMove(chosenMove)
         return chosenMove
 
     def raiseTimeOutException(self, duration=None):

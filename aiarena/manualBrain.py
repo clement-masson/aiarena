@@ -22,9 +22,9 @@ class ManualBrain:
             print("Please enter a move")
             string = sys.stdin.readline()[0:-1]
             if string.isnumeric() and int(string) in range(len(possibleMoves)):
-                return possibleMoves[int(string)].toPDN()
+                return possibleMoves[int(string)]
             elif string in pdn_list:
-                return string
+                return possibleMoves[pdn_list.index(string)]
             print(string + ' is an invalid move !')
 
     def __str__(self):

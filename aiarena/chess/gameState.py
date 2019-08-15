@@ -43,6 +43,9 @@ class GameState:
         self.isWhiteTurn = not self.isWhiteTurn
         return self
 
+    def reverseMove(self, move):
+        self.boardState.reverseMove(move)
+
     # def __str__(self):
     #     s = "W" if self.isWhiteTurn else "B"
     #     return s + str(self.boardState) + str(self.noCaptureCounter)

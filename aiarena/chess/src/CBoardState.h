@@ -29,6 +29,7 @@ std::vector<Cell> cells;
 CBoardState();
 void initBoard();
 void reverse();
+void reverseMove(CMove& move);
 // std::string toString();
 
 bool isValidIndex(const int i);

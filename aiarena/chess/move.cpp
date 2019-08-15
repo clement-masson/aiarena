@@ -3,9 +3,11 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [],
+        "depends": [
+            "aiarena/chess/src/CMove.h"
+        ],
         "include_dirs": [
-            "."
+            "aiarena/chess/src"
         ],
         "language": "c++",
         "name": "aiarena.chess.move",
@@ -863,7 +865,7 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_7aiarena_5chess_4move_Move;
 
-/* "aiarena/chess/move.pxd":17
+/* "aiarena/chess/move.pxd":16
  * 
  * 
  * cdef class Move:             # <<<<<<<<<<<<<<
@@ -883,7 +885,7 @@ struct __pyx_obj_7aiarena_5chess_4move_Move {
  * 
  * cdef class Move:             # <<<<<<<<<<<<<<
  * 
- *     def __cinit__(self):
+ *     def __dealloc__(self):
  */
 
 struct __pyx_vtabstruct_7aiarena_5chess_4move_Move {
@@ -964,13 +966,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
-
-/* RaiseArgTupleInvalid.proto */
-static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
-    Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
-
-/* KeywordStringCheck.proto */
-static int __Pyx_CheckKeywordStrings(PyObject *kwdict, const char* function_name, int kw_allowed);
 
 /* PyFunctionFastCall.proto */
 #if CYTHON_FAST_PYCALL
@@ -1222,7 +1217,7 @@ static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_P_from_d_P_type_x_P_to_d_P_prom[] = "(?P<from>\\d+)(?P<type>[x-])(?P<to>\\d+)(?P<promotion>\\w)?";
-static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
+static const char __pyx_k_self_cMove_cannot_be_converted_t[] = "self.cMove cannot be converted to a Python object for pickling";
 static PyObject *__pyx_n_s_Move;
 static PyObject *__pyx_kp_s_P_from_d_P_type_x_P_to_d_P_prom;
 static PyObject *__pyx_n_s_TypeError;
@@ -1232,23 +1227,21 @@ static PyObject *__pyx_n_s_getstate;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_name;
-static PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
 static PyObject *__pyx_n_s_pdn_pattern;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_re;
 static PyObject *__pyx_n_s_reduce;
 static PyObject *__pyx_n_s_reduce_cython;
 static PyObject *__pyx_n_s_reduce_ex;
+static PyObject *__pyx_kp_s_self_cMove_cannot_be_converted_t;
 static PyObject *__pyx_n_s_setstate;
 static PyObject *__pyx_n_s_setstate_cython;
 static PyObject *__pyx_n_s_test;
-static int __pyx_pf_7aiarena_5chess_4move_4Move___cinit__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
-static void __pyx_pf_7aiarena_5chess_4move_4Move_2__dealloc__(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_4isCapture(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6toPDN(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_8reverse(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static void __pyx_pf_7aiarena_5chess_4move_4Move___dealloc__(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_2isCapture(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_4toPDN(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_7aiarena_5chess_4move_Move(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
@@ -1258,62 +1251,27 @@ static PyObject *__pyx_tuple__3;
 /* "aiarena/chess/move.pyx":10
  * cdef class Move:
  * 
- *     def __cinit__(self):             # <<<<<<<<<<<<<<
- *         pass
- * 
- */
-
-/* Python wrapper */
-static int __pyx_pw_7aiarena_5chess_4move_4Move_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_7aiarena_5chess_4move_4Move_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__cinit__ (wrapper)", 0);
-  if (unlikely(PyTuple_GET_SIZE(__pyx_args) > 0)) {
-    __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 0, 0, PyTuple_GET_SIZE(__pyx_args)); return -1;}
-  if (unlikely(__pyx_kwds) && unlikely(PyDict_Size(__pyx_kwds) > 0) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__cinit__", 0))) return -1;
-  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move___cinit__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static int __pyx_pf_7aiarena_5chess_4move_4Move___cinit__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__cinit__", 0);
-
-  /* function exit code */
-  __pyx_r = 0;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "aiarena/chess/move.pyx":13
- *         pass
- * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.cMove
  * 
  */
 
 /* Python wrapper */
-static void __pyx_pw_7aiarena_5chess_4move_4Move_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
-static void __pyx_pw_7aiarena_5chess_4move_4Move_3__dealloc__(PyObject *__pyx_v_self) {
+static void __pyx_pw_7aiarena_5chess_4move_4Move_1__dealloc__(PyObject *__pyx_v_self); /*proto*/
+static void __pyx_pw_7aiarena_5chess_4move_4Move_1__dealloc__(PyObject *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__ (wrapper)", 0);
-  __pyx_pf_7aiarena_5chess_4move_4Move_2__dealloc__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
+  __pyx_pf_7aiarena_5chess_4move_4Move___dealloc__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-static void __pyx_pf_7aiarena_5chess_4move_4Move_2__dealloc__(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
+static void __pyx_pf_7aiarena_5chess_4move_4Move___dealloc__(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "aiarena/chess/move.pyx":14
+  /* "aiarena/chess/move.pyx":11
  * 
  *     def __dealloc__(self):
  *         del self.cMove             # <<<<<<<<<<<<<<
@@ -1322,8 +1280,8 @@ static void __pyx_pf_7aiarena_5chess_4move_4Move_2__dealloc__(struct __pyx_obj_7
  */
   delete __pyx_v_self->cMove;
 
-  /* "aiarena/chess/move.pyx":13
- *         pass
+  /* "aiarena/chess/move.pyx":10
+ * cdef class Move:
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.cMove
@@ -1334,7 +1292,7 @@ static void __pyx_pf_7aiarena_5chess_4move_4Move_2__dealloc__(struct __pyx_obj_7
   __Pyx_RefNannyFinishContext();
 }
 
-/* "aiarena/chess/move.pyx":17
+/* "aiarena/chess/move.pyx":14
  * 
  *     @staticmethod
  *     cdef wrap(CMove* m):             # <<<<<<<<<<<<<<
@@ -1349,19 +1307,19 @@ static PyObject *__pyx_f_7aiarena_5chess_4move_4Move_wrap(Chess::CMove *__pyx_v_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("wrap", 0);
 
-  /* "aiarena/chess/move.pyx":18
+  /* "aiarena/chess/move.pyx":15
  *     @staticmethod
  *     cdef wrap(CMove* m):
  *         result = Move()             # <<<<<<<<<<<<<<
  *         result.cMove = m
  *         return result
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7aiarena_5chess_4move_Move)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 18, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7aiarena_5chess_4move_Move)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_result = ((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "aiarena/chess/move.pyx":19
+  /* "aiarena/chess/move.pyx":16
  *     cdef wrap(CMove* m):
  *         result = Move()
  *         result.cMove = m             # <<<<<<<<<<<<<<
@@ -1370,7 +1328,7 @@ static PyObject *__pyx_f_7aiarena_5chess_4move_4Move_wrap(Chess::CMove *__pyx_v_
  */
   __pyx_v_result->cMove = __pyx_v_m;
 
-  /* "aiarena/chess/move.pyx":20
+  /* "aiarena/chess/move.pyx":17
  *         result = Move()
  *         result.cMove = m
  *         return result             # <<<<<<<<<<<<<<
@@ -1382,7 +1340,7 @@ static PyObject *__pyx_f_7aiarena_5chess_4move_4Move_wrap(Chess::CMove *__pyx_v_
   __pyx_r = ((PyObject *)__pyx_v_result);
   goto __pyx_L0;
 
-  /* "aiarena/chess/move.pyx":17
+  /* "aiarena/chess/move.pyx":14
  * 
  *     @staticmethod
  *     cdef wrap(CMove* m):             # <<<<<<<<<<<<<<
@@ -1402,7 +1360,7 @@ static PyObject *__pyx_f_7aiarena_5chess_4move_4Move_wrap(Chess::CMove *__pyx_v_
   return __pyx_r;
 }
 
-/* "aiarena/chess/move.pyx":22
+/* "aiarena/chess/move.pyx":19
  *         return result
  * 
  *     def isCapture(self):             # <<<<<<<<<<<<<<
@@ -1411,25 +1369,25 @@ static PyObject *__pyx_f_7aiarena_5chess_4move_4Move_wrap(Chess::CMove *__pyx_v_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_5isCapture(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_5isCapture(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_3isCapture(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_3isCapture(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("isCapture (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_4isCapture(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_2isCapture(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_4isCapture(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_2isCapture(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("isCapture", 0);
 
-  /* "aiarena/chess/move.pyx":23
+  /* "aiarena/chess/move.pyx":20
  * 
  *     def isCapture(self):
  *         return self.cMove.isCapture             # <<<<<<<<<<<<<<
@@ -1437,13 +1395,13 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_4isCapture(struct __pyx_ob
  *     def toPDN(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->cMove->isCapture); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 23, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->cMove->isCapture); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/move.pyx":22
+  /* "aiarena/chess/move.pyx":19
  *         return result
  * 
  *     def isCapture(self):             # <<<<<<<<<<<<<<
@@ -1462,53 +1420,49 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_4isCapture(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "aiarena/chess/move.pyx":25
+/* "aiarena/chess/move.pyx":22
  *         return self.cMove.isCapture
  * 
  *     def toPDN(self):             # <<<<<<<<<<<<<<
  *         return self.cMove.toPDN().decode('UTF-8')
- * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_7toPDN(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_7toPDN(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_5toPDN(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_5toPDN(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("toPDN (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_6toPDN(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_4toPDN(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6toPDN(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_4toPDN(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("toPDN", 0);
 
-  /* "aiarena/chess/move.pyx":26
+  /* "aiarena/chess/move.pyx":23
  * 
  *     def toPDN(self):
  *         return self.cMove.toPDN().decode('UTF-8')             # <<<<<<<<<<<<<<
- * 
- *     def reverse(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cMove->toPDN(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 26, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cMove->toPDN(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/move.pyx":25
+  /* "aiarena/chess/move.pyx":22
  *         return self.cMove.isCapture
  * 
  *     def toPDN(self):             # <<<<<<<<<<<<<<
  *         return self.cMove.toPDN().decode('UTF-8')
- * 
  */
 
   /* function exit code */
@@ -1522,76 +1476,26 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6toPDN(struct __pyx_obj_7a
   return __pyx_r;
 }
 
-/* "aiarena/chess/move.pyx":28
- *         return self.cMove.toPDN().decode('UTF-8')
- * 
- *     def reverse(self):             # <<<<<<<<<<<<<<
- *         self.cMove.reverse()
- * 
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_9reverse(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_9reverse(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("reverse (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_8reverse(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_8reverse(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("reverse", 0);
-
-  /* "aiarena/chess/move.pyx":29
- * 
- *     def reverse(self):
- *         self.cMove.reverse()             # <<<<<<<<<<<<<<
- * 
- *     # @staticmethod
- */
-  __pyx_v_self->cMove->reverse();
-
-  /* "aiarena/chess/move.pyx":28
- *         return self.cMove.toPDN().decode('UTF-8')
- * 
- *     def reverse(self):             # <<<<<<<<<<<<<<
- *         self.cMove.reverse()
- * 
- */
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_7__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_7__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_10__reduce_cython__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_6__reduce_cython__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1599,9 +1503,9 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_10__reduce_cython__(CYTHON
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  */
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1611,7 +1515,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_10__reduce_cython__(CYTHON
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):
  */
 
@@ -1627,34 +1531,34 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_10__reduce_cython__(CYTHON
 
 /* "(tree fragment)":3
  * def __reduce_cython__(self):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_9__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_9__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_12__setstate_cython__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_8__setstate_cython__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__setstate_cython__", 0);
 
   /* "(tree fragment)":4
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  */
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1664,9 +1568,9 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_12__setstate_cython__(CYTH
 
   /* "(tree fragment)":3
  * def __reduce_cython__(self):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  */
 
   /* function exit code */
@@ -1925,11 +1829,7 @@ static PyObject *__pyx_tp_new_7aiarena_5chess_4move_Move(PyTypeObject *t, CYTHON
   if (unlikely(!o)) return 0;
   p = ((struct __pyx_obj_7aiarena_5chess_4move_Move *)o);
   p->__pyx_vtab = __pyx_vtabptr_7aiarena_5chess_4move_Move;
-  if (unlikely(__pyx_pw_7aiarena_5chess_4move_4Move_1__cinit__(o, __pyx_empty_tuple, NULL) < 0)) goto bad;
   return o;
-  bad:
-  Py_DECREF(o); o = 0;
-  return NULL;
 }
 
 static void __pyx_tp_dealloc_7aiarena_5chess_4move_Move(PyObject *o) {
@@ -1942,7 +1842,7 @@ static void __pyx_tp_dealloc_7aiarena_5chess_4move_Move(PyObject *o) {
     PyObject *etype, *eval, *etb;
     PyErr_Fetch(&etype, &eval, &etb);
     ++Py_REFCNT(o);
-    __pyx_pw_7aiarena_5chess_4move_4Move_3__dealloc__(o);
+    __pyx_pw_7aiarena_5chess_4move_4Move_1__dealloc__(o);
     --Py_REFCNT(o);
     PyErr_Restore(etype, eval, etb);
   }
@@ -1950,11 +1850,10 @@ static void __pyx_tp_dealloc_7aiarena_5chess_4move_Move(PyObject *o) {
 }
 
 static PyMethodDef __pyx_methods_7aiarena_5chess_4move_Move[] = {
-  {"isCapture", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_5isCapture, METH_NOARGS, 0},
-  {"toPDN", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_7toPDN, METH_NOARGS, 0},
-  {"reverse", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_9reverse, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_11__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_13__setstate_cython__, METH_O, 0},
+  {"isCapture", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_3isCapture, METH_NOARGS, 0},
+  {"toPDN", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_5toPDN, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_7__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_9__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -2071,13 +1970,13 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
-  {&__pyx_kp_s_no_default___reduce___due_to_non, __pyx_k_no_default___reduce___due_to_non, sizeof(__pyx_k_no_default___reduce___due_to_non), 0, 0, 1, 0},
   {&__pyx_n_s_pdn_pattern, __pyx_k_pdn_pattern, sizeof(__pyx_k_pdn_pattern), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_re, __pyx_k_re, sizeof(__pyx_k_re), 0, 0, 1, 1},
   {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
+  {&__pyx_kp_s_self_cMove_cannot_be_converted_t, __pyx_k_self_cMove_cannot_be_converted_t, sizeof(__pyx_k_self_cMove_cannot_be_converted_t), 0, 0, 1, 0},
   {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
   {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
@@ -2096,20 +1995,20 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_self_cMove_cannot_be_converted_t); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
   /* "(tree fragment)":4
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ *     raise TypeError("self.cMove cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_self_cMove_cannot_be_converted_t); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
@@ -2531,72 +2430,6 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
 #endif
     }
     return result;
-}
-
-/* RaiseArgTupleInvalid */
-static void __Pyx_RaiseArgtupleInvalid(
-    const char* func_name,
-    int exact,
-    Py_ssize_t num_min,
-    Py_ssize_t num_max,
-    Py_ssize_t num_found)
-{
-    Py_ssize_t num_expected;
-    const char *more_or_less;
-    if (num_found < num_min) {
-        num_expected = num_min;
-        more_or_less = "at least";
-    } else {
-        num_expected = num_max;
-        more_or_less = "at most";
-    }
-    if (exact) {
-        more_or_less = "exactly";
-    }
-    PyErr_Format(PyExc_TypeError,
-                 "%.200s() takes %.8s %" CYTHON_FORMAT_SSIZE_T "d positional argument%.1s (%" CYTHON_FORMAT_SSIZE_T "d given)",
-                 func_name, more_or_less, num_expected,
-                 (num_expected == 1) ? "" : "s", num_found);
-}
-
-/* KeywordStringCheck */
-static int __Pyx_CheckKeywordStrings(
-    PyObject *kwdict,
-    const char* function_name,
-    int kw_allowed)
-{
-    PyObject* key = 0;
-    Py_ssize_t pos = 0;
-#if CYTHON_COMPILING_IN_PYPY
-    if (!kw_allowed && PyDict_Next(kwdict, &pos, &key, 0))
-        goto invalid_keyword;
-    return 1;
-#else
-    while (PyDict_Next(kwdict, &pos, &key, 0)) {
-        #if PY_MAJOR_VERSION < 3
-        if (unlikely(!PyString_Check(key)))
-        #endif
-            if (unlikely(!PyUnicode_Check(key)))
-                goto invalid_keyword_type;
-    }
-    if ((!kw_allowed) && unlikely(key))
-        goto invalid_keyword;
-    return 1;
-invalid_keyword_type:
-    PyErr_Format(PyExc_TypeError,
-        "%.200s() keywords must be strings", function_name);
-    return 0;
-#endif
-invalid_keyword:
-    PyErr_Format(PyExc_TypeError,
-    #if PY_MAJOR_VERSION < 3
-        "%.200s() got an unexpected keyword argument '%.200s'",
-        function_name, PyString_AsString(key));
-    #else
-        "%s() got an unexpected keyword argument '%U'",
-        function_name, key);
-    #endif
-    return 0;
 }
 
 /* PyFunctionFastCall */
