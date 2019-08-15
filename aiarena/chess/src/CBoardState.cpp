@@ -9,8 +9,15 @@ namespace Chess {
 CBoardState::CBoardState() {
 	cells = std::vector<Cell>(64);
 	initBoard();
+	isWhiteTurn = true;
+    turnCounter = 0;
+	noPawnNoCapture = 0; // 50 moves rule
+
+    // en passant
 	pawn_pushed_by_two = false;
 	pawn_pushed_col = -1;
+
+    // castle
 	white_king_castle_A_side = true;
 	white_king_castle_H_side = true;
 	black_king_castle_A_side = true;
@@ -42,19 +49,22 @@ void CBoardState::initBoard(){
 
 
 void CBoardState::reverse(){
-	Cell x;
-	bool tmp;
+	isWhiteTurn = !isWhiteTurn;
+
 	// Inversion des cellules
+	Cell x;
 	for (int cellIndex = 0; cellIndex < NCELLS/2; cellIndex++) {
 		x = cells[cellIndex];
 		cells[cellIndex] = cells[NCELLS-cellIndex-1].invertColor();
 		cells[NCELLS-cellIndex-1] = x.invertColor();
 	}
+
 	// Inversion des infos de prise en passant
 	if(pawn_pushed_by_two)
 		pawn_pushed_col = NCOLUMNS - 1 - pawn_pushed_col;
 
 	// inversion des infos de roque
+	bool tmp;
 	tmp = white_king_castle_A_side;
 	white_king_castle_A_side = black_king_castle_A_side;
 	black_king_castle_A_side = tmp;
@@ -63,9 +73,66 @@ void CBoardState::reverse(){
 	black_king_castle_H_side = tmp;
 }
 
-// std::string CBoardState::toString(){
-// 	return std::string(cells.begin(), cells.end());
-// }
+std::string CBoardState::getFEN(bool turn, bool castle, bool counts){
+    std::string result = "";
+	Cell cell;
+    int empty_counter;
+	for(int row = NROWS-1; row>=0; --row) {
+        empty_counter = 0;
+    	for(int column = 0; column<NCOLUMNS; ++column) {
+    		cell = getCell(row, column);
+            if (cell.pieceType == PieceType::none){
+                empty_counter ++;
+            }else{
+                if (empty_counter>0){
+                    result += std::to_string(empty_counter);
+                }
+                empty_counter = 0;
+                result += cell.toString();
+            }
+        }
+        if (empty_counter>0){
+            result += std::to_string(empty_counter);
+        }
+        if (row>0){
+            result += "/";
+        }
+    }
+
+    if(turn)
+        result += isWhiteTurn ? " w" : " b";
+
+    if(castle){
+        result += " ";
+        if (!(white_king_castle_A_side || white_king_castle_H_side || black_king_castle_A_side || black_king_castle_H_side)){
+            result += "-";
+        }else{
+            if (white_king_castle_H_side)
+                result += "K";
+            if (white_king_castle_A_side)
+                result += "Q";
+            if (black_king_castle_H_side)
+                result += "k";
+            if (black_king_castle_A_side)
+                result += "q";
+        }
+    }
+
+    result += " ";
+    if (pawn_pushed_by_two){
+        result += std::to_string(pawn_pushed_col);
+    }else{
+        result += "-";
+    }
+
+    if(counts){
+        result += " ";
+        result += std::to_string(noPawnNoCapture);
+        result += " ";
+        result += std::to_string(turnCounter/2 + 1);
+    }
+	return result;
+}
 
 /*
    Converters, checkers and getters
@@ -323,7 +390,7 @@ std::vector<CMove*> CBoardState::getCastleMoves(const int kingPosition, const bo
 	int king_row = rc.first;
 	int king_col = rc.second;
 	assert((whiteKing && king_row == 0) || (king_row == NROWS - 1));
-	assert(king_col == 3 || king_col == 4);     // col may not be equal to 4 because of state reversing
+	assert(king_col == 3 || king_col == 4);                 // col may not be equal to 4 because of state reversing
 
 	if (try_Aside) {
 		for(int col = 1; col<king_col; ++col) {
@@ -377,6 +444,9 @@ std::vector<CMove*> CBoardState::getCastleMoves(const int kingPosition, const bo
 	return possibleMoves;
 }
 
+std::vector<CMove*> CBoardState::findPossibleMoves(){
+	return findPossibleMoves(isWhiteTurn);
+}
 
 std::vector<CMove*> CBoardState::findPossibleMoves(const bool white){
 	//     Find valid moves and their corresponding states for a given player.
@@ -532,6 +602,15 @@ void CBoardState::doMove(const CMove& move){
 			setCell(from_row, 0, Cell(PieceType::none));
 	}
 
+	// Mise a jour des info de 50moves
+    turnCounter ++;
+	if(piece.pieceType == PieceType::pawn || move.isCapture) {
+		noPawnNoCapture = 0;                  // 50 moves rule
+	}else{
+		noPawnNoCapture++;
+	}
+	isWhiteTurn = !isWhiteTurn;
+
 	// mettre à jour pawn_pushed_col
 	if(piece.pieceType == PieceType::pawn && abs(from_row - to_row) == 2) {
 		pawn_pushed_by_two = true;
@@ -542,13 +621,13 @@ void CBoardState::doMove(const CMove& move){
 	}
 
 	// mettre à jour les infos de roque
-	if(piece.pieceType == PieceType::king && piece.isWhite)
+	if(piece.pieceType == PieceType::king && piece.isWhite) {
 		white_king_castle_A_side = false;
-	white_king_castle_H_side = false;
-	else if(piece.pieceType == PieceType::king && !piece.isWhite)
+		white_king_castle_H_side = false;
+	}else if(piece.pieceType == PieceType::king && !piece.isWhite) {
 		black_king_castle_A_side = false;
-	black_king_castle_H_side = false;
-	else if(piece.pieceType == PieceType::rook && piece.isWhite && from_column == 0)
+		black_king_castle_H_side = false;
+	}else if(piece.pieceType == PieceType::rook && piece.isWhite && from_column == 0)
 		white_king_castle_A_side = false;
 	else if(piece.pieceType == PieceType::rook && piece.isWhite && from_column == NCOLUMNS-1)
 		white_king_castle_H_side = false;

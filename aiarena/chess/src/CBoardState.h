@@ -12,22 +12,28 @@ namespace Chess {
 const int NROWS = 8;
 const int NCOLUMNS = 8;
 const int NCELLS = 64;
+const int FIFTYMOVES = 100;
 
 class CBoardState {
 public:
-  // Castling information
+//
+bool isWhiteTurn;
+int turnCounter;
+int noPawnNoCapture;
+// Castling information
 bool white_king_castle_A_side;
 bool white_king_castle_H_side;
 bool black_king_castle_A_side;
 bool black_king_castle_H_side;
 bool pawn_pushed_by_two;
+// en passant
 int pawn_pushed_col;
 std::vector<Cell> cells;
 
 CBoardState();
 void initBoard();
 void reverse();
-// std::string toString();
+std::string getFEN(bool turn=true, bool castle=true, bool counts=true);
 
 bool isValidIndex(const int i);
 bool isValidRC(const int r, const int c);
@@ -49,6 +55,7 @@ std::vector<CMove*> getQueenMovesFrom(const int cellIndex, const bool isWhite);
 std::vector<CMove*> getKingMovesFrom(const int cellIndex, const bool isWhite);
 std::vector<CMove*> getCastleMoves(const int kingPosition, const bool whiteKing);
 std::vector<CMove*> findPossibleMoves(const bool white);
+std::vector<CMove*> findPossibleMoves();
 void doMove(const CMove& move);
 };
 }

@@ -29,4 +29,8 @@ bool Cell::isValidType(const char type){
 Cell Cell::invertColor(){
 	return Cell(pieceType, !isWhite);
 }
+
+std::string Cell::toString(){
+	return std::string(1, pieceType + (isWhite ? 0 : 32));
+}
 }
