@@ -97,14 +97,15 @@ class Game:
             # log the computing time and game state
             self.logCompuTime(player.computingTimes[-1])
             self.logState()
+            
             # find and add the chosen move to pgn
             chosenStateRepr = repr(chosenState)
-            for move in possibleMoves:
-                if repr(self.gameState.copy().doMove(move)) == chosenStateRepr:
-                    if player is self.player1:
-                        pgnMoves += str(turn // 2 + 1) + "."
-                    pgnMoves += move.toPDN() + " "
-                    break
+            possibleRepr = [repr(self.gameState.copy().doMove(move)) for move in possibleMoves]
+            assert chosenStateRepr in possibleRepr
+            move = possibleMoves[possibleRepr.index(chosenStateRepr)]
+            if player is self.player1:
+                pgnMoves += str(turn // 2 + 1) + "."
+            pgnMoves += move.toPDN() + " "
 
             self.gameState = chosenState
 

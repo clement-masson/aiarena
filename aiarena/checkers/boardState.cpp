@@ -1488,7 +1488,7 @@ static int __pyx_pf_7aiarena_8checkers_10boardState_10BoardState___cinit__(struc
 static void __pyx_pf_7aiarena_8checkers_10boardState_10BoardState_2__dealloc__(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_4copy(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_6reverse(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_8__str__(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_8__repr__(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_10isValidIndex(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self, int __pyx_v_i); /* proto */
 static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_12isValidRC(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self, int __pyx_v_r, int __pyx_v_c); /* proto */
 static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_14RCtoIndex(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self, int __pyx_v_r, int __pyx_v_c); /* proto */
@@ -2189,7 +2189,7 @@ static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_6reverse(
  *         self.cBoardState.reverse()
  *         return self             # <<<<<<<<<<<<<<
  * 
- *     def __str__(self):
+ *     def __repr__(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_self));
@@ -2214,33 +2214,33 @@ static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_6reverse(
 /* "aiarena/checkers/boardState.pyx":50
  *         return self
  * 
- *     def __str__(self):             # <<<<<<<<<<<<<<
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return self.cBoardState.toString().decode('UTF-8')
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_8checkers_10boardState_10BoardState_9__str__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_7aiarena_8checkers_10boardState_10BoardState_9__str__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_7aiarena_8checkers_10boardState_10BoardState_9__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_7aiarena_8checkers_10boardState_10BoardState_9__repr__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__str__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_8checkers_10boardState_10BoardState_8__str__(((struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7aiarena_8checkers_10boardState_10BoardState_8__repr__(((struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_8__str__(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self) {
+static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_8__repr__(struct __pyx_obj_7aiarena_8checkers_10boardState_BoardState *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("__str__", 0);
+  __Pyx_RefNannySetupContext("__repr__", 0);
 
   /* "aiarena/checkers/boardState.pyx":51
  * 
- *     def __str__(self):
+ *     def __repr__(self):
  *         return self.cBoardState.toString().decode('UTF-8')             # <<<<<<<<<<<<<<
  * 
  *     '''
@@ -2255,7 +2255,7 @@ static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_8__str__(
   /* "aiarena/checkers/boardState.pyx":50
  *         return self
  * 
- *     def __str__(self):             # <<<<<<<<<<<<<<
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return self.cBoardState.toString().decode('UTF-8')
  * 
  */
@@ -2263,7 +2263,7 @@ static PyObject *__pyx_pf_7aiarena_8checkers_10boardState_10BoardState_8__str__(
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("aiarena.checkers.boardState.BoardState.__str__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("aiarena.checkers.boardState.BoardState.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5468,13 +5468,13 @@ static PyTypeObject __pyx_type_7aiarena_8checkers_10boardState_BoardState = {
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  0, /*tp_repr*/
+  __pyx_pw_7aiarena_8checkers_10boardState_10BoardState_9__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
   0, /*tp_hash*/
   0, /*tp_call*/
-  __pyx_pw_7aiarena_8checkers_10boardState_10BoardState_9__str__, /*tp_str*/
+  0, /*tp_str*/
   0, /*tp_getattro*/
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/

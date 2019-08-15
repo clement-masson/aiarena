@@ -63,9 +63,16 @@ class GameState:
             return 3
         return 0
 
-    def __str__(self):
-        s = "W" if self.isWhiteTurn else "B"
-        return s + str(self.boardState) + str(self.noCaptureCounter)
+    def __repr__(self):
+        return self.toString(True, True)
+
+    def toString(self, turn=True, counts=False):
+        s = repr(self.boardState)
+        if turn:
+            s += " W" if self.isWhiteTurn else " B"
+        if counts:
+            s += f" {self.noCaptureCounter}"
+        return s
 
     def toDisplay(self, showBoard=False):
         s = self.boardState.toDisplay(showBoard) + '\n'

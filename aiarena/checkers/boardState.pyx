@@ -47,7 +47,7 @@ cdef class BoardState:
         self.cBoardState.reverse()
         return self
 
-    def __str__(self):
+    def __repr__(self):
         return self.cBoardState.toString().decode('UTF-8')
 
     '''
