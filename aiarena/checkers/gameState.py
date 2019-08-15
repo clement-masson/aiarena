@@ -54,6 +54,15 @@ class GameState:
         self.isWhiteTurn = not self.isWhiteTurn
         return self
 
+    def checkTermination(self):
+        if len(self.findPossibleMoves()) == 0:
+            current_player_index = 1 if (
+                self.boardState.config['whiteStarts'] == self.isWhiteTurn) else 2
+            return 1 if current_player_index == 2 else 2
+        if self.noCaptureCounter >= 25:
+            return 3
+        return 0
+
     def __str__(self):
         s = "W" if self.isWhiteTurn else "B"
         return s + str(self.boardState) + str(self.noCaptureCounter)

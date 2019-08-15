@@ -31,6 +31,10 @@ cdef class BoardState:
     def isWhiteTurn(self):
       return self.cBoardState.isWhiteTurn
 
+    @property
+    def noPawnNoCapture(self):
+      return self.cBoardState.noPawnNoCapture
+
     # @property
     # def cells(self):
     #   return [PyCell.wrap(e) for e in self.cBoardState.cells]
@@ -78,13 +82,14 @@ cdef class BoardState:
         return nextStates
 
     def checkTermination(self):
-        nomoves = len(self.findPossibleMoves()) == 0
-        if not nomoves:
-            return 0
-        if self.cBoardState.isInCheck():
-            return 2 if self.isWhiteTurn else 1
-        else:
+        if len(self.findPossibleMoves()) == 0:
+            if self.cBoardState.isInCheck():
+                return 2 if self.isWhiteTurn else 1
+            else:
+                return 3
+        if self.noPawnNoCapture >= 100:
             return 3
+        return 0
 
 
     '''
