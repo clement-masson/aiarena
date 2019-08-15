@@ -1,5 +1,4 @@
 import time
-from .gameState import GameState
 from .player import Player, TimeOutException
 
 
@@ -12,11 +11,11 @@ class Game:
         - ia2: the other artificial intelligence
 
     outputs:
-        - pdn: the Portable Draught Notation summary of the game
+        - pgn: the Portable Game Notation summary of the game
     '''
 
-    def __init__(self, ia1, timeLimit1, ia2, timeLimit2):
-        self.gameState = GameState()
+    def __init__(self, module, ia1, timeLimit1, ia2, timeLimit2):
+        self.gameState = module.GameState()
         self.noCaptureMax = 50
         self.player1 = Player(True, ia1, timeLimit1)
         self.player2 = Player(False, ia2, timeLimit2)
@@ -38,8 +37,8 @@ class Game:
     def runGame(self):
         # setup
         self.init_logs()
-        self.pdn = None
-        pdnMoves = ""
+        self.pgn = None
+        pgnMoves = ""
         result = None
         startTime = time.ctime()
         time.sleep(self.pause)
@@ -102,8 +101,8 @@ class Game:
             self.logCompuTime(player.computingTimes[-1])
             self.logState()
             if player is self.player1:
-                pdnMoves += str(turn // 2 + 1) + "."
-            pdnMoves += move.toPDN() + " "
+                pgnMoves += str(turn // 2 + 1) + "."
+            pgnMoves += move.toPDN() + " "
 
             # Check if it is a Draw
             if self.gameState.noCaptureCounter >= self.noCaptureMax:
@@ -120,8 +119,8 @@ class Game:
             return
 
         # create the PDN of the game
-        self.pdn = self.makePDN(startTime, pdnMoves, result)
-        self.log += "\n#PDN#\n" + self.pdn
+        self.pgn = self.makePDN(startTime, pgnMoves, result)
+        self.log += "\n#PDN#\n" + self.pgn
 
 # End of runGame
 
@@ -146,25 +145,25 @@ class Game:
     def logCompuTime(self, t):
         self.addToLog("Computing time : " + str(t) + " sec(s)", Game.choiceDisplayLevel)
 
-    def makePDN(self, startTime, pdnMoves, result):
+    def makePDN(self, startTime, pgnMoves, result):
         # shortcut variables to acces faster white and black players
         whitePlayer = self.player1 if self.player1.isWhite else self.player2
         blackPlayer = self.player2 if self.player1.isWhite else self.player1
 
-        pdn = '[Event "IN104 CS Project"]\n'
-        pdn += '[Site "ENSTA ParisTech, Palaiseau, FRA"]\n'
-        pdn += '[Date "' + startTime + '"]\n'
-        pdn += '[Round "?"]\n'
-        pdn += '[White "' + whitePlayer.name() + '"]\n[WhiteType "Program"]\n'
-        pdn += '[Black "' + blackPlayer.name() + '"]\n[BlackType "Program"]\n'
+        pgn = '[Event "IN104 CS Project"]\n'
+        pgn += '[Site "ENSTA ParisTech, Palaiseau, FRA"]\n'
+        pgn += '[Date "' + startTime + '"]\n'
+        pgn += '[Round "?"]\n'
+        pgn += '[White "' + whitePlayer.name() + '"]\n[WhiteType "Program"]\n'
+        pgn += '[Black "' + blackPlayer.name() + '"]\n[BlackType "Program"]\n'
 
-        pdn += '[Result "' + result + '"]'
+        pgn += '[Result "' + result + '"]'
         if result == '1-0':
-            pdn += ' {' + str(self.player1) + ' wins}'
+            pgn += ' {' + str(self.player1) + ' wins}'
         elif result == '0-1':
-            pdn += ' {' + str(self.player2) + ' wins}'
+            pgn += ' {' + str(self.player2) + ' wins}'
 
-        pdn += '\n[WhiteTime "' + str(sum(whitePlayer.computingTimes)) + '"]\n'
-        pdn += '[BlackTime "' + str(sum(blackPlayer.computingTimes)) + '"]\n\n'
-        pdn += pdnMoves + ' ' + result + ' *' + '\n'
-        return pdn
+        pgn += '\n[WhiteTime "' + str(sum(whitePlayer.computingTimes)) + '"]\n'
+        pgn += '[BlackTime "' + str(sum(blackPlayer.computingTimes)) + '"]\n\n'
+        pgn += pgnMoves + ' ' + result + ' *' + '\n'
+        return pgn

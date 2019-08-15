@@ -1,34 +1,35 @@
 #!/usr/bin/env python
 import os
-from distutils.core import setup
+# from distutils.core import setup
+from setuptools import setup, find_packages
 from distutils.extension import Extension
 
 USE_CYTHON = bool(os.getenv('USE_CYTHON'))
 ext = '.pyx' if USE_CYTHON else '.cpp'
 
-C_sources = ['ChessSimulator/cpp/CBoardState.cpp',
-             'ChessSimulator/cpp/CCell.cpp',
-             'ChessSimulator/cpp/CMove.cpp']
+C_sources = ['aiarena/chess/src/CBoardState.cpp',
+             'aiarena/chess/src/CCell.cpp',
+             'aiarena/chess/src/CMove.cpp']
 
 extensions = [
     Extension(
-        name="ChessSimulator.cpp.cell",
+        name="aiarena.chess.cell",
         language='c++',
-        sources=["ChessSimulator/cpp/cell" + ext] + C_sources,
-        include_dirs=["."]
+        sources=["aiarena/chess/cell" + ext] + C_sources,
+        include_dirs=["aiarena/chess/src"]
     ),
     Extension(
-        name="ChessSimulator.cpp.boardState",
+        name="aiarena.chess.boardState",
         language='c++',
-        sources=["ChessSimulator/cpp/boardState" + ext] + C_sources,
-        include_dirs=["."],
+        sources=["aiarena/chess/boardState" + ext] + C_sources,
+        include_dirs=["aiarena/chess/src"],
         undef_macros=["NDEBUG"]
     ),
     Extension(
-        name="ChessSimulator.cpp.move",
+        name="aiarena.chess.move",
         language='c++',
-        sources=["ChessSimulator/cpp/move" + ext] + C_sources,
-        include_dirs=["."]
+        sources=["aiarena/chess/move" + ext] + C_sources,
+        include_dirs=["aiarena/chess/src"]
     )
 ]
 
@@ -37,13 +38,13 @@ if USE_CYTHON:
     from Cython.Build import cythonize
     extensions = cythonize(extensions)
 
-setup(name='ChessSimulator',
+setup(name='aiarena',
       version='1.0',
-      description='Game simulator for chess',
+      description='Game simulator for 2 players games',
       author='Clement Masson',
       author_email='masson.cle@gmail.com',
       url='',
       license='MIT',
-      packages=['ChessSimulator'],
+      packages=find_packages(),
       ext_modules=extensions
       )

@@ -1,4 +1,5 @@
 import sys
+import subprocess as sp
 from .misc import smart_display
 
 
@@ -11,6 +12,7 @@ class ManualBrain:
 
     def play(self, gameState, timeLimit):
         possibleMoves = gameState.findPossibleMoves()
+        sp.check_call('clear')
         print(gameState.toDisplay(True))
         print("Authorized moves : ")
         pdn_list = [m.toPDN() for m in possibleMoves]
