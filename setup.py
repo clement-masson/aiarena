@@ -21,7 +21,8 @@ extensions = [
         name="ChessSimulator.cpp.boardState",
         language='c++',
         sources=["ChessSimulator/cpp/boardState" + ext] + C_sources,
-        include_dirs=["."]
+        include_dirs=["."],
+        undef_macros=["NDEBUG"]
     ),
     Extension(
         name="ChessSimulator.cpp.move",

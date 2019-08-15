@@ -1,4 +1,5 @@
 #include "CMove.h"
+#include "CBoardState.h"
 
 namespace Chess {
 
@@ -14,13 +15,11 @@ CMove::CMove(const int f, const int t,
 }
 
 std::string CMove::toPDN() const {
-	std::ostringstream ss;
-    if (castle == -1){
-        return std::string("o-o");
+    if (castle != 0){
+        int king_col = from_index % NCOLUMNS;
+        return std::string((king_col == 4) == (castle == 1) ? "O-O" : "O-O-O");
     }
-    if (castle == 1){
-        return std::string("O-O");
-    }
+    std::ostringstream ss;
 	ss << from_index << (isCapture ? 'x' : '-') << to_index;
     if (promotionType != PieceType::none){
         ss << '='  << promotionType;

@@ -49,6 +49,7 @@ std::vector<CMove*> getKnightMovesFrom(const int cellIndex, const bool isWhite);
 std::vector<CMove*> getBishopMovesFrom(const int cellIndex, const bool isWhite);
 std::vector<CMove*> getQueenMovesFrom(const int cellIndex, const bool isWhite);
 std::vector<CMove*> getKingMovesFrom(const int cellIndex, const bool isWhite);
+std::vector<CMove*> getCastleMoves(const int kingPosition, const bool whiteKing);
 std::vector<CMove*> findPossibleMoves(const bool white);
 void doMove(const CMove& move);
 };

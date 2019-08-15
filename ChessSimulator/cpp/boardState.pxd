@@ -27,7 +27,7 @@ cdef extern from "CBoardState.h" namespace "Chess":
         int RCtoIndex(int, int)
         pair[int,int] indexToRC(int)
 
-        vector[CMove*] findPossibleMoves(bool)
+        vector[CMove*] findPossibleMoves(bool) except +
         void doMove(CMove& m) except +
 
 
