@@ -365,12 +365,6 @@ std::vector<CMove*> CGameState::getKingMovesFrom(const int cellIndex, const bool
 			}
 		}
 	}
-
-	// std::cout << "Normal Moves OK "<< std::endl;
-	// Roque
-	std::vector<CMove*> castleMoves = getCastleMoves(cellIndex, isWhite);
-	possibleMoves.insert(possibleMoves.end(), castleMoves.begin(), castleMoves.end());
-
 	// std::cout << "KING MOVES OK" << std::endl;
 	return possibleMoves;
 }
@@ -479,6 +473,8 @@ std::vector<CMove*> CGameState::findPossibleMoves(const bool white){
 			pieceMoves = getQueenMovesFrom(cellIndex, white);
 		}else if(piece.pieceType == PieceType::king && piece.isWhite==white) {
 			pieceMoves = getKingMovesFrom(cellIndex, white);
+        	std::vector<CMove*> castleMoves = getCastleMoves(cellIndex, white);
+        	pieceMoves.insert(pieceMoves.end(), castleMoves.begin(), castleMoves.end());
 		}else{
 			continue;
 		}
@@ -546,6 +542,15 @@ bool CGameState::isInCheck(const int position, const bool whiteKing){
 		move = *it;
 		dest = cells[move->to_index];
 		if(dest.pieceType == PieceType::knight)
+			return true;
+	}
+
+	// King
+	pieceMoves = getKingMovesFrom(position, whiteKing);
+	for (std::vector<CMove*>::iterator it = pieceMoves.begin(); it != pieceMoves.end(); ++it) {
+		move = *it;
+		dest = cells[move->to_index];
+		if(dest.pieceType == PieceType::king)
 			return true;
 	}
 

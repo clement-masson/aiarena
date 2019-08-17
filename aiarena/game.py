@@ -94,20 +94,23 @@ class Game:
                 self.addToLog(str(e), 0)
                 return
 
-            # log the computing time and game state
-            self.logCompuTime(player.computingTimes[-1])
-            self.logState()
-            
             # find and add the chosen move to pgn
             chosenStateRepr = repr(chosenState)
             possibleRepr = [repr(self.gameState.copy().doMove(move)) for move in possibleMoves]
-            assert chosenStateRepr in possibleRepr
+            if chosenStateRepr not in possibleRepr:
+                self.gameState.display()
+                chosenState.display()
+                raise Exception(chosenStateRepr + '\n not in \n' + '\n'.join(possibleRepr))
             move = possibleMoves[possibleRepr.index(chosenStateRepr)]
             if player is self.player1:
                 pgnMoves += str(turn // 2 + 1) + "."
             pgnMoves += move.toPDN() + " "
 
             self.gameState = chosenState
+
+            # log the computing time and game state
+            self.logCompuTime(player.computingTimes[-1])
+            self.logState()
 
         # If the simulation stops before the game ends
         if not self.status['success']:
