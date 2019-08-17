@@ -1,4 +1,3 @@
-from cython.operator cimport dereference as deref, preincrement as inc
 from .move cimport *
 
 

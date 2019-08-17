@@ -9,8 +9,17 @@ cdef extern from "CCell.h" namespace "Chess":
         CCell() except +
         CCell(char, bool) except +
 
+cdef extern from "CCell.h" namespace "Chess::PieceType":
+    cdef const char none
+    cdef const char pawn
+    cdef const char rook
+    cdef const char knight
+    cdef const char bishop
+    cdef const char queen
+    cdef const char king
+
 cdef class Cell:
-    cdef CCell* cCell
+    cdef CCell cCell
 
     @staticmethod
-    cdef wrap(CCell* c)
+    cdef wrap(CCell c)

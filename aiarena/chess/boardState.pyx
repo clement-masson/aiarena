@@ -1,7 +1,6 @@
 # cython: language_level=3
-from cython.operator cimport dereference as deref, preincrement as inc
-from .boardState cimport CBoardState, NROWS, NCOLUMNS
-from .cell import Cell
+from cython.operator cimport dereference as deref
+from .boardState cimport *
 from colorama import Fore, Back, Style
 
 ASCI_TXT = False
@@ -35,9 +34,9 @@ cdef class BoardState:
     def noPawnNoCapture(self):
       return self.cBoardState.noPawnNoCapture
 
-    # @property
-    # def cells(self):
-    #   return [PyCell.wrap(e) for e in self.cBoardState.cells]
+    @property
+    def cells(self):
+      return [Cell.wrap(e) for e in self.cBoardState.cells]
 
     # cdef getCell(BoardState self, int i, int j):
       # return

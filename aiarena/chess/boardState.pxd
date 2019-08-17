@@ -4,7 +4,7 @@ from libcpp.vector cimport vector
 from libcpp.pair cimport pair
 
 from .move cimport CMove, Move
-from .cell cimport CCell
+from .cell cimport CCell, Cell
 
 cdef extern from "CBoardState.h" namespace "Chess":
     cdef const int NROWS
