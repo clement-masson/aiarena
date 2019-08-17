@@ -23,7 +23,7 @@ class GameState:
 
     def __init__(self, config=defaultConfig, rules=defaultRules):
         self.boardState = BoardState(config, rules)
-        self.isWhiteTurn = config['whiteStarts']
+        self.whiteStarts = self.isWhiteTurn = config['whiteStarts']
         self.noCaptureCounter = 0
 
     def copy(self):
@@ -56,8 +56,7 @@ class GameState:
 
     def checkTermination(self):
         if len(self.findPossibleMoves()) == 0:
-            current_player_index = 1 if (
-                self.boardState.config['whiteStarts'] == self.isWhiteTurn) else 2
+            current_player_index = 1 if (self.whiteStarts == self.isWhiteTurn) else 2
             return 1 if current_player_index == 2 else 2
         if self.noCaptureCounter >= 25:
             return 3
