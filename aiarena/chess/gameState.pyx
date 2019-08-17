@@ -1,14 +1,14 @@
 # cython: language_level=3
 from cython.operator cimport dereference as deref
-from .boardState cimport *
+from .gameState cimport *
 from colorama import Fore, Back, Style
 
 ASCI_TXT = False
 
 
-cdef class BoardState:
+cdef class GameState:
     '''
-    This class is a Pyhton interface (front-end) for the C++ backend of CBoardState.
+    This class is a Pyhton interface (front-end) for the C++ backend of CGameState.
     It also contains some non-critic functions (whose performance is not critical) like displaying the board
     '''
 
@@ -16,61 +16,61 @@ cdef class BoardState:
     ncolulns = NCOLUMNS
 
     def __cinit__(self):
-          self.cBoardState = new CBoardState()
+          self.cGameState = new CGameState()
 
     def __dealloc__(self):
-        del self.cBoardState
+        del self.cGameState
 
     def copy(self):
-        copy = BoardState()
-        copy.cBoardState = new CBoardState( deref(self.cBoardState) )
+        copy = GameState()
+        copy.cGameState = new CGameState( deref(self.cGameState) )
         return copy
 
     @property
     def isWhiteTurn(self):
-      return self.cBoardState.isWhiteTurn
+      return self.cGameState.isWhiteTurn
 
     @property
     def noPawnNoCapture(self):
-      return self.cBoardState.noPawnNoCapture
+      return self.cGameState.noPawnNoCapture
 
     @property
     def cells(self):
-      return [Cell.wrap(e) for e in self.cBoardState.cells]
+      return [Cell.wrap(e) for e in self.cGameState.cells]
 
-    # cdef getCell(BoardState self, int i, int j):
+    # cdef getCell(GameState self, int i, int j):
       # return
 
     # def getCell2(self, i, j):
     #     return self.getCell(i, j)
 
     def reverse(self):
-        self.cBoardState.reverse()
+        self.cGameState.reverse()
         return self
 
     def __repr__(self):
-        return self.cBoardState.getFEN(True, True, True).decode('UTF-8')
+        return self.cGameState.getFEN(True, True, True).decode('UTF-8')
 
     def toString(self, turn=True, castle=True, counts=False):
-        return self.cBoardState.getFEN(turn, castle, counts).decode('UTF-8')
+        return self.cGameState.getFEN(turn, castle, counts).decode('UTF-8')
 
     def RCtoIndex(self, int r, int c):
-        return self.cBoardState.RCtoIndex(r,c)
+        return self.cGameState.RCtoIndex(r,c)
 
     def indexToRC(self, int i):
-        return self.cBoardState.indexToRC(i)
+        return self.cGameState.indexToRC(i)
 
     '''
     Core methods
     '''
 
     def findPossibleMoves(self):
-        cdef vector[CMove*] cmoves = self.cBoardState.findPossibleMoves()
+        cdef vector[CMove*] cmoves = self.cGameState.findPossibleMoves()
         return [Move.wrap(m) for m in cmoves]
 
     def doMove(self, Move move):
         cdef CMove* c = move.cMove
-        self.cBoardState.doMove( deref(c) )
+        self.cGameState.doMove( deref(c) )
         return self
 
     def findNextStates(self):
@@ -82,7 +82,7 @@ cdef class BoardState:
 
     def checkTermination(self):
         if len(self.findPossibleMoves()) == 0:
-            if self.cBoardState.isInCheck():
+            if self.cGameState.isInCheck():
                 return 2 if self.isWhiteTurn else 1
             else:
                 return 3
@@ -110,7 +110,7 @@ cdef class BoardState:
         for r in reversed(range(NROWS)):
             s += str(r+1) + '|'
             for c in range(NCOLUMNS):
-                cell = self.cBoardState.getCell(r,c)
+                cell = self.cGameState.getCell(r,c)
                 back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
                 s +=  back + get_ascii(chr(cell.pieceType), cell.isWhite)
             s += Style.RESET_ALL + '|'

@@ -2,11 +2,11 @@
 #include <stdlib.h>        // abs
 #include <list>
 #include <cassert>
-#include "CBoardState.h"
+#include "CGameState.h"
 
 namespace Chess {
 
-CBoardState::CBoardState() {
+CGameState::CGameState() {
 	cells = std::vector<CCell>(64);
 	initBoard();
 	isWhiteTurn = true;
@@ -24,7 +24,7 @@ CBoardState::CBoardState() {
 	black_king_castle_H_side = true;
 }
 
-void CBoardState::initBoard(){
+void CGameState::initBoard(){
 	cells[0] = CCell(PieceType::rook, true);
 	cells[1] = CCell(PieceType::knight, true);
 	cells[2] = CCell(PieceType::bishop, true);
@@ -48,7 +48,7 @@ void CBoardState::initBoard(){
 }
 
 
-void CBoardState::reverse(){
+void CGameState::reverse(){
 	isWhiteTurn = !isWhiteTurn;
 
 	// Inversion des cellules
@@ -73,7 +73,7 @@ void CBoardState::reverse(){
 	black_king_castle_H_side = tmp;
 }
 
-std::string CBoardState::getFEN(bool turn, bool castle, bool counts){
+std::string CGameState::getFEN(bool turn, bool castle, bool counts){
     std::string result = "";
 	CCell cell;
     int empty_counter;
@@ -138,23 +138,23 @@ std::string CBoardState::getFEN(bool turn, bool castle, bool counts){
    Converters, checkers and getters
  */
 
-bool CBoardState::isValidIndex(const int cellIndex){
+bool CGameState::isValidIndex(const int cellIndex){
 	return (0<=cellIndex && cellIndex<NCELLS);
 }
 
-bool CBoardState::isValidRC(const int r, const int c){
+bool CGameState::isValidRC(const int r, const int c){
 	return (0<=r && r<NROWS) && (0<=c && c<NCOLUMNS);
 }
 
-int CBoardState::RCtoIndex(const int r, const int c){
+int CGameState::RCtoIndex(const int r, const int c){
 	return r*NCOLUMNS + c;
 }
 
-std::pair<int,int> CBoardState::indexToRC(const int cellIndex){
+std::pair<int,int> CGameState::indexToRC(const int cellIndex){
 	return std::pair<int,int>(cellIndex / NCOLUMNS, cellIndex % NCOLUMNS);
 }
 
-CCell CBoardState::getCell(const int cellIndex){
+CCell CGameState::getCell(const int cellIndex){
 	if(!isValidIndex(cellIndex)) {
 		std::cout << "Non valid index : " << cellIndex << "\n";
 		throw "Non valid index";
@@ -162,7 +162,7 @@ CCell CBoardState::getCell(const int cellIndex){
 	return cells[cellIndex];
 }
 
-CCell CBoardState::getCell(const int r, const int c){
+CCell CGameState::getCell(const int r, const int c){
 	if(!isValidRC(r,c)) {
 		std::cout << "Non valid coordinates : " << r << ", " << c << "\n";
 		throw "Non valid coordinates";
@@ -170,18 +170,18 @@ CCell CBoardState::getCell(const int r, const int c){
 	return cells[RCtoIndex(r,c)];
 }
 
-void CBoardState::setCell(const int cellIndex, const CCell c){
-	if(!isValidIndex(cellIndex)) throw "Non valid coordinates in CBoardState::setCell";
+void CGameState::setCell(const int cellIndex, const CCell c){
+	if(!isValidIndex(cellIndex)) throw "Non valid coordinates in CGameState::setCell";
 	cells[cellIndex] = c;
 }
 
-void CBoardState::setCell(const int r, const int c, const CCell cell){
-	if(!isValidRC(r,c)) throw "Non valid coordinates in CBoardState::setCell";
+void CGameState::setCell(const int r, const int c, const CCell cell){
+	if(!isValidRC(r,c)) throw "Non valid coordinates in CGameState::setCell";
 	cells[RCtoIndex(r,c)] = cell;
 }
 
 
-std::vector<CMove*> CBoardState::getPawnMovesFrom(const int cellIndex, const bool isWhite){
+std::vector<CMove*> CGameState::getPawnMovesFrom(const int cellIndex, const bool isWhite){
 	std::vector<CMove*> possibleMoves;
 
 	std::pair<int,int> rc = indexToRC(cellIndex);
@@ -240,7 +240,7 @@ std::vector<CMove*> CBoardState::getPawnMovesFrom(const int cellIndex, const boo
 	return possibleMoves;
 }
 
-std::vector<CMove*> CBoardState::getRookMovesFrom(const int cellIndex, const bool isWhite){
+std::vector<CMove*> CGameState::getRookMovesFrom(const int cellIndex, const bool isWhite){
 	std::vector<CMove*> possibleMoves;
 
 	std::pair<int,int> rc = indexToRC(cellIndex);
@@ -271,7 +271,7 @@ std::vector<CMove*> CBoardState::getRookMovesFrom(const int cellIndex, const boo
 	return possibleMoves;
 }
 
-std::vector<CMove*> CBoardState::getBishopMovesFrom(const int cellIndex, const bool isWhite){
+std::vector<CMove*> CGameState::getBishopMovesFrom(const int cellIndex, const bool isWhite){
 	std::vector<CMove*> possibleMoves;
 
 	std::pair<int,int> rc = indexToRC(cellIndex);
@@ -303,7 +303,7 @@ std::vector<CMove*> CBoardState::getBishopMovesFrom(const int cellIndex, const b
 }
 
 
-std::vector<CMove*> CBoardState::getQueenMovesFrom(const int cellIndex, const bool isWhite){
+std::vector<CMove*> CGameState::getQueenMovesFrom(const int cellIndex, const bool isWhite){
 	std::vector<CMove*> rookMoves = getRookMovesFrom(cellIndex, isWhite);
 	std::vector<CMove*> bishopMoves = getBishopMovesFrom(cellIndex, isWhite);
 	std::vector<CMove*> possibleMoves;
@@ -312,7 +312,7 @@ std::vector<CMove*> CBoardState::getQueenMovesFrom(const int cellIndex, const bo
 	return possibleMoves;
 }
 
-std::vector<CMove*> CBoardState::getKnightMovesFrom(const int cellIndex, const bool isWhite){
+std::vector<CMove*> CGameState::getKnightMovesFrom(const int cellIndex, const bool isWhite){
 	std::vector<CMove*> possibleMoves;
 
 	std::pair<int,int> rc = indexToRC(cellIndex);
@@ -340,7 +340,7 @@ std::vector<CMove*> CBoardState::getKnightMovesFrom(const int cellIndex, const b
 	return possibleMoves;
 }
 
-std::vector<CMove*> CBoardState::getKingMovesFrom(const int cellIndex, const bool isWhite){
+std::vector<CMove*> CGameState::getKingMovesFrom(const int cellIndex, const bool isWhite){
 	std::vector<CMove*> possibleMoves;
 
 	std::pair<int,int> rc = indexToRC(cellIndex);
@@ -376,7 +376,7 @@ std::vector<CMove*> CBoardState::getKingMovesFrom(const int cellIndex, const boo
 }
 
 
-std::vector<CMove*> CBoardState::getCastleMoves(const int kingPosition, const bool whiteKing){
+std::vector<CMove*> CGameState::getCastleMoves(const int kingPosition, const bool whiteKing){
 	std::vector<CMove*> possibleMoves;
 
 	bool try_Aside = whiteKing ? white_king_castle_A_side : black_king_castle_A_side;
@@ -444,11 +444,11 @@ std::vector<CMove*> CBoardState::getCastleMoves(const int kingPosition, const bo
 	return possibleMoves;
 }
 
-std::vector<CMove*> CBoardState::findPossibleMoves(){
+std::vector<CMove*> CGameState::findPossibleMoves(){
 	return findPossibleMoves(isWhiteTurn);
 }
 
-std::vector<CMove*> CBoardState::findPossibleMoves(const bool white){
+std::vector<CMove*> CGameState::findPossibleMoves(const bool white){
 	//     Find valid moves and their corresponding states for a given player.
 	//
 	//     Input:
@@ -459,7 +459,7 @@ std::vector<CMove*> CBoardState::findPossibleMoves(const bool white){
 	std::vector<CMove*> moves;
 	// First we look for capturing moves (we are obliged to capture as many pieces as possible)
 	std::vector<CMove*> pieceMoves;
-	CBoardState stateCopy;
+	CGameState stateCopy;
 	CCell piece;
 	CMove *move;
 	for(int cellIndex = 0; cellIndex<NCELLS; ++cellIndex) {
@@ -498,11 +498,11 @@ std::vector<CMove*> CBoardState::findPossibleMoves(const bool white){
 	return moves;
 }
 
-bool CBoardState::isInCheck(){
+bool CGameState::isInCheck(){
     return isInCheck(isWhiteTurn);
 }
 
-bool CBoardState::isInCheck(const bool whiteKing){
+bool CGameState::isInCheck(const bool whiteKing){
 	// Recherche de la position du roi
 	CCell dest;
 	int kingPosition = -1;
@@ -517,7 +517,7 @@ bool CBoardState::isInCheck(const bool whiteKing){
 	return isInCheck(kingPosition, whiteKing);
 }
 
-bool CBoardState::isInCheck(const int position, const bool whiteKing){
+bool CGameState::isInCheck(const int position, const bool whiteKing){
 	std::vector<CMove*> pieceMoves;
 	CCell dest;
 	CMove *move;
@@ -566,11 +566,11 @@ bool CBoardState::isInCheck(const int position, const bool whiteKing){
 }
 
 
-void CBoardState::doMove(const CMove& move){
+void CGameState::doMove(const CMove& move){
 	/* Update the state according to the specified move
 
 	   Note that this function does not check if the move is valid*/
-	// std::cout << "CBoardState : domove " << move.toPDN() << std::endl;
+	// std::cout << "CGameState : domove " << move.toPDN() << std::endl;
 	if (!isValidIndex(move.from_index) or !isValidIndex(move.to_index)) {throw "Invalid Index !";}
 	CCell piece = cells[move.from_index];
 	std::pair<int,int> rc = indexToRC(move.from_index);
@@ -640,7 +640,7 @@ void CBoardState::doMove(const CMove& move){
 	else if(piece.pieceType == PieceType::rook && !piece.isWhite && from_column == NCOLUMNS-1)
 		black_king_castle_H_side = true;
 
-	// std::cout << "CBoardState : domove " << move.toPDN() << " SUCCESSFUL" << std::endl;
+	// std::cout << "CGameState : domove " << move.toPDN() << " SUCCESSFUL" << std::endl;
 }
 
 }

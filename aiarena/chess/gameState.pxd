@@ -6,15 +6,15 @@ from libcpp.pair cimport pair
 from .move cimport CMove, Move
 from .cell cimport CCell, Cell
 
-cdef extern from "CBoardState.h" namespace "Chess":
+cdef extern from "CGameState.h" namespace "Chess":
     cdef const int NROWS
     cdef const int NCOLUMNS
     cdef const int NCELLS
 
 
-    cdef cppclass CBoardState:
-        CBoardState() except +
-        CBoardState(CBoardState&) except +
+    cdef cppclass CGameState:
+        CGameState() except +
+        CGameState(CGameState&) except +
         vector[CCell] cells
         bool isWhiteTurn
         int turnCounter
@@ -35,6 +35,6 @@ cdef extern from "CBoardState.h" namespace "Chess":
         bool isInCheck()
 
 
-cdef class BoardState:
-    cdef CBoardState* cBoardState      # hold a C++ instance which we're wrapping
+cdef class GameState:
+    cdef CGameState* cGameState      # hold a C++ instance which we're wrapping
     cdef debug

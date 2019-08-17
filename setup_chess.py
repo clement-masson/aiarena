@@ -4,7 +4,7 @@ from distutils.extension import Extension
 USE_CYTHON = bool(os.getenv('USE_CYTHON'))
 ext = '.pyx' if USE_CYTHON else '.cpp'
 
-C_sources = ['aiarena/chess/src/CBoardState.cpp',
+C_sources = ['aiarena/chess/src/CGameState.cpp',
              'aiarena/chess/src/CCell.cpp',
              'aiarena/chess/src/CMove.cpp']
 
@@ -16,9 +16,9 @@ extensions = [
         include_dirs=["aiarena/chess/src"]
     ),
     Extension(
-        name="aiarena.chess.boardState",
+        name="aiarena.chess.gameState",
         language='c++',
-        sources=["aiarena/chess/boardState" + ext] + C_sources,
+        sources=["aiarena/chess/gameState" + ext] + C_sources,
         include_dirs=["aiarena/chess/src"],
         undef_macros=["NDEBUG"]
     ),

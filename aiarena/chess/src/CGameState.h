@@ -14,7 +14,7 @@ const int NCOLUMNS = 8;
 const int NCELLS = 64;
 const int FIFTYMOVES = 100;
 
-class CBoardState {
+class CGameState {
 public:
 //
 bool isWhiteTurn;
@@ -30,7 +30,7 @@ bool pawn_pushed_by_two;
 int pawn_pushed_col;
 std::vector<CCell> cells;
 
-CBoardState();
+CGameState();
 void initBoard();
 void reverse();
 std::string getFEN(bool turn=true, bool castle=true, bool counts=true);

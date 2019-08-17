@@ -1,5 +1,5 @@
 #include "CMove.h"
-#include "CBoardState.h"
+#include "CGameState.h"
 
 namespace Chess {
 
