@@ -26,4 +26,6 @@ cdef class Cell:
         return chr(self.cCell.pieceType)
 
     def __repr__(self):
+        if self.type is NONE:
+            return '_'
         return ('w' if self.isWhite else 'b') + '_' + self.type

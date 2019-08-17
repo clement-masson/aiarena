@@ -38,11 +38,8 @@ cdef class GameState:
     def cells(self):
       return [Cell.wrap(e) for e in self.cGameState.cells]
 
-    # cdef getCell(GameState self, int i, int j):
-      # return
-
-    # def getCell2(self, i, j):
-    #     return self.getCell(i, j)
+    def getCell(self, int i, int j):
+      return Cell.wrap(self.cGameState.getCell(i, j))
 
     def reverse(self):
         self.cGameState.reverse()
