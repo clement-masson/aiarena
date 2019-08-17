@@ -66,11 +66,11 @@ void CGameState::reverse(){
 	// inversion des infos de roque
 	bool tmp;
 	tmp = white_king_castle_A_side;
-	white_king_castle_A_side = black_king_castle_A_side;
-	black_king_castle_A_side = tmp;
-	tmp = white_king_castle_H_side;
-	white_king_castle_H_side = black_king_castle_H_side;
+	white_king_castle_A_side = black_king_castle_H_side;
 	black_king_castle_H_side = tmp;
+	tmp = white_king_castle_H_side;
+	white_king_castle_H_side = black_king_castle_A_side;
+	black_king_castle_A_side = tmp;
 }
 
 std::string CGameState::getFEN(bool turn, bool castle, bool counts){
@@ -638,7 +638,7 @@ void CGameState::doMove(const CMove& move){
 	else if(piece.pieceType == PieceType::rook && !piece.isWhite && from_column == 0)
 		black_king_castle_A_side = false;
 	else if(piece.pieceType == PieceType::rook && !piece.isWhite && from_column == NCOLUMNS-1)
-		black_king_castle_H_side = true;
+		black_king_castle_H_side = false;
 
 	// std::cout << "CGameState : domove " << move.toPDN() << " SUCCESSFUL" << std::endl;
 }
