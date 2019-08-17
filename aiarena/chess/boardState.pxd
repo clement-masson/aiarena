@@ -4,7 +4,7 @@ from libcpp.vector cimport vector
 from libcpp.pair cimport pair
 
 from .move cimport CMove, Move
-from .cell cimport Cell
+from .cell cimport CCell
 
 cdef extern from "CBoardState.h" namespace "Chess":
     cdef const int NROWS
@@ -15,7 +15,7 @@ cdef extern from "CBoardState.h" namespace "Chess":
     cdef cppclass CBoardState:
         CBoardState() except +
         CBoardState(CBoardState&) except +
-        vector[Cell] cells
+        vector[CCell] cells
         bool isWhiteTurn
         int turnCounter
         int noPawnNoCapture
@@ -25,8 +25,8 @@ cdef extern from "CBoardState.h" namespace "Chess":
 
         bool isValidIndex(int)
         bool isValidRC(int, int)
-        Cell getCell(int) except +
-        Cell getCell(int, int) except +
+        CCell getCell(int) except +
+        CCell getCell(int, int) except +
         int RCtoIndex(int, int)
         pair[int,int] indexToRC(int)
 

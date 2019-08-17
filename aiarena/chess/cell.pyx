@@ -2,22 +2,22 @@ from cython.operator cimport dereference as deref, preincrement as inc
 from .cell cimport *
 
 
-cdef class PyCell:
+cdef class Cell:
 
     def __cinit__(self):
         pass
 
     def __dealloc__(self):
-        del self._cell
+        del self.cCell
 
     @staticmethod
-    cdef wrap(Cell* c):
-        result = PyCell()
-        result._cell = c
+    cdef wrap(CCell* c):
+        result = Cell()
+        result.cCell = c
         return result
 
     def isWhite(self):
-        return self._cell.isWhite
+        return self.cCell.isWhite
 
     def type(self):
-        return self._cell.pieceType
+        return chr(self.cCell.pieceType)

@@ -7,7 +7,7 @@
 namespace Chess {
 
 CBoardState::CBoardState() {
-	cells = std::vector<Cell>(64);
+	cells = std::vector<CCell>(64);
 	initBoard();
 	isWhiteTurn = true;
     turnCounter = 0;
@@ -25,26 +25,26 @@ CBoardState::CBoardState() {
 }
 
 void CBoardState::initBoard(){
-	cells[0] = Cell(PieceType::rook, true);
-	cells[1] = Cell(PieceType::knight, true);
-	cells[2] = Cell(PieceType::bishop, true);
-	cells[3] = Cell(PieceType::queen, true);
-	cells[4] = Cell(PieceType::king, true);
-	cells[5] = Cell(PieceType::bishop, true);
-	cells[6] = Cell(PieceType::knight, true);
-	cells[7] = Cell(PieceType::rook, true);
+	cells[0] = CCell(PieceType::rook, true);
+	cells[1] = CCell(PieceType::knight, true);
+	cells[2] = CCell(PieceType::bishop, true);
+	cells[3] = CCell(PieceType::queen, true);
+	cells[4] = CCell(PieceType::king, true);
+	cells[5] = CCell(PieceType::bishop, true);
+	cells[6] = CCell(PieceType::knight, true);
+	cells[7] = CCell(PieceType::rook, true);
 	for (int cellIndex = 8; cellIndex < 16; cellIndex++)
-		cells[cellIndex] = Cell(PieceType::pawn, true);
+		cells[cellIndex] = CCell(PieceType::pawn, true);
 	for (int cellIndex = 48; cellIndex < 56; cellIndex++)
-		cells[cellIndex] = Cell(PieceType::pawn, false);
-	cells[56] = Cell(PieceType::rook, false);
-	cells[57] = Cell(PieceType::knight, false);
-	cells[58] = Cell(PieceType::bishop, false);
-	cells[59] = Cell(PieceType::queen, false);
-	cells[60] = Cell(PieceType::king, false);
-	cells[61] = Cell(PieceType::bishop, false);
-	cells[62] = Cell(PieceType::knight, false);
-	cells[63] = Cell(PieceType::rook, false);
+		cells[cellIndex] = CCell(PieceType::pawn, false);
+	cells[56] = CCell(PieceType::rook, false);
+	cells[57] = CCell(PieceType::knight, false);
+	cells[58] = CCell(PieceType::bishop, false);
+	cells[59] = CCell(PieceType::queen, false);
+	cells[60] = CCell(PieceType::king, false);
+	cells[61] = CCell(PieceType::bishop, false);
+	cells[62] = CCell(PieceType::knight, false);
+	cells[63] = CCell(PieceType::rook, false);
 }
 
 
@@ -52,7 +52,7 @@ void CBoardState::reverse(){
 	isWhiteTurn = !isWhiteTurn;
 
 	// Inversion des cellules
-	Cell x;
+	CCell x;
 	for (int cellIndex = 0; cellIndex < NCELLS/2; cellIndex++) {
 		x = cells[cellIndex];
 		cells[cellIndex] = cells[NCELLS-cellIndex-1].invertColor();
@@ -75,7 +75,7 @@ void CBoardState::reverse(){
 
 std::string CBoardState::getFEN(bool turn, bool castle, bool counts){
     std::string result = "";
-	Cell cell;
+	CCell cell;
     int empty_counter;
 	for(int row = NROWS-1; row>=0; --row) {
         empty_counter = 0;
@@ -154,7 +154,7 @@ std::pair<int,int> CBoardState::indexToRC(const int cellIndex){
 	return std::pair<int,int>(cellIndex / NCOLUMNS, cellIndex % NCOLUMNS);
 }
 
-Cell CBoardState::getCell(const int cellIndex){
+CCell CBoardState::getCell(const int cellIndex){
 	if(!isValidIndex(cellIndex)) {
 		std::cout << "Non valid index : " << cellIndex << "\n";
 		throw "Non valid index";
@@ -162,7 +162,7 @@ Cell CBoardState::getCell(const int cellIndex){
 	return cells[cellIndex];
 }
 
-Cell CBoardState::getCell(const int r, const int c){
+CCell CBoardState::getCell(const int r, const int c){
 	if(!isValidRC(r,c)) {
 		std::cout << "Non valid coordinates : " << r << ", " << c << "\n";
 		throw "Non valid coordinates";
@@ -170,12 +170,12 @@ Cell CBoardState::getCell(const int r, const int c){
 	return cells[RCtoIndex(r,c)];
 }
 
-void CBoardState::setCell(const int cellIndex, const Cell c){
+void CBoardState::setCell(const int cellIndex, const CCell c){
 	if(!isValidIndex(cellIndex)) throw "Non valid coordinates in CBoardState::setCell";
 	cells[cellIndex] = c;
 }
 
-void CBoardState::setCell(const int r, const int c, const Cell cell){
+void CBoardState::setCell(const int r, const int c, const CCell cell){
 	if(!isValidRC(r,c)) throw "Non valid coordinates in CBoardState::setCell";
 	cells[RCtoIndex(r,c)] = cell;
 }
@@ -210,7 +210,7 @@ std::vector<CMove*> CBoardState::getPawnMovesFrom(const int cellIndex, const boo
 	}
 
 	// Prise
-	Cell candidate;
+	CCell candidate;
 	for(int directionCol = -1; directionCol<=1; directionCol+=2) {
 		if (isValidRC(r + directionRow, c + directionCol)) {
 			candidate = getCell(r + directionRow, c + directionCol);
@@ -247,7 +247,7 @@ std::vector<CMove*> CBoardState::getRookMovesFrom(const int cellIndex, const boo
 	int r = rc.first;
 	int c = rc.second;
 	int rr, cc;
-	Cell dest;
+	CCell dest;
 
 	for(int horizontal = 0; horizontal<=1; horizontal++) {
 		for(int direction = -1; direction<=1; direction+=2) {
@@ -278,7 +278,7 @@ std::vector<CMove*> CBoardState::getBishopMovesFrom(const int cellIndex, const b
 	int r = rc.first;
 	int c = rc.second;
 	int rr, cc;
-	Cell dest;
+	CCell dest;
 
 	for(int directionRow = -1; directionRow<=1; directionRow+=2) {
 		for(int directionCol = -1; directionCol<=1; directionCol+=2) {
@@ -319,7 +319,7 @@ std::vector<CMove*> CBoardState::getKnightMovesFrom(const int cellIndex, const b
 	int r = rc.first;
 	int c = rc.second;
 	int rr, cc;
-	Cell dest;
+	CCell dest;
 
 	for(int directionRow = -2; directionRow<=2; directionRow++) {
 		for(int directionCol = -2; directionCol<=2; directionCol++) {
@@ -347,7 +347,7 @@ std::vector<CMove*> CBoardState::getKingMovesFrom(const int cellIndex, const boo
 	int r = rc.first;
 	int c = rc.second;
 	int rr, cc;
-	Cell dest;
+	CCell dest;
 
 	for(int directionRow = -1; directionRow<=1; directionRow++) {
 		for(int directionCol = -1; directionCol<=1; directionCol++) {
@@ -460,7 +460,7 @@ std::vector<CMove*> CBoardState::findPossibleMoves(const bool white){
 	// First we look for capturing moves (we are obliged to capture as many pieces as possible)
 	std::vector<CMove*> pieceMoves;
 	CBoardState stateCopy;
-	Cell piece;
+	CCell piece;
 	CMove *move;
 	for(int cellIndex = 0; cellIndex<NCELLS; ++cellIndex) {
 		piece = cells[cellIndex];
@@ -504,7 +504,7 @@ bool CBoardState::isInCheck(){
 
 bool CBoardState::isInCheck(const bool whiteKing){
 	// Recherche de la position du roi
-	Cell dest;
+	CCell dest;
 	int kingPosition = -1;
 	for(int cellIndex = 0; cellIndex<NCELLS; cellIndex++) {
 		dest = cells[cellIndex];
@@ -519,7 +519,7 @@ bool CBoardState::isInCheck(const bool whiteKing){
 
 bool CBoardState::isInCheck(const int position, const bool whiteKing){
 	std::vector<CMove*> pieceMoves;
-	Cell dest;
+	CCell dest;
 	CMove *move;
 
 	// Rook and Queen
@@ -572,7 +572,7 @@ void CBoardState::doMove(const CMove& move){
 	   Note that this function does not check if the move is valid*/
 	// std::cout << "CBoardState : domove " << move.toPDN() << std::endl;
 	if (!isValidIndex(move.from_index) or !isValidIndex(move.to_index)) {throw "Invalid Index !";}
-	Cell piece = cells[move.from_index];
+	CCell piece = cells[move.from_index];
 	std::pair<int,int> rc = indexToRC(move.from_index);
 	int from_row = rc.first;
 	int from_column = rc.second;
@@ -585,25 +585,25 @@ void CBoardState::doMove(const CMove& move){
 	             abs(move.from_index - move.to_index) == 2;
 
 	// Mise a jour des cellules
-	cells[move.from_index] = Cell(PieceType::none);
+	cells[move.from_index] = CCell(PieceType::none);
 	if(move.promotionType !=  PieceType::none) {
-		cells[move.to_index] = Cell(move.promotionType, piece.isWhite);
+		cells[move.to_index] = CCell(move.promotionType, piece.isWhite);
 	}else{
 		cells[move.to_index] = piece;
 	}
 
 	// Gerer le cas en passant
 	if(enpassant) {
-		setCell(from_row, to_column, Cell(PieceType::none));
+		setCell(from_row, to_column, CCell(PieceType::none));
 	}
 
 	// Gerer le roque
 	if(roque) {
-		setCell((move.from_index + move.to_index)/2, Cell(PieceType::rook, piece.isWhite));
+		setCell((move.from_index + move.to_index)/2, CCell(PieceType::rook, piece.isWhite));
 		if(from_column < to_column)
-			setCell(from_row, NCOLUMNS-1, Cell(PieceType::none));
+			setCell(from_row, NCOLUMNS-1, CCell(PieceType::none));
 		else
-			setCell(from_row, 0, Cell(PieceType::none));
+			setCell(from_row, 0, CCell(PieceType::none));
 	}
 
 	// Mise a jour des info de 50moves

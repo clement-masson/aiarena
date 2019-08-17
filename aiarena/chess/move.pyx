@@ -1,11 +1,11 @@
 from cython.operator cimport dereference as deref, preincrement as inc
-
 from .move cimport *
-import re
 
-pdn_pattern = re.compile('(?P<from>\d+)(?P<type>[x-])(?P<to>\d+)(?P<promotion>\w)?')
 
 cdef class Move:
+
+    def __cinit__(self):
+        pass
 
     def __dealloc__(self):
         del self.cMove

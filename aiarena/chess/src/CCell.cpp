@@ -5,32 +5,32 @@
 
 namespace Chess {
 
-Cell::Cell(){
+CCell::CCell(){
 	pieceType = PieceType::none;
 	isWhite = true;
 }
 
-Cell::Cell(const char type, const bool white){
+CCell::CCell(const char type, const bool white){
 	assert(isValidType(type));
 	pieceType = type;
 	isWhite = white;
 }
 
-Cell::~Cell(){
+CCell::~CCell(){
 }
 
-bool Cell::isValidType(const char type){
+bool CCell::isValidType(const char type){
 	return type == PieceType::none || type == PieceType::pawn ||
 	       type == PieceType::rook || type == PieceType::knight ||
 	       type == PieceType::bishop || type == PieceType::queen ||
 	       type == PieceType::king;
 }
 
-Cell Cell::invertColor(){
-	return Cell(pieceType, !isWhite);
+CCell CCell::invertColor(){
+	return CCell(pieceType, !isWhite);
 }
 
-std::string Cell::toString(){
+std::string CCell::toString(){
 	return std::string(1, pieceType + (isWhite ? 0 : 32));
 }
 }

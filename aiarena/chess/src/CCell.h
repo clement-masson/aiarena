@@ -12,16 +12,16 @@ const char queen = 'Q';
 const char king = 'K';
 }
 
-class Cell {
+class CCell {
 public:
 char pieceType;
 bool isWhite;
 
-Cell();
-Cell(const char pieceType, const bool isWhite=true);
-~Cell();
+CCell();
+CCell(const char pieceType, const bool isWhite=true);
+~CCell();
 static bool isValidType(const char type);
-Cell invertColor();
+CCell invertColor();
 std::string toString();
 };
 }

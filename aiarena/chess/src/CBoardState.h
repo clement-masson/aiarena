@@ -28,7 +28,7 @@ bool black_king_castle_H_side;
 bool pawn_pushed_by_two;
 // en passant
 int pawn_pushed_col;
-std::vector<Cell> cells;
+std::vector<CCell> cells;
 
 CBoardState();
 void initBoard();
@@ -39,10 +39,10 @@ bool isValidIndex(const int i);
 bool isValidRC(const int r, const int c);
 int RCtoIndex(const int r, const int c);
 std::pair<int,int> indexToRC(const int i);
-Cell getCell(const int i);
-Cell getCell(const int r, const int c);
-void setCell(const int i, const Cell c);
-void setCell(const int r, const int c, const Cell cell);
+CCell getCell(const int i);
+CCell getCell(const int r, const int c);
+void setCell(const int i, const CCell c);
+void setCell(const int r, const int c, const CCell cell);
 
 bool isInCheck();
 bool isInCheck(const bool whiteKing);

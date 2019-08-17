@@ -1,7 +1,7 @@
 # cython: language_level=3
 from cython.operator cimport dereference as deref, preincrement as inc
 from .boardState cimport CBoardState, NROWS, NCOLUMNS
-from .cell import PyCell
+from .cell import Cell
 from colorama import Fore, Back, Style
 
 ASCI_TXT = False
@@ -98,6 +98,7 @@ cdef class BoardState:
     def toDisplay(self, showBoard = False):
         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
         If showBard is True, then a board with cell indices is shown next to the state'''
+        cdef CCell cell
 
         piece_asci_len = 3 if ASCI_TXT else 2
         number_len = 3
