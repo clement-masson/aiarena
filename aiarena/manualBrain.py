@@ -21,10 +21,10 @@ class ManualBrain:
         while True:
             print("Please enter a move")
             string = sys.stdin.readline()[0:-1]
-            if string.isnumeric() and int(string) in range(len(possibleMoves)):
-                return possibleMoves[int(string)]
-            elif string in pdn_list:
+            if string in pdn_list:
                 return possibleMoves[pdn_list.index(string)]
+            elif string.isnumeric() and int(string) in range(len(possibleMoves)):
+                return possibleMoves[int(string)]
             print(string + ' is an invalid move !')
 
     def __str__(self):
