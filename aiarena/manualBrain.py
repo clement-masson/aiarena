@@ -13,7 +13,7 @@ class ManualBrain:
     def play(self, gameState, timeLimit):
         possibleMoves = gameState.findPossibleMoves()
         sp.check_call('clear')
-        print(gameState.toDisplay(True))
+        print(gameState.toDisplay())
         print("Authorized moves : ")
         pdn_list = [m.toPDN() for m in possibleMoves]
         smart_display(pdn_list, count=True)

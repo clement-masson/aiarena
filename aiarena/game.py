@@ -134,7 +134,7 @@ class Game:
             print(txt)
 
     def logState(self):
-        self.addToLog(self.gameState.toDisplay(True), Game.stateDisplayLevel)
+        self.addToLog(self.gameState.toDisplay(), Game.stateDisplayLevel)
 
     def logChoices(self, possibleMoves):
         recap = "Possible moves :\n"
