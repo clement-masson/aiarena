@@ -2,8 +2,9 @@ from setuptools import setup, find_packages
 from setup_chess import extensions as chess_extensions
 from setup_checkers import extensions as checkers_extensions
 from setup_connect4 import extensions as connect4_extensions
+from setup_abalone import extensions as abalone_extensions
 
-extensions = chess_extensions + checkers_extensions + connect4_extensions
+extensions = chess_extensions + checkers_extensions + connect4_extensions + abalone_extensions
 
 setup(name='aiarena',
       version='1.0',
