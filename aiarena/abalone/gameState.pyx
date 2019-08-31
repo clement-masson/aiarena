@@ -117,18 +117,17 @@ cdef class GameState:
         for r in reversed(range(2*self.size-1)):
             padding = max_width - self.cGameState.getWidth(r)
             line = ' |' + ' '*padding
-            column_range = range(self.cGameState.getRowStart(r), self.cGameState.getRowEnd(r)+1)
-            for c in column_range:
-                cell = self.getCell(r,c)
+            for cell in self.getRow(r):
                 line +=  get_ascii(cell) + ' '
             s += line
             s += Style.RESET_ALL + ' '*padding + '|'
             if showBoard:
                 s+='    |'
                 s += ' '*padding
-                for c in column_range:
-                    back = Back.BLUE if c%2 != r%2 else Back.LIGHTBLUE_EX
-                    s += back + formater.format(self.RCtoIndex(r,c))
+                for c, cell in enumerate(self.getRow(r)):
+                    col = c + self.cGameState.getStartOffset(r)
+                    back = Back.BLUE if col%2 != r%2 else Back.LIGHTBLUE_EX
+                    s += back + formater.format(self.RCtoIndex(r,col))
                 s += Style.RESET_ALL + ' '*padding + '|'
             s += '\n'
         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*(2*max_width))+"'"

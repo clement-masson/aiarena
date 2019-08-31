@@ -30,8 +30,7 @@ cdef extern from "CGameState.h" namespace "Abalone":
         vector[CCell] getColumn(int)
         vector[CCell] getDiagonal(int)
         int getWidth(int)
-        int getRowStart(int)
-        int getRowEnd(int)
+        int getStartOffset(int)
         int RCtoIndex(int, int)
         pair[int,int] indexToRC(int)
 
