@@ -10,8 +10,8 @@ CGameState::CGameState(int s) {
 	size = s;
 	cells = std::vector<CCell>(3*s*(s-1) + 1);
 	isWhiteTurn = true;
-    capturedWhiteBalls = 0;
-    capturedBlackBalls = 0;
+	capturedWhiteBalls = 0;
+	capturedBlackBalls = 0;
 	turnCounter = 0;
 
 	// initialisation des tableaux de conversion
@@ -64,6 +64,11 @@ void CGameState::initBoard(){
 void CGameState::reverse(){
 	isWhiteTurn = !isWhiteTurn;
 	int ncells = cells.size();
+
+    // inversion des captures
+    int temp = capturedWhiteBalls;
+    capturedWhiteBalls = capturedBlackBalls;
+    capturedBlackBalls = temp;
 
 	// Inversion des cellules
 	CCell x;
