@@ -14,5 +14,8 @@ setup(name='aiarena',
       url='',
       license='MIT',
       packages=find_packages(),
+      install_requires=[
+          'colorama',
+      ],
       ext_modules=extensions
       )
