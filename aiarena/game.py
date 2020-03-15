@@ -14,9 +14,9 @@ class Game:
         - pgn: the Portable Game Notation summary of the game
     '''
 
-    def __init__(self, module, ia1, timeLimit1, ia2, timeLimit2):
-        self.gameState = module.GameState()
         self.noCaptureMax = 50
+    def __init__(self, module, ia1, timeLimit1, ia2, timeLimit2, gameConfig={}):
+        self.gameState = module.GameState(**gameConfig)
         self.player1 = Player(True, ia1, timeLimit1)
         self.player2 = Player(False, ia2, timeLimit2)
 
