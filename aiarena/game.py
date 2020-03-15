@@ -14,7 +14,6 @@ class Game:
         - pgn: the Portable Game Notation summary of the game
     '''
 
-        self.noCaptureMax = 50
     def __init__(self, module, ia1, timeLimit1, ia2, timeLimit2, gameConfig={}):
         self.gameState = module.GameState(**gameConfig)
         self.player1 = Player(True, ia1, timeLimit1)
@@ -23,7 +22,7 @@ class Game:
         self.displayLevel = 0
         self.pause = 0
         self.log = ""
-        self.status = {'success': False, 'draw': False,
+        self.status = {'success': False, 'draw': None,
                        'winner': None, 'playerError': None, 'errorID': None}
 
     def init_logs(self):
@@ -34,7 +33,7 @@ class Game:
                       str(self.player1.timeLimit) + ' secs/turn to play')
         self.logState()
 
-    def runGame(self):
+    def start(self):
         # setup
         self.init_logs()
         self.pgn = None
@@ -112,17 +111,11 @@ class Game:
             self.logCompuTime(player.computingTimes[-1])
             self.logState()
 
-        # If the simulation stops before the game ends
-        if not self.status['success']:
-            self.status['errorID'] = 'MAX'
-            self.addToLog('The game could not end within ' + str(self.Nlimit) + ' steps')
-            return
-
         # create the PGN of the game
         self.pgn = self.makePGN(startTime, pgnMoves, result)
         self.log += "\n#PGN#\n" + self.pgn
 
-# End of runGame
+# End of start
 
     stateDisplayLevel = 1
     choiceDisplayLevel = 2
