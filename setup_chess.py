@@ -17,8 +17,7 @@ def get_extensions(use_cython):
             name="aiarena.chess.gameState",
             language='c++',
             sources=["aiarena/chess/gameState" + ext] + C_sources,
-            include_dirs=["aiarena/chess/src"],
-            undef_macros=["NDEBUG"]
+            include_dirs=["aiarena/chess/src"]
         ),
         Extension(
             name="aiarena.chess.move",

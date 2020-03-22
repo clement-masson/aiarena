@@ -17,8 +17,7 @@ def get_extensions(use_cython):
             name="aiarena.abalone.gameState",
             language='c++',
             sources=["aiarena/abalone/gameState" + ext] + C_sources,
-            include_dirs=["aiarena/abalone/src"],
-            undef_macros=["NDEBUG"]
+            include_dirs=["aiarena/abalone/src"]
         ),
         Extension(
             name="aiarena.abalone.move",

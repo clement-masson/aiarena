@@ -17,8 +17,7 @@ def get_extensions(use_cython):
             name="aiarena.connect4.gameState",
             language='c++',
             sources=["aiarena/connect4/gameState" + ext] + C_sources,
-            include_dirs=["aiarena/connect4/src"],
-            undef_macros=["NDEBUG"]
+            include_dirs=["aiarena/connect4/src"]
         ),
         Extension(
             name="aiarena.connect4.move",

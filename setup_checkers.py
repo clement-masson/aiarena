@@ -17,8 +17,7 @@ def get_extensions(use_cython):
             name="aiarena.checkers.gameState",
             language='c++',
             sources=["aiarena/checkers/gameState" + ext] + C_sources,
-            include_dirs=["aiarena/checkers/src"],
-            undef_macros=["NDEBUG"]
+            include_dirs=["aiarena/checkers/src"]
         ),
         Extension(
             name="aiarena.checkers.move",
