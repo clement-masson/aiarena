@@ -27,6 +27,9 @@ bool CCell::isValidType(const char type){
 }
 
 CCell CCell::invertColor(){
+  if(pieceType == PieceType::none){
+      return CCell();
+  }
 	return CCell(pieceType, !isWhite);
 }
 

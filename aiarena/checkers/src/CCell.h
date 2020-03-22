@@ -1,16 +1,23 @@
-namespace Checkers {
-    namespace Cell {
-        const char empty = '.';
-        const char w = 'w';
-        const char W = 'W';
-        const char b = 'b';
-        const char B = 'B';
+#pragma once
+#include <string>
 
-        bool isWhite(const char p);
-        bool isBlack(const char p);
-        bool isMan(const char p);
-        bool isKing(const char p);
-        char invertColor(const char p);
-        char promote(const char p);
-    }
- }
+namespace Checkers {
+namespace PieceType {
+const char none = ' ';
+const char man = 'M';
+const char king = 'K';
+}
+
+class CCell {
+public:
+char pieceType;
+bool isWhite;
+
+CCell();
+CCell(const char pieceType, const bool isWhite=true);
+~CCell();
+static bool isValidType(const char type);
+CCell invertColor();
+std::string toString();
+};
+}

@@ -1,44 +1,38 @@
 #include "CCell.h"
 #include <cstddef>
 #include <iostream>
+#include <cassert>
 
-namespace Checkers{
-    namespace Cell{
-        bool isWhite(const char p){
-            return p==Cell::w or p==Cell::W;
-        }
+namespace Checkers {
 
-        bool isBlack(const char p){
-            return p==Cell::b or p==Cell::B;
-        }
+CCell::CCell(){
+	pieceType = PieceType::none;
+	isWhite = true;
+}
 
-        bool isMan(const char p){
-            return p==Cell::b or p==Cell::w;
-        }
+CCell::CCell(const char type, const bool white){
+	assert(isValidType(type));
+	pieceType = type;
+	isWhite = white;
+}
 
-        bool isKing(const char p){
-            return p==Cell::B or p==Cell::W;
-        }
+CCell::~CCell(){
+}
 
-        char invertColor(const char p){
-            if (p==Cell::empty) return p;
-            if (isWhite(p)) return p-21;
-            if (isBlack(p)) return p+21;
-            throw "invalid cell";
-        }
+bool CCell::isValidType(const char type){
+	return type == PieceType::none ||
+         type == PieceType::man ||
+	       type == PieceType::king;
+}
 
-        char promote(const char p){
-            switch(p){
-                case w:
-                    return W;
-                    break;
-                case b:
-                    return B;
-                    break;
-                default:
-                    throw "Only men can be promoted to king !";
-            }
-        }
+CCell CCell::invertColor(){
+  if(pieceType == PieceType::none){
+      return CCell();
+  }
+	return CCell(pieceType, !isWhite);
+}
 
-    }
+std::string CCell::toString(){
+	return std::string(1, pieceType + (isWhite ? 0 : 32));
+}
 }

@@ -4,12 +4,14 @@ from libcpp.vector cimport vector
 from libcpp.pair cimport pair
 
 from .move cimport *
+from .cell cimport CCell, Cell
 
 cdef extern from "CGameState.h" namespace "Checkers":
     cdef cppclass CGameState:
         CGameState() except +
         CGameState(int, int, bool, bool, bool) except +
         CGameState(CGameState&) except +
+        vector[CCell] cells
         int nRows, nPieces, nCells
         bool isWhiteTurn
         int noCaptureCounter
@@ -19,8 +21,7 @@ cdef extern from "CGameState.h" namespace "Checkers":
 
         bool isValidIndex(int)
         bool isValidRC(int, int)
-        char getCell(int, int) except +
-        vector[char] getCells() except +
+        CCell getCell(int, int) except +
         int RCtoIndex(int, int)
         pair[int,int] indexToRC(int)
 

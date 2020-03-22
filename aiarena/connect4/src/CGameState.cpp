@@ -6,12 +6,12 @@
 namespace Connect4 {
 
 CGameState::CGameState(int w, int h) {
-    width = w;
-    height = h;
+  width = w;
+  height = h;
 	cells = std::vector<CCell>(w*h);
 	initBoard();
 	isWhiteTurn = true;
-    turnCounter = 0;
+  turnCounter = 0;
 }
 
 void CGameState::initBoard(){
@@ -27,23 +27,23 @@ void CGameState::reverse(){
 }
 
 std::string CGameState::toString(){
-    std::string result = std::to_string(height) + " ";
+  std::string result = std::to_string(height) + " ";
 	CCell cell;
 	for(int col = 0; col<width; ++col) {
-    	for(int row = 0; row<height; ++row) {
-    		cell = getCell(row, col);
-            if (cell.color == CCell::NONE){
-                break;
-            }else{
-                result += cell.toString();
-            }
-        }
-        if (col < width-1){
-            result += "/";
-        }
+  	for(int row = 0; row<height; ++row) {
+  		cell = getCell(row, col);
+      if (cell.color == CCell::NONE){
+          break;
+      }else{
+          result += cell.toString();
+      }
     }
+    if (col < width-1){
+        result += "/";
+    }
+  }
 
-    result += isWhiteTurn ? " w" : " b";
+  result += isWhiteTurn ? " w" : " b";
 	return result;
 }
 

@@ -97,6 +97,7 @@ class Game:
             chosenStateRepr = repr(chosenState)
             possibleRepr = [repr(self.gameState.copy().doMove(move)) for move in possibleMoves]
             if chosenStateRepr not in possibleRepr:
+                print('Player returned an invalid state.')
                 self.gameState.display()
                 chosenState.display()
                 raise Exception(chosenStateRepr + '\n not in \n' + '\n'.join(possibleRepr))

@@ -54,9 +54,6 @@ cdef class GameState:
     property nPieces:
         def __get__(self): return self.cGameState.nPieces
 
-    property cells:
-        def __get__(self): return self.cGameState.getCells()
-
     @property
     def isWhiteTurn(self):
       return self.cGameState.isWhiteTurn
@@ -65,8 +62,12 @@ cdef class GameState:
     def noCaptureCounter(self):
       return self.cGameState.noCaptureCounter
 
+    @property
+    def cells(self):
+      return [Cell.wrap(e) for e in self.cGameState.cells]
+
     def getCell(self, int r,int c):
-        return self.cGameState.getCell(r, c)
+        return Cell.wrap(self.cGameState.getCell(r, c))
 
     def reverse(self):
         self.cGameState.reverse()
@@ -142,7 +143,8 @@ cdef class GameState:
             for c in range(nRows):
                 s += Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
                 if c%2 != r%2:
-                    s +=  get_ascii(chr(self.getCell(r,c)))
+                    cell = self.cGameState.getCell(r,c)
+                    s +=  get_ascii(chr(cell.pieceType), cell.isWhite)
                 else:
                     s += ' ' * piece_asci_len
             s += Style.RESET_ALL + '|'
@@ -170,19 +172,21 @@ cdef class GameState:
     def display(self, showBoard = False):
         print(self.toDisplay(showBoard))
 
+
 asci_symbols = {
-  'w': '\u26C0 ',
-  'W': '\u26C1 ',
-  'b': '\u26C0 ',
-  'B': '\u26C1 ',
-  '.': '  ',
+  ('M', True): '\u26C0 ',
+  ('K', True): '\u26C1 ',
+  ('M', False): '\u26C0 ',
+  ('K', False): '\u26C1 ',
+  (' ', True): '  ',
+  (' ', False): '  '
 }
 
 
-def get_ascii(piece):
+def get_ascii(piece, isWhite):
   if ASCI_TXT:
-    fore = Fore.WHITE if piece.lower() == 'w' else Fore.RED
+    fore = Fore.WHITE if isWhite else Fore.RED
     return Style.BRIGHT + fore + ' ' + piece + ' '
   else:
-    fore = Fore.WHITE if piece.lower() == 'w' else Fore.BLACK
-    return Style.BRIGHT + fore + asci_symbols[piece]
+    fore = Fore.WHITE if isWhite else Fore.BLACK
+    return Style.BRIGHT + fore + asci_symbols[(piece, isWhite)]

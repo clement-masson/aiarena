@@ -15,7 +15,7 @@ namespace Checkers {
         kingsCanFly = kingsFly;
         menMustStop = menStop;
 
-        cells = std::vector<char>(nCells, '.');
+        cells = std::vector<CCell>(nCells);  // initialise des cases vides
         initBoard();
         isWhiteTurn = true;
         noCaptureCounter = 0;
@@ -23,31 +23,27 @@ namespace Checkers {
 
     void CGameState::initBoard(){
         for (int i = 0; i < nPieces; i++)
-            cells[i] = Cell::b;
-        for (int i = nPieces; i < nCells-nPieces; i++)
-            cells[i] = Cell::empty;
+            cells[i] = CCell(PieceType::man, false);
         for (int i = nCells-nPieces; i < nCells; i++)
-            cells[i] = Cell::w;
-    }
-
-    std::vector<char> CGameState::getCells(){
-        return cells;
+            cells[i] = CCell(PieceType::man, true);
     }
 
     void CGameState::reverse(){
         isWhiteTurn = !isWhiteTurn;
 
-        char x;
+        CCell x;
         for (int i = 0; i < nCells/2; i++){
             x = cells[i];
-            cells[i] = Cell::invertColor(cells[nCells-i-1]);
-            cells[nCells-i-1] = Cell::invertColor(x);
+            cells[i] = cells[nCells-i-1].invertColor();
+            cells[nCells-i-1] = x.invertColor();
         }
     }
 
     std::string CGameState::toString(const bool turn, const bool counts){
-        std::string result = std::string(cells.begin(), cells.end());
-
+        std::string result = "";
+      	for(int i = 0; i<nCells; ++i) {
+            result += cells[i].toString();
+        }
         if(turn)
             result += isWhiteTurn ? " w" : " b";
 
@@ -55,7 +51,7 @@ namespace Checkers {
             result += " ";
             result += std::to_string(noCaptureCounter);
         }
-    	return result;
+        return result;
     }
 
 /*
@@ -80,7 +76,7 @@ Convertissors, checkers and getters
         return rc;
     }
 
-    char CGameState::getCell(const int i){
+    CCell CGameState::getCell(const int i){
         if(!isValidIndex(i)){
             std::cout << "Non valid index : " << i << "\n";
             throw "Non valid index";
@@ -88,7 +84,7 @@ Convertissors, checkers and getters
         return cells[i];
     }
 
-    char CGameState::getCell(const int r, const int c){
+    CCell CGameState::getCell(const int r, const int c){
         if(!isValidRC(r,c)){
             std::cout << "Non valid coordinates : " << r << ", " << c << "\n";
             throw "Non valid coordinates";
@@ -96,26 +92,26 @@ Convertissors, checkers and getters
         return cells[RCtoIndex(r,c)];
     }
 
-    void CGameState::setCell(const int i, const char c){
+    void CGameState::setCell(const int i, const CCell c){
         if(!isValidIndex(i)) throw "Non valid coordinates";
         cells[i] = c;
     }
 
-      void CGameState::setCell(const int r, const int c, const char cell){
+      void CGameState::setCell(const int r, const int c, const CCell cell){
           if(!isValidRC(r,c)) throw "Non valid coordinates";
           cells[RCtoIndex(r,c)] = cell;
       }
 
 
     std::vector<CCaptureMove*> CGameState::tryJumpFrom(const int cellIndex){
-        char piece = cells[cellIndex];
-        if (piece == Cell::empty) throw "Error, the starting position contains no piece";
+        CCell piece = cells[cellIndex];
+        if (piece.pieceType == PieceType::none) throw "Error, the starting position contains no piece";
         std::set<int> previousCaptures;
         std::vector<CCaptureMove*> possibleMoves = tryJumpFrom(cellIndex, cellIndex, piece, previousCaptures);
         return possibleMoves;
     }
 
-    std::vector<CCaptureMove*> CGameState::tryJumpFrom(const int cellIndex, const int initPos, const char piece, std::set<int>& previousCaptures){
+    std::vector<CCaptureMove*> CGameState::tryJumpFrom(const int cellIndex, const int initPos, const CCell piece, std::set<int>& previousCaptures){
 //        Find capturing moves that a piece located at a given position.
 //
 //        Inputs:
@@ -129,9 +125,11 @@ Convertissors, checkers and getters
         int r0 = rc0.first;
         int c0 = rc0.second;
 
-        int tr_min = (r0>0  && (piece!=Cell::b || menCaptureBackward) ) ? -1 : 1;
-        int tr_max = (r0<nRows-1 && (piece!=Cell::w || menCaptureBackward) ) ? 1 : -1; //authorize to move in positive row
-        int magnitude = (kingsCanFly && Cell::isKing(piece)) ? nRows : 1;
+        bool allow_negative = r0>0 && (piece.isWhite || piece.pieceType == PieceType::king || menCaptureBackward);
+        bool allow_positive = r0<nRows-1 && (!piece.isWhite || piece.pieceType == PieceType::king || menCaptureBackward);
+        int tr_min = allow_negative ? -1 : 1;
+        int tr_max = allow_positive ? 1 : -1;
+        int magnitude = (kingsCanFly && piece.pieceType == PieceType::king) ? nRows : 1;
         //std::cout << piece << " : trmin/trmax : " << tr_min << " / " << tr_max << std::endl;
         //std::cout << menCaptureBackward << " !! " << r0 << " / " << c0 << std::endl;
 
@@ -140,16 +138,16 @@ Convertissors, checkers and getters
         std::vector<CCaptureMove*> newVariations;
 
         int r2,c2, jumpPos, newPos;
-        bool isWhite = Cell::isWhite(piece);
-        char jumpedCell;
+        bool isWhite = piece.isWhite;
+        CCell jumpedCell;
         for (int tr=tr_min; tr<=tr_max; tr+=2){
             for (int tc=-1; tc<=1; tc+=2){
                 for (int k=1; k<=magnitude; ++k){
                     if( !isValidRC(r0+ k*tr, c0+ k*tc) ) break;
                     jumpPos = RCtoIndex(r0+ k*tr, c0+ k*tc);
                     jumpedCell = cells[jumpPos];
-                    if( jumpedCell==Cell::empty ) continue;
-                    if( Cell::isWhite(jumpedCell)==isWhite || previousCaptures.find(jumpPos) != previousCaptures.end() ) break;
+                    if( jumpedCell.pieceType==PieceType::none ) continue;
+                    if( jumpedCell.isWhite==isWhite || previousCaptures.find(jumpPos) != previousCaptures.end() ) break;
 
                     // we have foundthe closest opponent piece to jump above
                     // we will search now all the landing possibilities (if there are)
@@ -159,9 +157,10 @@ Convertissors, checkers and getters
                         if( !isValidRC(r2, c2) ) break;
 
                         newPos = RCtoIndex(r2,c2);
-                        if( cells[newPos]==Cell::empty || newPos==initPos ){
+                        if( cells[newPos].pieceType==PieceType::none || newPos==initPos ){
                             // if this is a valid jump
-                            if( menMustStop && !Cell::isKing(piece) && ((r2==0 && isWhite) || (r2==nRows-1 && !isWhite)) ){
+                            if( menMustStop && piece.pieceType==PieceType::man &&
+                              ((r2==0 && isWhite) || (r2==nRows-1 && !isWhite)) ){
                                 // if a man has reached the last row, it has to stop and be crowned if the rules say so
                                 possibleVariations.push_back( new CCaptureMove(newPos) );
                             }else{
@@ -225,24 +224,27 @@ Convertissors, checkers and getters
 
 
     std::vector<CSimpleMove*> CGameState::tryMoveFrom(const int cellIndex){
-        char piece = cells[cellIndex];
+        CCell piece = cells[cellIndex];
         std::vector<CSimpleMove*> possibleMoves;
-        if (piece==Cell::empty) throw "Error, the starting position contains no piece";
+        if (piece.pieceType==PieceType::none) throw "Error, the starting position contains no piece";
 
         std::pair<int,int> rc = indexToRC(cellIndex);
         int r = rc.first;
         int c = rc.second;
 
-        int tr_min = (r>0  && piece!=Cell::b) ? -1 : 1;
-        int tr_max = (r<nRows-1 && piece!=Cell::w) ? 1 : -1; //authorize to move in positive row
-        int magnitude = (kingsCanFly && Cell::isKing(piece)) ? nRows : 1;
+
+        bool allow_negative = r>0 && (piece.isWhite || piece.pieceType == PieceType::king);
+        bool allow_positive = r<nRows-1 && (!piece.isWhite || piece.pieceType == PieceType::king);
+        int tr_min = allow_negative ? -1 : 1;
+        int tr_max = allow_positive ? 1 : -1;
+        int magnitude = (kingsCanFly && piece.pieceType == PieceType::king) ? nRows : 1;
 
         int newPos;
         for (int tr=tr_min; tr<=tr_max; tr+=2){
             for (int tc=-1; tc<=1; tc+=2){
                 for (int k=1; k<=magnitude; k++){
                     newPos = RCtoIndex(r + k*tr, c + k*tc);
-                    if ( !isValidRC(r + k*tr, c + k*tc) || cells[newPos]!=Cell::empty ) break;
+                    if ( !isValidRC(r + k*tr, c + k*tc) || cells[newPos].pieceType!=PieceType::none ) break;
                     possibleMoves.push_back( new CSimpleMove(cellIndex, newPos) );
                 }
             }
@@ -268,10 +270,10 @@ Convertissors, checkers and getters
         std::vector<CCaptureMove*> pieceMoves;
         int maxCaptures = 0;
         int nbCaptures;
-        char piece;
+        CCell piece;
         for(int i = 0; i<nCells; ++i){
             piece = cells[i];
-            if(piece!=Cell::empty && Cell::isWhite(piece)==white){
+            if(piece.pieceType!=PieceType::none && piece.isWhite==white){
                 pieceMoves = tryJumpFrom(i);
                 if(!pieceMoves.empty()){
                     nbCaptures = pieceMoves[0]->len();
@@ -291,7 +293,7 @@ Convertissors, checkers and getters
             std::vector<CSimpleMove*> pieceMoves;
             for(int i = 0; i<nCells; ++i){
                 piece = cells[i];
-                if(piece!=Cell::empty && Cell::isWhite(piece)==white){
+                if(piece.pieceType!=PieceType::none && piece.isWhite==white){
                     pieceMoves = tryMoveFrom(i);
                     moves.insert(moves.end(), pieceMoves.begin(), pieceMoves.end());
                 }
@@ -310,7 +312,7 @@ Convertissors, checkers and getters
         int start = mCells.front();
         if (!isValidIndex(start)) {throw "Invalid Index !";}
         int end = mCells.back();
-        char piece = cells[start];
+        CCell piece = cells[start];
         int diff1,diff2,tr,tc,current_r,current_c;
 
         if(move.isCapture()){
@@ -329,7 +331,7 @@ Convertissors, checkers and getters
                 current_r = RC.first + tr;
                 current_c = RC.second + tc;
                 do{
-                    setCell(current_r,current_c, Cell::empty);
+                    setCell(current_r,current_c, CCell());
                     current_r = current_r + tr;
                     current_c = current_c + tc;
                 }while (current_r != nextRC.first);
@@ -340,12 +342,14 @@ Convertissors, checkers and getters
           noCaptureCounter++;
         }
 
-        cells[start] = Cell::empty;
+        cells[start] = CCell();
         cells[end] = piece;
         std::pair<int,int> endRC = indexToRC(end);
 
-        if( (piece == Cell::w && endRC.first==0)  || (piece == Cell::b && endRC.first==nRows-1) ){
-            cells[end] = Cell::promote(piece);
+        if( piece.pieceType == PieceType::man && (
+            (piece.isWhite &&  endRC.first==0) ||
+            (!piece.isWhite && endRC.first==nRows-1)) ){
+            cells[end] = CCell(PieceType::king, piece.isWhite);
         }
 
       	isWhiteTurn = !isWhiteTurn;
