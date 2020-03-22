@@ -1,4 +1,4 @@
-namespace game {
+namespace Checkers {
     namespace Cell {
         const char empty = '.';
         const char w = 'w';

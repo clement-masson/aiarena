@@ -3,7 +3,7 @@
 #include <sstream>
 #include <string>
 
-namespace game{
+namespace Checkers{
     class CMove{
     protected:
         bool isCap;
@@ -13,7 +13,7 @@ namespace game{
         int len() const;
         std::list<int> getCells() const;
         bool isCapture() const;
-        std::string toPDN() const; 
+        std::string toPDN() const;
     };
 
     class CSimpleMove: public CMove{

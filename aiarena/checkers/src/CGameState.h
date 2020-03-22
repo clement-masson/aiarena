@@ -7,23 +7,23 @@
 #include "CCell.h"
 #include "CMove.h"
 
-namespace game {
-    class CBoardState {
+namespace Checkers {
+    class CGameState {
     private:
         std::vector<char> cells;
     public:
         int nRows, nCells, nPieces, rulesID;
         bool menCaptureBackward, kingsCanFly, menMustStop;
+        bool isWhiteTurn;
+        int noCaptureCounter;
 
-        CBoardState();
-        CBoardState(const int nR, const int nP, const bool menBack, const bool kingsFly, const bool menStop);
-        CBoardState(const CBoardState& bs);
-        ~CBoardState();
+        CGameState();
+        CGameState(const int nR, const int nP, const bool menBack, const bool kingsFly, const bool menStop);
 
-        void init();
+        void initBoard();
         std::vector<char> getCells();
         void reverse();
-        std::string toString();
+        std::string toString(const bool turn, const bool counts);
 
         bool isValidIndex(const int i);
         bool isValidRC(const int r, const int c);
@@ -38,6 +38,7 @@ namespace game {
         std::vector<CCaptureMove*> tryJumpFrom(const int cellIndex, const int initPos, const char piece, std::set<int>& previousCaptures);
         std::vector<CSimpleMove*> tryMoveFrom(const int cellIndex);
         std::vector<CMove*> findPossibleMoves(const bool white);
+        std::vector<CMove*> findPossibleMoves();
         void doMove(const CMove& move);
         int sign(const int x);
     };

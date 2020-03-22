@@ -3063,7 +3063,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_24checkTerminati
  *     def checkTermination(self):
  *         if len(self.findPossibleMoves()) == 0:             # <<<<<<<<<<<<<<
  *             if self.cGameState.isInCheck():
- *                 return 2 if self.isWhiteTurn else 1
+ *                 return 2 if self.isWhiteTurn else 1  # MAT
  */
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_findPossibleMoves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3091,7 +3091,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_24checkTerminati
  *     def checkTermination(self):
  *         if len(self.findPossibleMoves()) == 0:
  *             if self.cGameState.isInCheck():             # <<<<<<<<<<<<<<
- *                 return 2 if self.isWhiteTurn else 1
+ *                 return 2 if self.isWhiteTurn else 1  # MAT
  *             else:
  */
     __pyx_t_5 = (__pyx_v_self->cGameState->isInCheck() != 0);
@@ -3100,9 +3100,9 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_24checkTerminati
       /* "aiarena/chess/gameState.pyx":83
  *         if len(self.findPossibleMoves()) == 0:
  *             if self.cGameState.isInCheck():
- *                 return 2 if self.isWhiteTurn else 1             # <<<<<<<<<<<<<<
+ *                 return 2 if self.isWhiteTurn else 1  # MAT             # <<<<<<<<<<<<<<
  *             else:
- *                 return 3
+ *                 return 3  # PAT
  */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_isWhiteTurn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
@@ -3124,17 +3124,17 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_24checkTerminati
  *     def checkTermination(self):
  *         if len(self.findPossibleMoves()) == 0:
  *             if self.cGameState.isInCheck():             # <<<<<<<<<<<<<<
- *                 return 2 if self.isWhiteTurn else 1
+ *                 return 2 if self.isWhiteTurn else 1  # MAT
  *             else:
  */
     }
 
     /* "aiarena/chess/gameState.pyx":85
- *                 return 2 if self.isWhiteTurn else 1
+ *                 return 2 if self.isWhiteTurn else 1  # MAT
  *             else:
- *                 return 3             # <<<<<<<<<<<<<<
+ *                 return 3  # PAT             # <<<<<<<<<<<<<<
  *         if self.noPawnNoCapture >= 100:
- *             return 3
+ *             return 3  # DRAW
  */
     /*else*/ {
       __Pyx_XDECREF(__pyx_r);
@@ -3148,16 +3148,16 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_24checkTerminati
  *     def checkTermination(self):
  *         if len(self.findPossibleMoves()) == 0:             # <<<<<<<<<<<<<<
  *             if self.cGameState.isInCheck():
- *                 return 2 if self.isWhiteTurn else 1
+ *                 return 2 if self.isWhiteTurn else 1  # MAT
  */
   }
 
   /* "aiarena/chess/gameState.pyx":86
  *             else:
- *                 return 3
+ *                 return 3  # PAT
  *         if self.noPawnNoCapture >= 100:             # <<<<<<<<<<<<<<
- *             return 3
- *         return 0
+ *             return 3  # DRAW
+ *         return 0  # NOT TERMINATED
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_noPawnNoCapture); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -3168,10 +3168,10 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_24checkTerminati
   if (__pyx_t_5) {
 
     /* "aiarena/chess/gameState.pyx":87
- *                 return 3
+ *                 return 3  # PAT
  *         if self.noPawnNoCapture >= 100:
- *             return 3             # <<<<<<<<<<<<<<
- *         return 0
+ *             return 3  # DRAW             # <<<<<<<<<<<<<<
+ *         return 0  # NOT TERMINATED
  * 
  */
     __Pyx_XDECREF(__pyx_r);
@@ -3181,17 +3181,17 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_24checkTerminati
 
     /* "aiarena/chess/gameState.pyx":86
  *             else:
- *                 return 3
+ *                 return 3  # PAT
  *         if self.noPawnNoCapture >= 100:             # <<<<<<<<<<<<<<
- *             return 3
- *         return 0
+ *             return 3  # DRAW
+ *         return 0  # NOT TERMINATED
  */
   }
 
   /* "aiarena/chess/gameState.pyx":88
  *         if self.noPawnNoCapture >= 100:
- *             return 3
- *         return 0             # <<<<<<<<<<<<<<
+ *             return 3  # DRAW
+ *         return 0  # NOT TERMINATED             # <<<<<<<<<<<<<<
  * 
  * 
  */

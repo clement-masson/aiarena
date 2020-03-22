@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <iostream>
 
-namespace game{
+namespace Checkers{
     namespace Cell{
         bool isWhite(const char p){
             return p==Cell::w or p==Cell::W;

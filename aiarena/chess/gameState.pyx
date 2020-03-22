@@ -80,12 +80,12 @@ cdef class GameState:
     def checkTermination(self):
         if len(self.findPossibleMoves()) == 0:
             if self.cGameState.isInCheck():
-                return 2 if self.isWhiteTurn else 1
+                return 2 if self.isWhiteTurn else 1  # MAT
             else:
-                return 3
+                return 3  # PAT
         if self.noPawnNoCapture >= 100:
-            return 3
-        return 0
+            return 3  # DRAW
+        return 0  # NOT TERMINATED
 
 
     '''

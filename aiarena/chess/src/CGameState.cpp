@@ -10,7 +10,7 @@ CGameState::CGameState() {
 	cells = std::vector<CCell>(64);
 	initBoard();
 	isWhiteTurn = true;
-    turnCounter = 0;
+  turnCounter = 0;
 	noPawnNoCapture = 0; // 50 moves rule
 
     // en passant
@@ -74,63 +74,63 @@ void CGameState::reverse(){
 }
 
 std::string CGameState::getFEN(bool turn, bool castle, bool counts){
-    std::string result = "";
+  std::string result = "";
 	CCell cell;
-    int empty_counter;
+  int empty_counter;
 	for(int row = NROWS-1; row>=0; --row) {
-        empty_counter = 0;
-    	for(int column = 0; column<NCOLUMNS; ++column) {
-    		cell = getCell(row, column);
-            if (cell.pieceType == PieceType::none){
-                empty_counter ++;
-            }else{
-                if (empty_counter>0){
-                    result += std::to_string(empty_counter);
-                }
-                empty_counter = 0;
-                result += cell.toString();
-            }
-        }
+    empty_counter = 0;
+  	for(int column = 0; column<NCOLUMNS; ++column) {
+  		cell = getCell(row, column);
+      if (cell.pieceType == PieceType::none){
+        empty_counter ++;
+      }else{
         if (empty_counter>0){
-            result += std::to_string(empty_counter);
+          result += std::to_string(empty_counter);
         }
-        if (row>0){
-            result += "/";
-        }
+        empty_counter = 0;
+        result += cell.toString();
+      }
     }
-
-    if(turn)
-        result += isWhiteTurn ? " w" : " b";
-
-    if(castle){
-        result += " ";
-        if (!(white_king_castle_A_side || white_king_castle_H_side || black_king_castle_A_side || black_king_castle_H_side)){
-            result += "-";
-        }else{
-            if (white_king_castle_H_side)
-                result += "K";
-            if (white_king_castle_A_side)
-                result += "Q";
-            if (black_king_castle_H_side)
-                result += "k";
-            if (black_king_castle_A_side)
-                result += "q";
-        }
+    if (empty_counter>0){
+      result += std::to_string(empty_counter);
     }
+    if (row>0){
+      result += "/";
+    }
+  }
 
+  if(turn)
+    result += isWhiteTurn ? " w" : " b";
+
+  if(castle){
     result += " ";
-    if (pawn_pushed_by_two){
-        result += std::to_string(pawn_pushed_col);
+    if (!(white_king_castle_A_side || white_king_castle_H_side || black_king_castle_A_side || black_king_castle_H_side)){
+      result += "-";
     }else{
-        result += "-";
+      if (white_king_castle_H_side)
+        result += "K";
+      if (white_king_castle_A_side)
+        result += "Q";
+      if (black_king_castle_H_side)
+        result += "k";
+      if (black_king_castle_A_side)
+        result += "q";
     }
+  }
 
-    if(counts){
-        result += " ";
-        result += std::to_string(noPawnNoCapture);
-        result += " ";
-        result += std::to_string(turnCounter/2 + 1);
-    }
+  result += " ";
+  if (pawn_pushed_by_two){
+      result += std::to_string(pawn_pushed_col);
+  }else{
+      result += "-";
+  }
+
+  if(counts){
+      result += " ";
+      result += std::to_string(noPawnNoCapture);
+      result += " ";
+      result += std::to_string(turnCounter/2 + 1);
+  }
 	return result;
 }
 

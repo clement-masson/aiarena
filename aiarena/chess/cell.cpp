@@ -31,7 +31,7 @@ END: Cython Metadata */
 #else
 #define CYTHON_ABI "0_29_2"
 #define CYTHON_HEX_VERSION 0x001D02F0
-#define CYTHON_FUTURE_DIVISION 0
+#define CYTHON_FUTURE_DIVISION 1
 #include <stddef.h>
 #ifndef offsetof
   #define offsetof(type, member) ( (size_t) & ((type*)0) -> member )
@@ -1203,7 +1203,7 @@ static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_self_cCell_cannot_be_converted_t[] = "self.cCell cannot be converted to a Python object for pickling";
-static PyObject *__pyx_n_s_;
+static PyObject *__pyx_n_u_;
 static PyObject *__pyx_n_s_BISHOP;
 static PyObject *__pyx_n_s_Cell;
 static PyObject *__pyx_n_s_KING;
@@ -1213,7 +1213,7 @@ static PyObject *__pyx_n_s_PAWN;
 static PyObject *__pyx_n_s_QUEEN;
 static PyObject *__pyx_n_s_ROOK;
 static PyObject *__pyx_n_s_TypeError;
-static PyObject *__pyx_n_s_b;
+static PyObject *__pyx_n_u_b;
 static PyObject *__pyx_n_s_chr;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_getstate;
@@ -1229,7 +1229,7 @@ static PyObject *__pyx_n_s_setstate;
 static PyObject *__pyx_n_s_setstate_cython;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_type;
-static PyObject *__pyx_n_s_w;
+static PyObject *__pyx_n_u_w;
 static PyObject *__pyx_pf_7aiarena_5chess_4cell_4Cell_7isWhite___get__(struct __pyx_obj_7aiarena_5chess_4cell_Cell *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_5chess_4cell_4Cell_4type___get__(struct __pyx_obj_7aiarena_5chess_4cell_Cell *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_5chess_4cell_4Cell___repr__(struct __pyx_obj_7aiarena_5chess_4cell_Cell *__pyx_v_self); /* proto */
@@ -1488,8 +1488,8 @@ static PyObject *__pyx_pf_7aiarena_5chess_4cell_4Cell___repr__(struct __pyx_obj_
  *         return ('w' if self.isWhite else 'b') + '_' + self.type
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_INCREF(__pyx_n_s_);
-    __pyx_r = __pyx_n_s_;
+    __Pyx_INCREF(__pyx_n_u_);
+    __pyx_r = __pyx_n_u_;
     goto __pyx_L0;
 
     /* "aiarena/chess/cell.pyx":29
@@ -1512,13 +1512,13 @@ static PyObject *__pyx_pf_7aiarena_5chess_4cell_4Cell___repr__(struct __pyx_obj_
   __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
-    __Pyx_INCREF(__pyx_n_s_w);
-    __pyx_t_2 = __pyx_n_s_w;
+    __Pyx_INCREF(__pyx_n_u_w);
+    __pyx_t_2 = __pyx_n_u_w;
   } else {
-    __Pyx_INCREF(__pyx_n_s_b);
-    __pyx_t_2 = __pyx_n_s_b;
+    __Pyx_INCREF(__pyx_n_u_b);
+    __pyx_t_2 = __pyx_n_u_b;
   }
-  __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_n_s_); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyUnicode_ConcatSafe(__pyx_t_2, __pyx_n_u_); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
@@ -1810,7 +1810,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_n_s_, __pyx_k_, sizeof(__pyx_k_), 0, 0, 1, 1},
+  {&__pyx_n_u_, __pyx_k_, sizeof(__pyx_k_), 0, 1, 0, 1},
   {&__pyx_n_s_BISHOP, __pyx_k_BISHOP, sizeof(__pyx_k_BISHOP), 0, 0, 1, 1},
   {&__pyx_n_s_Cell, __pyx_k_Cell, sizeof(__pyx_k_Cell), 0, 0, 1, 1},
   {&__pyx_n_s_KING, __pyx_k_KING, sizeof(__pyx_k_KING), 0, 0, 1, 1},
@@ -1820,7 +1820,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_QUEEN, __pyx_k_QUEEN, sizeof(__pyx_k_QUEEN), 0, 0, 1, 1},
   {&__pyx_n_s_ROOK, __pyx_k_ROOK, sizeof(__pyx_k_ROOK), 0, 0, 1, 1},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
-  {&__pyx_n_s_b, __pyx_k_b, sizeof(__pyx_k_b), 0, 0, 1, 1},
+  {&__pyx_n_u_b, __pyx_k_b, sizeof(__pyx_k_b), 0, 1, 0, 1},
   {&__pyx_n_s_chr, __pyx_k_chr, sizeof(__pyx_k_chr), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
@@ -1836,7 +1836,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_type, __pyx_k_type, sizeof(__pyx_k_type), 0, 0, 1, 1},
-  {&__pyx_n_s_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 0, 1, 1},
+  {&__pyx_n_u_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 1, 0, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {

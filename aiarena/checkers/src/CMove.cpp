@@ -1,6 +1,6 @@
 #include "CMove.h"
 
-namespace game{
+namespace Checkers{
 
 
     std::list<int> CMove::getCells() const{

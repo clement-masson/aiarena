@@ -1,11 +1,22 @@
+import os
 from setuptools import setup, find_packages
-from setup_chess import extensions as chess_extensions
-from setup_checkers import extensions as checkers_extensions
-from setup_connect4 import extensions as connect4_extensions
-from setup_abalone import extensions as abalone_extensions
+import setup_chess
+import setup_checkers
+import setup_connect4
+import setup_abalone
 
-extensions = chess_extensions + checkers_extensions + connect4_extensions + abalone_extensions
+print("Gathering extensions")
+use_cython = int(os.getenv('USE_CYTHON', '0'))
+extensions = []
+for module in [setup_chess, setup_checkers, setup_connect4, setup_abalone]:
+    extensions += module.get_extensions(use_cython)
 
+if use_cython:
+    print("Cythonizing extensions")
+    from Cython.Build import cythonize
+    extensions = cythonize(extensions, language_level="3")
+
+print('Installing package')
 setup(name='aiarena',
       version='1.0',
       description='Game simulator for 2 players games',

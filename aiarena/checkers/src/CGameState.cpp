@@ -1,12 +1,12 @@
 #include <iostream>
 #include <stdlib.h>        // abs
 #include <list>
-#include "CBoardState.h"
+#include "CGameState.h"
 
-namespace game {
-    CBoardState::CBoardState() {}
+namespace Checkers {
+    CGameState::CGameState() {}
 
-    CBoardState::CBoardState(const int nR, const int nP, const bool menBack, const bool kingsFly, const bool menStop) {
+    CGameState::CGameState(const int nR, const int nP, const bool menBack, const bool kingsFly, const bool menStop) {
         nRows = nR;
         nPieces = nP;
         nCells = nRows*nRows/2;
@@ -16,22 +16,12 @@ namespace game {
         menMustStop = menStop;
 
         cells = std::vector<char>(nCells, '.');
-        init();
+        initBoard();
+        isWhiteTurn = true;
+        noCaptureCounter = 0;
     }
 
-    CBoardState::CBoardState(const CBoardState& bs) {
-        nRows = bs.nRows;
-        nPieces = bs.nPieces;
-        nCells = bs.nCells;
-        menCaptureBackward = bs.menCaptureBackward;
-        kingsCanFly = bs.kingsCanFly;
-        menMustStop = bs.menMustStop;
-        cells = std::vector<char>(bs.cells);
-    }
-
-    CBoardState::~CBoardState() {}
-
-    void CBoardState::init(){
+    void CGameState::initBoard(){
         for (int i = 0; i < nPieces; i++)
             cells[i] = Cell::b;
         for (int i = nPieces; i < nCells-nPieces; i++)
@@ -40,11 +30,13 @@ namespace game {
             cells[i] = Cell::w;
     }
 
-    std::vector<char> CBoardState::getCells(){
+    std::vector<char> CGameState::getCells(){
         return cells;
     }
 
-    void CBoardState::reverse(){
+    void CGameState::reverse(){
+        isWhiteTurn = !isWhiteTurn;
+
         char x;
         for (int i = 0; i < nCells/2; i++){
             x = cells[i];
@@ -53,33 +45,42 @@ namespace game {
         }
     }
 
-    std::string CBoardState::toString(){
-        return std::string(cells.begin(), cells.end());
+    std::string CGameState::toString(const bool turn, const bool counts){
+        std::string result = std::string(cells.begin(), cells.end());
+
+        if(turn)
+            result += isWhiteTurn ? " w" : " b";
+
+        if(counts){
+            result += " ";
+            result += std::to_string(noCaptureCounter);
+        }
+    	return result;
     }
 
 /*
 Convertissors, checkers and getters
 */
 
-    bool CBoardState::isValidIndex(const int i){
+    bool CGameState::isValidIndex(const int i){
         return (0<=i && i<nCells);
     }
 
-    bool CBoardState::isValidRC(const int r, const int c){
+    bool CGameState::isValidRC(const int r, const int c){
         return (0<=r && r<nRows) && (0<=c && c<nRows) && (r%2 != c%2);
     }
 
-    int CBoardState::RCtoIndex(const int r, const int c){
+    int CGameState::RCtoIndex(const int r, const int c){
         return r*(nRows/2) + c/2;
     }
 
-    std::pair<int,int> CBoardState::indexToRC(const int i){
+    std::pair<int,int> CGameState::indexToRC(const int i){
         int r = i/(nRows/2);
         std::pair<int,int> rc (r, 2*(i%(nRows/2)) + (r+1)%2 );
         return rc;
     }
 
-    char CBoardState::getCell(const int i){
+    char CGameState::getCell(const int i){
         if(!isValidIndex(i)){
             std::cout << "Non valid index : " << i << "\n";
             throw "Non valid index";
@@ -87,7 +88,7 @@ Convertissors, checkers and getters
         return cells[i];
     }
 
-    char CBoardState::getCell(const int r, const int c){
+    char CGameState::getCell(const int r, const int c){
         if(!isValidRC(r,c)){
             std::cout << "Non valid coordinates : " << r << ", " << c << "\n";
             throw "Non valid coordinates";
@@ -95,21 +96,18 @@ Convertissors, checkers and getters
         return cells[RCtoIndex(r,c)];
     }
 
-    void CBoardState::setCell(const int i, const char c){
+    void CGameState::setCell(const int i, const char c){
         if(!isValidIndex(i)) throw "Non valid coordinates";
         cells[i] = c;
     }
 
-      void CBoardState::setCell(const int r, const int c, const char cell){
+      void CGameState::setCell(const int r, const int c, const char cell){
           if(!isValidRC(r,c)) throw "Non valid coordinates";
           cells[RCtoIndex(r,c)] = cell;
       }
 
 
-
-
-
-    std::vector<CCaptureMove*> CBoardState::tryJumpFrom(const int cellIndex){
+    std::vector<CCaptureMove*> CGameState::tryJumpFrom(const int cellIndex){
         char piece = cells[cellIndex];
         if (piece == Cell::empty) throw "Error, the starting position contains no piece";
         std::set<int> previousCaptures;
@@ -117,7 +115,7 @@ Convertissors, checkers and getters
         return possibleMoves;
     }
 
-    std::vector<CCaptureMove*> CBoardState::tryJumpFrom(const int cellIndex, const int initPos, const char piece, std::set<int>& previousCaptures){
+    std::vector<CCaptureMove*> CGameState::tryJumpFrom(const int cellIndex, const int initPos, const char piece, std::set<int>& previousCaptures){
 //        Find capturing moves that a piece located at a given position.
 //
 //        Inputs:
@@ -226,7 +224,7 @@ Convertissors, checkers and getters
     }
 
 
-    std::vector<CSimpleMove*> CBoardState::tryMoveFrom(const int cellIndex){
+    std::vector<CSimpleMove*> CGameState::tryMoveFrom(const int cellIndex){
         char piece = cells[cellIndex];
         std::vector<CSimpleMove*> possibleMoves;
         if (piece==Cell::empty) throw "Error, the starting position contains no piece";
@@ -252,8 +250,11 @@ Convertissors, checkers and getters
         return possibleMoves;
     }
 
+    std::vector<CMove*> CGameState::findPossibleMoves(){
+    	return findPossibleMoves(isWhiteTurn);
+    }
 
-    std::vector<CMove*> CBoardState::findPossibleMoves(const bool white){
+    std::vector<CMove*> CGameState::findPossibleMoves(const bool white){
    //     Find valid moves and their corresponding states for a given player.
    //
    //     Input:
@@ -301,7 +302,7 @@ Convertissors, checkers and getters
     }
 
 
-    void CBoardState::doMove(const CMove& move){
+    void CGameState::doMove(const CMove& move){
         /* Update the state according to the specified move
 
         Note that this function does not check if the move is valid*/
@@ -313,6 +314,7 @@ Convertissors, checkers and getters
         int diff1,diff2,tr,tc,current_r,current_c;
 
         if(move.isCapture()){
+      		  noCaptureCounter = 0;                  // 50 moves rule
             std::pair<int,int> RC = indexToRC(start);
             std::pair<int,int> nextRC;
             for (std::list<int>::iterator it = ++mCells.begin(); it != mCells.end(); ++it){
@@ -334,7 +336,10 @@ Convertissors, checkers and getters
 
                 RC = nextRC;
             }
+        }else{
+          noCaptureCounter++;
         }
+
         cells[start] = Cell::empty;
         cells[end] = piece;
         std::pair<int,int> endRC = indexToRC(end);
@@ -342,9 +347,11 @@ Convertissors, checkers and getters
         if( (piece == Cell::w && endRC.first==0)  || (piece == Cell::b && endRC.first==nRows-1) ){
             cells[end] = Cell::promote(piece);
         }
+
+      	isWhiteTurn = !isWhiteTurn;
     }
 
-    int CBoardState::sign(const int x){
+    int CGameState::sign(const int x){
         if (x==0) return 0;
         return (x>0) ? 1 : -1;
     }

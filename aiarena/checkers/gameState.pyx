@@ -1,112 +1,124 @@
 from cython.operator cimport dereference as deref, preincrement as inc
 from colorama import Fore, Back, Style
-from .boardState cimport *
+from .gameState cimport *
 
 ASCI_TXT = False
 
+defaultConfig = {'nRows': 8,
+                 'nPieces': 12,
+                 'whiteStarts': True}
 
-cdef class BoardState:
+CheckersRules = {'menCaptureBackward': False,
+                 'kingsCanFly': False,
+                 'menMustStop': True,
+                 'noCaptureMax': 16}
+
+InternatRules = {'menCaptureBackward': True,
+                 'kingsCanFly': True,
+                 'menMustStop': False,
+                 'noCaptureMax': 25}
+
+defaultRules = CheckersRules
+
+
+cdef class GameState:
     '''
-    This class is a Pyhton interface (front-end) for the C++ backend of CBoardState.
+    This class is a Pyhton interface (front-end) for the C++ backend of CGameState.
     It also contains some non-critic functions (whose performance is not critical) like displaying the board
     '''
 
-    property debug:
-        def __get__(self): return self.debug
-        def __set__(self, bool b): self.debug = b
 
-    property nRows:
-        def __get__(self): return self.cBoardState.nRows
-
-    property nCells:
-        def __get__(self): return self.cBoardState.nCells
-
-    property nPieces:
-        def __get__(self): return self.cBoardState.nPieces
-
-    property cells:
-        def __get__(self): return self.cBoardState.getCells()
-
-
-    def __cinit__(self, config=None, rules=None):
-        self.debug = False
-        if config:
-            if not rules: raise Exception('You must rovides configuration AND rules')
-            self.cBoardState = new CBoardState( config['nRows'],
+    def __cinit__(self, config=defaultConfig, rules=defaultRules):
+        if config is not None:
+            if rules is None: raise Exception('You must provide configuration AND rules')
+            self.cGameState = new CGameState( config['nRows'],
                                                 config['nPieces'],
                                                 rules['menCaptureBackward'],
                                                 rules['kingsCanFly'],
                                                 rules['menMustStop'])
 
     def __dealloc__(self):
-        del self.cBoardState
+        del self.cGameState
 
     def copy(self):
-        copy = BoardState()
-        copy.cBoardState = new CBoardState( deref(self.cBoardState) )
+        copy = GameState(None, None)
+        copy.cGameState = new CGameState( deref(self.cGameState) )
         return copy
 
+    property nRows:
+        def __get__(self): return self.cGameState.nRows
+
+    property nCells:
+        def __get__(self): return self.cGameState.nCells
+
+    property nPieces:
+        def __get__(self): return self.cGameState.nPieces
+
+    property cells:
+        def __get__(self): return self.cGameState.getCells()
+
+    @property
+    def isWhiteTurn(self):
+      return self.cGameState.isWhiteTurn
+
+    @property
+    def noCaptureCounter(self):
+      return self.cGameState.noCaptureCounter
+
+    def getCell(self, int r,int c):
+        return self.cGameState.getCell(r, c)
+
     def reverse(self):
-        self.cBoardState.reverse()
+        self.cGameState.reverse()
         return self
 
     def __repr__(self):
-        return self.cBoardState.toString().decode('UTF-8')
+        return self.cGameState.toString(True, True).decode('UTF-8')
+
+    def toString(self, turn=True, counts=False):
+        return self.cGameState.toString(turn, counts).decode('UTF-8')
 
     '''
     Checkers, converters, getters and setter
     '''
     def isValidIndex(self, int i):
-        return self.cBoardState.isValidIndex(i)
+        return self.cGameState.isValidIndex(i)
 
     def isValidRC(self, int r, int c):
-        return self.cBoardState.isValidRC(r,c)
+        return self.cGameState.isValidRC(r,c)
 
     def RCtoIndex(self, int r, int c):
-        return self.cBoardState.RCtoIndex(r,c)
+        return self.cGameState.RCtoIndex(r,c)
 
     def indexToRC(self, int i):
-        return self.cBoardState.indexToRC(i)
-
-    def getCell(self, int r,int c):
-        return self.cBoardState.getCell(r, c)
-
-    def setCell_i(self, int i, char cell):
-        self.cBoardState.setCell(i, cell)
-
-    def setCell_rc(self, int r, int c, char cell):
-        self.cBoardState.setCell(r, c, cell)
+        return self.cGameState.indexToRC(i)
 
 
     '''
     Core methods
     '''
-
-    def tryMoveFrom(self, int cellIndex):
-        cdef vector[CSimpleMove*] cmoves = self.cBoardState.tryMoveFrom(cellIndex)
-        return [Move.wrap(m) for m in cmoves]
-
-    def tryJumpFrom(self, int cellIndex):
-        cdef vector[CCaptureMove*] cmoves = self.cBoardState.tryJumpFrom(cellIndex)
-        return [Move.wrap(m) for m in cmoves]
-
-    def findPossibleMoves(self, bool white):
-        cdef vector[CMove*] cmoves = self.cBoardState.findPossibleMoves(white)
+    def findPossibleMoves(self):
+        cdef vector[CMove*] cmoves = self.cGameState.findPossibleMoves()
         return [Move.wrap(m) for m in cmoves]
 
     def doMove(self, Move move):
         cdef CMove* c = move.cMove
-        self.cBoardState.doMove( deref(c) )
+        self.cGameState.doMove( deref(c) )
         return self
 
-
-    def findNextStates(self, bool white):
-        moves = self.findPossibleMoves(white)
+    def findNextStates(self):
+        moves = self.findPossibleMoves()
         nextStates = []
         for m in moves:
             nextStates.append( self.copy().doMove(m) )
         return nextStates
 
+    def checkTermination(self):
+        if len(self.findPossibleMoves()) == 0:
+            return 2 if self.isWhiteTurn else 1
+        if self.noCaptureCounter >= 25:
+            return 3
+        return 0  # NOT TERMINATED
 
 
     '''
@@ -116,7 +128,7 @@ cdef class BoardState:
         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
         If showBard is True, then a board with cell indices is shown next to the state'''
 
-        nRows = self.cBoardState.nRows
+        nRows = self.cGameState.nRows
         piece_asci_len = 3 if ASCI_TXT else 2
         number_len = 2
         formater = '{0:'+str(number_len)+'d}'
@@ -148,6 +160,11 @@ cdef class BoardState:
         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*nRows)+"'"
         if showBoard:
             s+= "    '"+('-'*number_len*nRows)+"'"
+
+        if self.isWhiteTurn:
+           s += "\nWhite's turn to play."
+        else:
+           s += "\nBlack's turn to play."
         return s
 
     def display(self, showBoard = False):
