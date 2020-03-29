@@ -5,8 +5,7 @@ from .gameState cimport *
 ASCI_TXT = False
 
 defaultConfig = {'nRows': 8,
-                 'nPieces': 12,
-                 'whiteStarts': True}
+                 'nPieces': 12}
 
 CheckersRules = {'menCaptureBackward': False,
                  'kingsCanFly': False,
