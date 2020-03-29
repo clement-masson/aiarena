@@ -15,7 +15,7 @@ namespace Checkers{
         return isCap;
     }
 
-    std::string CMove::toPDN() const{
+    std::string CMove::toString() const{
         std::ostringstream ss;
         ss << cells.front();
         for(std::list<int>::const_iterator it = ++cells.begin(); it != cells.end(); ++it){

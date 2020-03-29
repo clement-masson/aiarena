@@ -14,7 +14,7 @@ CMove::CMove(const int f, const int t,
     castle = ai_castle;
 }
 
-std::string CMove::toPDN() const {
+std::string CMove::toString() const {
     if (castle != 0){
         int king_col = from_index % NCOLUMNS;
         return std::string((king_col == 4) == (castle == 1) ? "O-O" : "O-O-O");

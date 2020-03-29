@@ -7,7 +7,7 @@ class CMove {
 public:
 int column;
 CMove(const int c);
-std::string toPDN() const;
+std::string toString() const;
 };
 
 }

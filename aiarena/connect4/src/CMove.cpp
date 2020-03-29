@@ -6,7 +6,7 @@ CMove::CMove(const int c){
     column = c;
 }
 
-std::string CMove::toPDN() const {
+std::string CMove::toString() const {
 	return std::to_string(column);
 }
 }

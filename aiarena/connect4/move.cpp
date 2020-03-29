@@ -1208,10 +1208,10 @@ static const char __pyx_k_Move[] = "Move";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_toPDN[] = "toPDN";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_getstate[] = "__getstate__";
 static const char __pyx_k_setstate[] = "__setstate__";
+static const char __pyx_k_toString[] = "toString";
 static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
 static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
@@ -1233,10 +1233,10 @@ static PyObject *__pyx_n_s_reduce_ex;
 static PyObject *__pyx_n_s_setstate;
 static PyObject *__pyx_n_s_setstate_cython;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_n_s_toPDN;
+static PyObject *__pyx_n_s_toString;
 static int __pyx_pf_7aiarena_8connect4_4move_4Move___cinit__(CYTHON_UNUSED struct __pyx_obj_7aiarena_8connect4_4move_Move *__pyx_v_self); /* proto */
 static void __pyx_pf_7aiarena_8connect4_4move_4Move_2__dealloc__(struct __pyx_obj_7aiarena_8connect4_4move_Move *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_4toPDN(struct __pyx_obj_7aiarena_8connect4_4move_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_4toString(struct __pyx_obj_7aiarena_8connect4_4move_Move *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_6__repr__(struct __pyx_obj_7aiarena_8connect4_4move_Move *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_8__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_8connect4_4move_Move *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_10__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_8connect4_4move_Move *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
@@ -1365,7 +1365,7 @@ static PyObject *__pyx_f_7aiarena_8connect4_4move_4Move_wrap(Connect4::CMove *__
  *         result.cMove = m
  *         return result             # <<<<<<<<<<<<<<
  * 
- *     def toPDN(self):
+ *     def toString(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_result));
@@ -1395,39 +1395,39 @@ static PyObject *__pyx_f_7aiarena_8connect4_4move_4Move_wrap(Connect4::CMove *__
 /* "aiarena/connect4/move.pyx":18
  *         return result
  * 
- *     def toPDN(self):             # <<<<<<<<<<<<<<
- *         return self.cMove.toPDN().decode('UTF-8')
+ *     def toString(self):             # <<<<<<<<<<<<<<
+ *         return self.cMove.toString().decode('UTF-8')
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_8connect4_4move_4Move_5toPDN(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_7aiarena_8connect4_4move_4Move_5toPDN(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_7aiarena_8connect4_4move_4Move_5toString(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7aiarena_8connect4_4move_4Move_5toString(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("toPDN (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_8connect4_4move_4Move_4toPDN(((struct __pyx_obj_7aiarena_8connect4_4move_Move *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("toString (wrapper)", 0);
+  __pyx_r = __pyx_pf_7aiarena_8connect4_4move_4Move_4toString(((struct __pyx_obj_7aiarena_8connect4_4move_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_4toPDN(struct __pyx_obj_7aiarena_8connect4_4move_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_4toString(struct __pyx_obj_7aiarena_8connect4_4move_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("toPDN", 0);
+  __Pyx_RefNannySetupContext("toString", 0);
 
   /* "aiarena/connect4/move.pyx":19
  * 
- *     def toPDN(self):
- *         return self.cMove.toPDN().decode('UTF-8')             # <<<<<<<<<<<<<<
+ *     def toString(self):
+ *         return self.cMove.toString().decode('UTF-8')             # <<<<<<<<<<<<<<
  * 
  *     def __repr__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cMove->toPDN(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 19, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cMove->toString(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -1436,15 +1436,15 @@ static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_4toPDN(struct __pyx_obj
   /* "aiarena/connect4/move.pyx":18
  *         return result
  * 
- *     def toPDN(self):             # <<<<<<<<<<<<<<
- *         return self.cMove.toPDN().decode('UTF-8')
+ *     def toString(self):             # <<<<<<<<<<<<<<
+ *         return self.cMove.toString().decode('UTF-8')
  * 
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("aiarena.connect4.move.Move.toPDN", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("aiarena.connect4.move.Move.toString", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1453,10 +1453,10 @@ static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_4toPDN(struct __pyx_obj
 }
 
 /* "aiarena/connect4/move.pyx":21
- *         return self.cMove.toPDN().decode('UTF-8')
+ *         return self.cMove.toString().decode('UTF-8')
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
- *       return self.toPDN()
+ *       return self.toString()
  */
 
 /* Python wrapper */
@@ -1483,10 +1483,10 @@ static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_6__repr__(struct __pyx_
   /* "aiarena/connect4/move.pyx":22
  * 
  *     def __repr__(self):
- *       return self.toPDN()             # <<<<<<<<<<<<<<
+ *       return self.toString()             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_toPDN); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 22, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_toString); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1508,10 +1508,10 @@ static PyObject *__pyx_pf_7aiarena_8connect4_4move_4Move_6__repr__(struct __pyx_
   goto __pyx_L0;
 
   /* "aiarena/connect4/move.pyx":21
- *         return self.cMove.toPDN().decode('UTF-8')
+ *         return self.cMove.toString().decode('UTF-8')
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
- *       return self.toPDN()
+ *       return self.toString()
  */
 
   /* function exit code */
@@ -1905,7 +1905,7 @@ static void __pyx_tp_dealloc_7aiarena_8connect4_4move_Move(PyObject *o) {
 }
 
 static PyMethodDef __pyx_methods_7aiarena_8connect4_4move_Move[] = {
-  {"toPDN", (PyCFunction)__pyx_pw_7aiarena_8connect4_4move_4Move_5toPDN, METH_NOARGS, 0},
+  {"toString", (PyCFunction)__pyx_pw_7aiarena_8connect4_4move_4Move_5toString, METH_NOARGS, 0},
   {"__reduce_cython__", (PyCFunction)__pyx_pw_7aiarena_8connect4_4move_4Move_9__reduce_cython__, METH_NOARGS, 0},
   {"__setstate_cython__", (PyCFunction)__pyx_pw_7aiarena_8connect4_4move_4Move_11__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
@@ -2040,7 +2040,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
   {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-  {&__pyx_n_s_toPDN, __pyx_k_toPDN, sizeof(__pyx_k_toPDN), 0, 0, 1, 1},
+  {&__pyx_n_s_toString, __pyx_k_toString, sizeof(__pyx_k_toString), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {

@@ -13,7 +13,7 @@ namespace Checkers{
         int len() const;
         std::list<int> getCells() const;
         bool isCapture() const;
-        std::string toPDN() const;
+        std::string toString() const;
     };
 
     class CSimpleMove: public CMove{

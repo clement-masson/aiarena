@@ -19,7 +19,7 @@ CMove(const int from_index, const int to_index,
     const char promotionType = PieceType::none,
     const bool enpassant = false,
     const int castle = 0);
-std::string toPDN() const;
+std::string toString() const;
 };
 
 }

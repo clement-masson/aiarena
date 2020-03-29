@@ -48,8 +48,8 @@ class Player:
         chosenMove, thinking_time = self.think(gameState)
 
         # check whether the answer is valid
-        if chosenMove.toPDN() not in [m.toPDN() for m in possibleMoves]:
-            raise InvalidMoveException(chosenMove.toPDN())
+        if str(chosenMove) not in [str(m) for m in possibleMoves]:
+            raise InvalidMoveException(str(chosenMove))
 
         self.computingTimes.append(thinking_time)
         if self.timeLimit and thinking_time > (self.timeLimit + 0.01):

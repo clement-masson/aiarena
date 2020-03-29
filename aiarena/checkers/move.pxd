@@ -8,7 +8,7 @@ cdef extern from "CMove.h" namespace "Checkers":
         list[int] getCells()
         int len()
         bool isCapture()
-        string toPDN()
+        string toString()
 
     cdef cppclass CCaptureMove(CMove):
         CCaptureMove() except +

@@ -115,7 +115,7 @@ void CGameState::doMove(const CMove& move){
 	/* Update the state according to the specified move
 
 	   Note that this function does not check if the move is valid*/
-	// std::cout << "CGameState : domove " << move.toPDN() << std::endl;
+	// std::cout << "CGameState : domove " << move.toString() << std::endl;
 	for(int row = 0; row<height; ++row) {
         if (getCell(row, move.column).color == CCell::NONE){
             setCell(row, move.column, CCell( isWhiteTurn ? CCell::WHITE : CCell::BLACK));
@@ -123,7 +123,7 @@ void CGameState::doMove(const CMove& move){
         }
     }
 	isWhiteTurn = !isWhiteTurn;
-	// std::cout << "CGameState : domove " << move.toPDN() << " SUCCESSFUL" << std::endl;
+	// std::cout << "CGameState : domove " << move.toString() << " SUCCESSFUL" << std::endl;
 }
 
 int CGameState::checkTermination(){

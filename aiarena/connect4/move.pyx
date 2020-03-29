@@ -15,8 +15,8 @@ cdef class Move:
         result.cMove = m
         return result
 
-    def toPDN(self):
-        return self.cMove.toPDN().decode('UTF-8')
+    def toString(self):
+        return self.cMove.toString().decode('UTF-8')
 
     def __repr__(self):
-      return self.toPDN()
+      return self.toString()

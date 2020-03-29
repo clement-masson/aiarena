@@ -194,7 +194,7 @@ std::vector<CMove*> CGameState::getPushMoves(int cellindex){
 				if(!isValidRC(r,c)) {
 					if(samecolor>oppcolor && oppcolor>0) {
 						all_moves.push_back(new CMove(cellindex, RCtoIndex(row+drow, col+dcol)));
-						// std::cout << all_moves[all_moves.size()-1]->toPDN()+"\n";
+						// std::cout << all_moves[all_moves.size()-1]->toString()+"\n";
 					}
 					break;
 				}
@@ -202,7 +202,7 @@ std::vector<CMove*> CGameState::getPushMoves(int cellindex){
 				if(color2 == CCell::NONE) {
 					if(samecolor>oppcolor) {
 						all_moves.push_back(new CMove(cellindex, RCtoIndex(row+drow, col+dcol)));
-						// std::cout << all_moves[all_moves.size()-1]->toPDN()+"\n";
+						// std::cout << all_moves[all_moves.size()-1]->toString()+"\n";
 					}
 					break;
 				}else if(color2 == color) {
@@ -360,7 +360,7 @@ void CGameState::doMove(const CMove& move){
 	/* Update the state according to the specified move
 
 	   Note that this function does not check if the move is valid*/
-	// std::cout << "CGameState : domove " << move.toPDN() << std::endl;
+	// std::cout << "CGameState : domove " << move.toString() << std::endl;
 	isWhiteTurn = !isWhiteTurn;
 	turnCounter++;
 	if(move.from_end<0) {
@@ -396,7 +396,7 @@ void CGameState::doMove(const CMove& move){
 			}
 		}
 	}
-	// std::cout << "CGameState : domove " << move.toPDN() << " SUCCESSFUL" << std::endl;
+	// std::cout << "CGameState : domove " << move.toString() << " SUCCESSFUL" << std::endl;
 }
 
 int CGameState::checkTermination(){

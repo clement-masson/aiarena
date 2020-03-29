@@ -14,7 +14,7 @@ CMove::CMove(const int f, const int f2, const int t){
 	to_start = t;
 }
 
-std::string CMove::toPDN() const {
+std::string CMove::toString() const {
     std::string s = std::to_string(from_start);
     if(from_end>=0){
         s += ":" + std::to_string(from_end);

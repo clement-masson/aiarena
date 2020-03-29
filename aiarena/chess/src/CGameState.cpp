@@ -575,7 +575,7 @@ void CGameState::doMove(const CMove& move){
 	/* Update the state according to the specified move
 
 	   Note that this function does not check if the move is valid*/
-	// std::cout << "CGameState : domove " << move.toPDN() << std::endl;
+	// std::cout << "CGameState : domove " << move.toString() << std::endl;
 	if (!isValidIndex(move.from_index) or !isValidIndex(move.to_index)) {throw "Invalid Index !";}
 	CCell piece = cells[move.from_index];
 	std::pair<int,int> rc = indexToRC(move.from_index);
@@ -645,7 +645,7 @@ void CGameState::doMove(const CMove& move){
 	else if(piece.pieceType == PieceType::rook && !piece.isWhite && from_column == NCOLUMNS-1)
 		black_king_castle_H_side = false;
 
-	// std::cout << "CGameState : domove " << move.toPDN() << " SUCCESSFUL" << std::endl;
+	// std::cout << "CGameState : domove " << move.toString() << " SUCCESSFUL" << std::endl;
 }
 
 }

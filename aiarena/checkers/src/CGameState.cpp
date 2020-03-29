@@ -184,7 +184,7 @@ Convertissors, checkers and getters
 
 //        if (debug){
 //            print(tabs,'possible variations before taking the max :')
-//            for move in possibleVariations:print(tabs, move.toPDN())
+//            for move in possibleVariations:print(tabs, move.toString())
 //            print()
 //        }
 
@@ -216,7 +216,7 @@ Convertissors, checkers and getters
 
 //        if self.debug:
 //            print(tabs,'possible ends of the move :')
-//            for move in moves:print(tabs, move.toPDN())
+//            for move in moves:print(tabs, move.toString())
 //            print()
 
         return longestVariations;

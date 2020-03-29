@@ -10,7 +10,7 @@ cdef extern from "CMove.h" namespace "Chess":
         int castle
 
         CMove(int, int, bool, char, bool, int) except +
-        string toPDN()
+        string toString()
 
 
 cdef class Move:

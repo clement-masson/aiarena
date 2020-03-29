@@ -104,7 +104,7 @@ class Game:
             move = possibleMoves[possibleRepr.index(chosenStateRepr)]
             if player is self.player1:
                 pgnMoves += str(turn // 2 + 1) + "."
-            pgnMoves += move.toPDN() + " "
+            pgnMoves += str(move) + " "
 
             self.gameState = chosenState
 
@@ -133,7 +133,7 @@ class Game:
     def logChoices(self, possibleMoves):
         recap = "Possible moves :\n"
         for m in possibleMoves:
-            recap += m.toPDN() + "\n"
+            recap += str(m) + "\n"
         self.addToLog(recap, Game.choiceDisplayLevel)
 
     def logCompuTime(self, t):

@@ -1034,6 +1034,16 @@ static CYTHON_INLINE PyObject* __Pyx_decode_cpp_string(
         cppstring.data(), cppstring.size(), start, stop, encoding, errors, decode_func);
 }
 
+/* PyCFunctionFastCall.proto */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
+#else
+#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
+#endif
+
+/* PyObjectCallOneArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
+
 /* PyThreadStateGet.proto */
 #if CYTHON_FAST_THREAD_STATE
 #define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
@@ -1201,6 +1211,7 @@ static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_getstate[] = "__getstate__";
 static const char __pyx_k_setstate[] = "__setstate__";
+static const char __pyx_k_toString[] = "toString";
 static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
 static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
@@ -1222,12 +1233,14 @@ static PyObject *__pyx_n_s_reduce_ex;
 static PyObject *__pyx_n_s_setstate;
 static PyObject *__pyx_n_s_setstate_cython;
 static PyObject *__pyx_n_s_test;
+static PyObject *__pyx_n_s_toString;
 static int __pyx_pf_7aiarena_5chess_4move_4Move___cinit__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
 static void __pyx_pf_7aiarena_5chess_4move_4Move_2__dealloc__(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_4isCapture(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6toPDN(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_8__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_10__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6toString(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_8__repr__(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_7aiarena_5chess_4move_Move(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
@@ -1412,7 +1425,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_4isCapture(struct __pyx_ob
  *     def isCapture(self):
  *         return self.cMove.isCapture             # <<<<<<<<<<<<<<
  * 
- *     def toPDN(self):
+ *     def toString(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->cMove->isCapture); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 19, __pyx_L1_error)
@@ -1443,36 +1456,39 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_4isCapture(struct __pyx_ob
 /* "aiarena/chess/move.pyx":21
  *         return self.cMove.isCapture
  * 
- *     def toPDN(self):             # <<<<<<<<<<<<<<
- *         return self.cMove.toPDN().decode('UTF-8')
+ *     def toString(self):             # <<<<<<<<<<<<<<
+ *         return self.cMove.toString().decode('UTF-8')
+ * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_7toPDN(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_7toPDN(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_7toString(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_7toString(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("toPDN (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_6toPDN(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("toString (wrapper)", 0);
+  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_6toString(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6toPDN(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6toString(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("toPDN", 0);
+  __Pyx_RefNannySetupContext("toString", 0);
 
   /* "aiarena/chess/move.pyx":22
  * 
- *     def toPDN(self):
- *         return self.cMove.toPDN().decode('UTF-8')             # <<<<<<<<<<<<<<
+ *     def toString(self):
+ *         return self.cMove.toString().decode('UTF-8')             # <<<<<<<<<<<<<<
+ * 
+ *     def __repr__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cMove->toPDN(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 22, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cMove->toString(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -1481,14 +1497,90 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6toPDN(struct __pyx_obj_7a
   /* "aiarena/chess/move.pyx":21
  *         return self.cMove.isCapture
  * 
- *     def toPDN(self):             # <<<<<<<<<<<<<<
- *         return self.cMove.toPDN().decode('UTF-8')
+ *     def toString(self):             # <<<<<<<<<<<<<<
+ *         return self.cMove.toString().decode('UTF-8')
+ * 
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("aiarena.chess.move.Move.toPDN", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("aiarena.chess.move.Move.toString", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "aiarena/chess/move.pyx":24
+ *         return self.cMove.toString().decode('UTF-8')
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *       return self.toString()
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_9__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_9__repr__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_8__repr__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_8__repr__(struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  __Pyx_RefNannySetupContext("__repr__", 0);
+
+  /* "aiarena/chess/move.pyx":25
+ * 
+ *     def __repr__(self):
+ *       return self.toString()             # <<<<<<<<<<<<<<
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_toString); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 25, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 25, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "aiarena/chess/move.pyx":24
+ *         return self.cMove.toString().decode('UTF-8')
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *       return self.toString()
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("aiarena.chess.move.Move.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1503,19 +1595,19 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_6toPDN(struct __pyx_obj_7a
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_9__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_9__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_8__reduce_cython__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_10__reduce_cython__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_8__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1557,19 +1649,19 @@ static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_8__reduce_cython__(CYTHON_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_11__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_11__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_7aiarena_5chess_4move_4Move_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_10__setstate_cython__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_7aiarena_5chess_4move_4Move_12__setstate_cython__(((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_10__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_7aiarena_5chess_4move_4Move_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1875,9 +1967,9 @@ static void __pyx_tp_dealloc_7aiarena_5chess_4move_Move(PyObject *o) {
 
 static PyMethodDef __pyx_methods_7aiarena_5chess_4move_Move[] = {
   {"isCapture", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_5isCapture, METH_NOARGS, 0},
-  {"toPDN", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_7toPDN, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_9__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_11__setstate_cython__, METH_O, 0},
+  {"toString", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_7toString, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_11__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_7aiarena_5chess_4move_4Move_13__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -1901,7 +1993,7 @@ static PyTypeObject __pyx_type_7aiarena_5chess_4move_Move = {
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  0, /*tp_repr*/
+  __pyx_pw_7aiarena_5chess_4move_4Move_9__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
@@ -2010,6 +2102,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
   {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
+  {&__pyx_n_s_toString, __pyx_k_toString, sizeof(__pyx_k_toString), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
@@ -2693,6 +2786,69 @@ static CYTHON_INLINE PyObject* __Pyx_decode_c_bytes(
         return PyUnicode_Decode(cstring, length, encoding, errors);
     }
 }
+
+/* PyCFunctionFastCall */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
+    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
+    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
+    PyObject *self = PyCFunction_GET_SELF(func);
+    int flags = PyCFunction_GET_FLAGS(func);
+    assert(PyCFunction_Check(func));
+    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS | METH_STACKLESS)));
+    assert(nargs >= 0);
+    assert(nargs == 0 || args != NULL);
+    /* _PyCFunction_FastCallDict() must not be called with an exception set,
+       because it may clear it (directly or indirectly) and so the
+       caller loses its exception */
+    assert(!PyErr_Occurred());
+    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
+        return (*((__Pyx_PyCFunctionFastWithKeywords)(void*)meth)) (self, args, nargs, NULL);
+    } else {
+        return (*((__Pyx_PyCFunctionFast)(void*)meth)) (self, args, nargs);
+    }
+}
+#endif
+
+/* PyObjectCallOneArg */
+#if CYTHON_COMPILING_IN_CPYTHON
+static PyObject* __Pyx__PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+    PyObject *result;
+    PyObject *args = PyTuple_New(1);
+    if (unlikely(!args)) return NULL;
+    Py_INCREF(arg);
+    PyTuple_SET_ITEM(args, 0, arg);
+    result = __Pyx_PyObject_Call(func, args, NULL);
+    Py_DECREF(args);
+    return result;
+}
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+#if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(func)) {
+        return __Pyx_PyFunction_FastCall(func, &arg, 1);
+    }
+#endif
+    if (likely(PyCFunction_Check(func))) {
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_O)) {
+            return __Pyx_PyObject_CallMethO(func, arg);
+#if CYTHON_FAST_PYCCALL
+        } else if (PyCFunction_GET_FLAGS(func) & METH_FASTCALL) {
+            return __Pyx_PyCFunction_FastCall(func, &arg, 1);
+#endif
+        }
+    }
+    return __Pyx__PyObject_CallOneArg(func, arg);
+}
+#else
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+    PyObject *result;
+    PyObject *args = PyTuple_Pack(1, arg);
+    if (unlikely(!args)) return NULL;
+    result = __Pyx_PyObject_Call(func, args, NULL);
+    Py_DECREF(args);
+    return result;
+}
+#endif
 
 /* PyErrFetchRestore */
 #if CYTHON_FAST_THREAD_STATE

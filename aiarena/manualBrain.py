@@ -15,7 +15,7 @@ class ManualBrain:
         sp.check_call('clear')
         gameState.display(showBoard=True)
         print("Authorized moves : ")
-        pdn_list = [m.toPDN() for m in possibleMoves]
+        pdn_list = [str(m) for m in possibleMoves]
         smart_display(pdn_list, count=True)
 
         while True:

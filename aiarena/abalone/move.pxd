@@ -6,7 +6,7 @@ cdef extern from "CMove.h" namespace "Abalone":
         int linestart, lineend, destination
 
         CMove(int, int, int) except +
-        string toPDN()
+        string toString()
 
 
 cdef class Move:

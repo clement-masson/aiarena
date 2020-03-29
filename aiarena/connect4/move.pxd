@@ -6,7 +6,7 @@ cdef extern from "CMove.h" namespace "Connect4":
         int column
 
         CMove(int) except +
-        string toPDN()
+        string toString()
 
 
 cdef class Move:
