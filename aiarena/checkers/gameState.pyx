@@ -124,7 +124,7 @@ cdef class GameState:
     '''
     Visualization methods
     '''
-    def toDisplay(self, showBoard = False):
+    def toDisplay(self, showBoard=False):
         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
         If showBard is True, then a board with cell indices is shown next to the state'''
 
@@ -168,7 +168,7 @@ cdef class GameState:
            s += "\nBlack's turn to play."
         return s
 
-    def display(self, showBoard = False):
+    def display(self, showBoard=False):
         print(self.toDisplay(showBoard))
 
 

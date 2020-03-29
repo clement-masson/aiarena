@@ -142,8 +142,8 @@ cdef class GameState:
         s += f" ({self.capturedWhiteBalls}:{self.capturedBlackBalls})"
         return s
 
-    def display(self):
-        print(self.toDisplay())
+    def display(self, showBoard=True):
+        print(self.toDisplay(showBoard))
 
 
 asci_symbols = {

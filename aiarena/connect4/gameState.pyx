@@ -86,7 +86,7 @@ cdef class GameState:
     '''
     Visualization methods
     '''
-    def toDisplay(self):
+    def toDisplay(self, showBoard=False):
         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
         If showBard is True, then a board with cell indices is shown next to the state'''
         piece_asci_len = 3 if ASCI_TXT else 2
@@ -101,7 +101,8 @@ cdef class GameState:
             s += Style.RESET_ALL + '|'
             s += '\n'
         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*self.width)+"'"
-        s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
+        if showBoard:
+            s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
 
         if self.isWhiteTurn:
             s += "White's turn to play."
@@ -109,8 +110,8 @@ cdef class GameState:
             s += "Black's turn to play."
         return s
 
-    def display(self):
-        print(self.toDisplay())
+    def display(self, showBoard=False):
+        print(self.toDisplay(showBoard))
 
 
 asci_symbols = {

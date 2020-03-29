@@ -1666,7 +1666,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_26doMove(struc
 static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStates(struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_30checkTermination(struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *__pyx_v_self, PyObject *__pyx_v_showBoard); /* proto */
-static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *__pyx_v_self, PyObject *__pyx_v_showBoard); /* proto */
 static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_36__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_38__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_piece); /* proto */
@@ -4484,7 +4484,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
  *         s += f" ({self.capturedWhiteBalls}:{self.capturedBlackBalls})"
  *         return s             # <<<<<<<<<<<<<<
  * 
- *     def display(self):
+ *     def display(self, showBoard=True):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_s);
@@ -4533,25 +4533,68 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
 /* "aiarena/abalone/gameState.pyx":145
  *         return s
  * 
- *     def display(self):             # <<<<<<<<<<<<<<
- *         print(self.toDisplay())
+ *     def display(self, showBoard=True):             # <<<<<<<<<<<<<<
+ *         print(self.toDisplay(showBoard))
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_35display(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_35display(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_35display(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_35display(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_showBoard = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("display (wrapper)", 0);
-  __pyx_r = __pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(((struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *)__pyx_v_self));
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_showBoard,0};
+    PyObject* values[1] = {0};
+    values[0] = ((PyObject *)Py_True);
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_showBoard);
+          if (value) { values[0] = value; kw_args--; }
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "display") < 0)) __PYX_ERR(0, 145, __pyx_L3_error)
+      }
+    } else {
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+    }
+    __pyx_v_showBoard = values[0];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("display", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 145, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("aiarena.abalone.gameState.GameState.display", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(((struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *)__pyx_v_self), __pyx_v_showBoard);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *__pyx_v_self) {
+static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *__pyx_v_self, PyObject *__pyx_v_showBoard) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4561,8 +4604,8 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(stru
 
   /* "aiarena/abalone/gameState.pyx":146
  * 
- *     def display(self):
- *         print(self.toDisplay())             # <<<<<<<<<<<<<<
+ *     def display(self, showBoard=True):
+ *         print(self.toDisplay(showBoard))             # <<<<<<<<<<<<<<
  * 
  * 
  */
@@ -4578,7 +4621,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(stru
       __Pyx_DECREF_SET(__pyx_t_2, function);
     }
   }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_showBoard) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_showBoard);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4591,8 +4634,8 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(stru
   /* "aiarena/abalone/gameState.pyx":145
  *         return s
  * 
- *     def display(self):             # <<<<<<<<<<<<<<
- *         print(self.toDisplay())
+ *     def display(self, showBoard=True):             # <<<<<<<<<<<<<<
+ *         print(self.toDisplay(showBoard))
  * 
  */
 
@@ -5346,7 +5389,7 @@ static PyMethodDef __pyx_methods_7aiarena_7abalone_9gameState_GameState[] = {
   {"findNextStates", (PyCFunction)__pyx_pw_7aiarena_7abalone_9gameState_9GameState_29findNextStates, METH_NOARGS, 0},
   {"checkTermination", (PyCFunction)__pyx_pw_7aiarena_7abalone_9gameState_9GameState_31checkTermination, METH_NOARGS, 0},
   {"toDisplay", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_7aiarena_7abalone_9gameState_9GameState_33toDisplay, METH_VARARGS|METH_KEYWORDS, __pyx_doc_7aiarena_7abalone_9gameState_9GameState_32toDisplay},
-  {"display", (PyCFunction)__pyx_pw_7aiarena_7abalone_9gameState_9GameState_35display, METH_NOARGS, 0},
+  {"display", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_7aiarena_7abalone_9gameState_9GameState_35display, METH_VARARGS|METH_KEYWORDS, 0},
   {"__reduce_cython__", (PyCFunction)__pyx_pw_7aiarena_7abalone_9gameState_9GameState_37__reduce_cython__, METH_NOARGS, 0},
   {"__setstate_cython__", (PyCFunction)__pyx_pw_7aiarena_7abalone_9gameState_9GameState_39__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}

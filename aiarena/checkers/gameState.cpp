@@ -3642,7 +3642,7 @@ static PyObject *__pyx_pf_7aiarena_8checkers_9gameState_9GameState_28checkTermin
 /* "aiarena/checkers/gameState.pyx":127
  *     Visualization methods
  *     '''
- *     def toDisplay(self, showBoard = False):             # <<<<<<<<<<<<<<
+ *     def toDisplay(self, showBoard=False):             # <<<<<<<<<<<<<<
  *         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
  *         If showBard is True, then a board with cell indices is shown next to the state'''
  */
@@ -4620,7 +4620,7 @@ static PyObject *__pyx_pf_7aiarena_8checkers_9gameState_9GameState_30toDisplay(s
  *            s += "\nBlack's turn to play."
  *         return s             # <<<<<<<<<<<<<<
  * 
- *     def display(self, showBoard = False):
+ *     def display(self, showBoard=False):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_s);
@@ -4630,7 +4630,7 @@ static PyObject *__pyx_pf_7aiarena_8checkers_9gameState_9GameState_30toDisplay(s
   /* "aiarena/checkers/gameState.pyx":127
  *     Visualization methods
  *     '''
- *     def toDisplay(self, showBoard = False):             # <<<<<<<<<<<<<<
+ *     def toDisplay(self, showBoard=False):             # <<<<<<<<<<<<<<
  *         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
  *         If showBard is True, then a board with cell indices is shown next to the state'''
  */
@@ -4663,7 +4663,7 @@ static PyObject *__pyx_pf_7aiarena_8checkers_9gameState_9GameState_30toDisplay(s
 /* "aiarena/checkers/gameState.pyx":171
  *         return s
  * 
- *     def display(self, showBoard = False):             # <<<<<<<<<<<<<<
+ *     def display(self, showBoard=False):             # <<<<<<<<<<<<<<
  *         print(self.toDisplay(showBoard))
  * 
  */
@@ -4734,7 +4734,7 @@ static PyObject *__pyx_pf_7aiarena_8checkers_9gameState_9GameState_32display(str
 
   /* "aiarena/checkers/gameState.pyx":172
  * 
- *     def display(self, showBoard = False):
+ *     def display(self, showBoard=False):
  *         print(self.toDisplay(showBoard))             # <<<<<<<<<<<<<<
  * 
  * 
@@ -4764,7 +4764,7 @@ static PyObject *__pyx_pf_7aiarena_8checkers_9gameState_9GameState_32display(str
   /* "aiarena/checkers/gameState.pyx":171
  *         return s
  * 
- *     def display(self, showBoard = False):             # <<<<<<<<<<<<<<
+ *     def display(self, showBoard=False):             # <<<<<<<<<<<<<<
  *         print(self.toDisplay(showBoard))
  * 
  */
