@@ -18,9 +18,9 @@ int size;
 bool isWhiteTurn;
 int turnCounter;
 std::vector<CCell> cells;
-std::vector<std::pair<int,int>> _IndexToRC;
-std::vector<std::vector<int>> _RCtoIndex;
-std::vector<std::vector<int>> _RDtoIndex;
+std::vector<std::pair<int,int> > _IndexToRC;
+std::vector<std::vector<int> > _RCtoIndex;
+std::vector<std::vector<int> > _RDtoIndex;
 int capturedWhiteBalls;
 int capturedBlackBalls;
 
