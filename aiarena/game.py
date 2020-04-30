@@ -1,4 +1,5 @@
 import time
+import traceback
 from .player import Player, TimeOutException, InvalidMoveException
 
 
@@ -90,7 +91,7 @@ class Game:
             except Exception as e:
                 self.status['playerError'] = playerNumber
                 self.status['errorID'] = 'Unknown'
-                self.addToLog(str(e), 0)
+                self.addToLog(traceback.format_exc(), 0)
                 return
 
             # find and add the chosen move to pgn
