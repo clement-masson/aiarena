@@ -1803,7 +1803,7 @@ static void __pyx_pf_7aiarena_5chess_9gameState_9GameState_2__dealloc__(struct _
  * 
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         copy = GameState()
- *         copy.cGameState = new CGameState( deref(self.cGameState) )
+ *         del copy.cGameState
  */
 
 /* Python wrapper */
@@ -1831,8 +1831,8 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_4copy(struct __p
  * 
  *     def copy(self):
  *         copy = GameState()             # <<<<<<<<<<<<<<
+ *         del copy.cGameState
  *         copy.cGameState = new CGameState( deref(self.cGameState) )
- *         return copy
  */
   __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7aiarena_5chess_9gameState_GameState)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1842,6 +1842,15 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_4copy(struct __p
   /* "aiarena/chess/gameState.pyx":26
  *     def copy(self):
  *         copy = GameState()
+ *         del copy.cGameState             # <<<<<<<<<<<<<<
+ *         copy.cGameState = new CGameState( deref(self.cGameState) )
+ *         return copy
+ */
+  delete __pyx_v_copy->cGameState;
+
+  /* "aiarena/chess/gameState.pyx":27
+ *         copy = GameState()
+ *         del copy.cGameState
  *         copy.cGameState = new CGameState( deref(self.cGameState) )             # <<<<<<<<<<<<<<
  *         return copy
  * 
@@ -1850,12 +1859,12 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_4copy(struct __p
     __pyx_t_2 = new Chess::CGameState((*__pyx_v_self->cGameState));
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 26, __pyx_L1_error)
+    __PYX_ERR(0, 27, __pyx_L1_error)
   }
   __pyx_v_copy->cGameState = __pyx_t_2;
 
-  /* "aiarena/chess/gameState.pyx":27
- *         copy = GameState()
+  /* "aiarena/chess/gameState.pyx":28
+ *         del copy.cGameState
  *         copy.cGameState = new CGameState( deref(self.cGameState) )
  *         return copy             # <<<<<<<<<<<<<<
  * 
@@ -1871,7 +1880,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_4copy(struct __p
  * 
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         copy = GameState()
- *         copy.cGameState = new CGameState( deref(self.cGameState) )
+ *         del copy.cGameState
  */
 
   /* function exit code */
@@ -1886,7 +1895,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_4copy(struct __p
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":30
+/* "aiarena/chess/gameState.pyx":31
  * 
  *     @property
  *     def isWhiteTurn(self):             # <<<<<<<<<<<<<<
@@ -1913,7 +1922,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_11isWhiteTurn___
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "aiarena/chess/gameState.pyx":31
+  /* "aiarena/chess/gameState.pyx":32
  *     @property
  *     def isWhiteTurn(self):
  *       return self.cGameState.isWhiteTurn             # <<<<<<<<<<<<<<
@@ -1921,13 +1930,13 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_11isWhiteTurn___
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->cGameState->isWhiteTurn); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->cGameState->isWhiteTurn); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":30
+  /* "aiarena/chess/gameState.pyx":31
  * 
  *     @property
  *     def isWhiteTurn(self):             # <<<<<<<<<<<<<<
@@ -1946,7 +1955,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_11isWhiteTurn___
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":34
+/* "aiarena/chess/gameState.pyx":35
  * 
  *     @property
  *     def noPawnNoCapture(self):             # <<<<<<<<<<<<<<
@@ -1973,7 +1982,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_15noPawnNoCaptur
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "aiarena/chess/gameState.pyx":35
+  /* "aiarena/chess/gameState.pyx":36
  *     @property
  *     def noPawnNoCapture(self):
  *       return self.cGameState.noPawnNoCapture             # <<<<<<<<<<<<<<
@@ -1981,13 +1990,13 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_15noPawnNoCaptur
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->noPawnNoCapture); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->noPawnNoCapture); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":34
+  /* "aiarena/chess/gameState.pyx":35
  * 
  *     @property
  *     def noPawnNoCapture(self):             # <<<<<<<<<<<<<<
@@ -2006,7 +2015,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_15noPawnNoCaptur
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":38
+/* "aiarena/chess/gameState.pyx":39
  * 
  *     @property
  *     def cells(self):             # <<<<<<<<<<<<<<
@@ -2038,7 +2047,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_5cells___get__(s
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "aiarena/chess/gameState.pyx":39
+  /* "aiarena/chess/gameState.pyx":40
  *     @property
  *     def cells(self):
  *       return [Cell.wrap(e) for e in self.cGameState.cells]             # <<<<<<<<<<<<<<
@@ -2047,7 +2056,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_5cells___get__(s
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_3 = &__pyx_v_self->cGameState->cells;
     __pyx_t_2 = __pyx_t_3->begin();
@@ -2056,9 +2065,9 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_5cells___get__(s
       __pyx_t_4 = *__pyx_t_2;
       ++__pyx_t_2;
       __pyx_7genexpr__pyx_v_e = __pyx_t_4;
-      __pyx_t_5 = __pyx_vtabptr_7aiarena_5chess_4cell_Cell->wrap(__pyx_7genexpr__pyx_v_e); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 39, __pyx_L1_error)
+      __pyx_t_5 = __pyx_vtabptr_7aiarena_5chess_4cell_Cell->wrap(__pyx_7genexpr__pyx_v_e); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_5))) __PYX_ERR(0, 39, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_5))) __PYX_ERR(0, 40, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   } /* exit inner scope */
@@ -2066,7 +2075,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_5cells___get__(s
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":38
+  /* "aiarena/chess/gameState.pyx":39
  * 
  *     @property
  *     def cells(self):             # <<<<<<<<<<<<<<
@@ -2086,7 +2095,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_5cells___get__(s
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":41
+/* "aiarena/chess/gameState.pyx":42
  *       return [Cell.wrap(e) for e in self.cGameState.cells]
  * 
  *     def getCell(self, int i, int j):             # <<<<<<<<<<<<<<
@@ -2125,11 +2134,11 @@ static PyObject *__pyx_pw_7aiarena_5chess_9gameState_9GameState_7getCell(PyObjec
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_j)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("getCell", 1, 2, 2, 1); __PYX_ERR(0, 41, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("getCell", 1, 2, 2, 1); __PYX_ERR(0, 42, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getCell") < 0)) __PYX_ERR(0, 41, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getCell") < 0)) __PYX_ERR(0, 42, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2137,12 +2146,12 @@ static PyObject *__pyx_pw_7aiarena_5chess_9gameState_9GameState_7getCell(PyObjec
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_i = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L3_error)
-    __pyx_v_j = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L3_error)
+    __pyx_v_j = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("getCell", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 41, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("getCell", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 42, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.chess.gameState.GameState.getCell", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2162,7 +2171,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_6getCell(struct 
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("getCell", 0);
 
-  /* "aiarena/chess/gameState.pyx":42
+  /* "aiarena/chess/gameState.pyx":43
  * 
  *     def getCell(self, int i, int j):
  *       return Cell.wrap(self.cGameState.getCell(i, j))             # <<<<<<<<<<<<<<
@@ -2174,15 +2183,15 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_6getCell(struct 
     __pyx_t_1 = __pyx_v_self->cGameState->getCell(__pyx_v_i, __pyx_v_j);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 42, __pyx_L1_error)
+    __PYX_ERR(0, 43, __pyx_L1_error)
   }
-  __pyx_t_2 = __pyx_vtabptr_7aiarena_5chess_4cell_Cell->wrap(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_2 = __pyx_vtabptr_7aiarena_5chess_4cell_Cell->wrap(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":41
+  /* "aiarena/chess/gameState.pyx":42
  *       return [Cell.wrap(e) for e in self.cGameState.cells]
  * 
  *     def getCell(self, int i, int j):             # <<<<<<<<<<<<<<
@@ -2201,7 +2210,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_6getCell(struct 
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":44
+/* "aiarena/chess/gameState.pyx":45
  *       return Cell.wrap(self.cGameState.getCell(i, j))
  * 
  *     def reverse(self):             # <<<<<<<<<<<<<<
@@ -2227,7 +2236,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_8reverse(struct 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("reverse", 0);
 
-  /* "aiarena/chess/gameState.pyx":45
+  /* "aiarena/chess/gameState.pyx":46
  * 
  *     def reverse(self):
  *         self.cGameState.reverse()             # <<<<<<<<<<<<<<
@@ -2236,7 +2245,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_8reverse(struct 
  */
   __pyx_v_self->cGameState->reverse();
 
-  /* "aiarena/chess/gameState.pyx":46
+  /* "aiarena/chess/gameState.pyx":47
  *     def reverse(self):
  *         self.cGameState.reverse()
  *         return self             # <<<<<<<<<<<<<<
@@ -2248,7 +2257,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_8reverse(struct 
   __pyx_r = ((PyObject *)__pyx_v_self);
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":44
+  /* "aiarena/chess/gameState.pyx":45
  *       return Cell.wrap(self.cGameState.getCell(i, j))
  * 
  *     def reverse(self):             # <<<<<<<<<<<<<<
@@ -2263,7 +2272,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_8reverse(struct 
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":48
+/* "aiarena/chess/gameState.pyx":49
  *         return self
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -2290,7 +2299,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_10__repr__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "aiarena/chess/gameState.pyx":49
+  /* "aiarena/chess/gameState.pyx":50
  * 
  *     def __repr__(self):
  *         return self.cGameState.getFEN(True, True, True).decode('UTF-8')             # <<<<<<<<<<<<<<
@@ -2298,13 +2307,13 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_10__repr__(struc
  *     def toString(self, turn=True, castle=True, counts=False):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cGameState->getFEN(1, 1, 1), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cGameState->getFEN(1, 1, 1), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":48
+  /* "aiarena/chess/gameState.pyx":49
  *         return self
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -2323,7 +2332,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_10__repr__(struc
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":51
+/* "aiarena/chess/gameState.pyx":52
  *         return self.cGameState.getFEN(True, True, True).decode('UTF-8')
  * 
  *     def toString(self, turn=True, castle=True, counts=False):             # <<<<<<<<<<<<<<
@@ -2380,7 +2389,7 @@ static PyObject *__pyx_pw_7aiarena_5chess_9gameState_9GameState_13toString(PyObj
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "toString") < 0)) __PYX_ERR(0, 51, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "toString") < 0)) __PYX_ERR(0, 52, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -2400,7 +2409,7 @@ static PyObject *__pyx_pw_7aiarena_5chess_9gameState_9GameState_13toString(PyObj
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("toString", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 51, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("toString", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 52, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.chess.gameState.GameState.toString", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2422,7 +2431,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_12toString(struc
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("toString", 0);
 
-  /* "aiarena/chess/gameState.pyx":52
+  /* "aiarena/chess/gameState.pyx":53
  * 
  *     def toString(self, turn=True, castle=True, counts=False):
  *         return self.cGameState.getFEN(turn, castle, counts).decode('UTF-8')             # <<<<<<<<<<<<<<
@@ -2430,16 +2439,16 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_12toString(struc
  *     def RCtoIndex(self, int r, int c):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_turn); if (unlikely((__pyx_t_1 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_castle); if (unlikely((__pyx_t_2 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_counts); if (unlikely((__pyx_t_3 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_decode_cpp_string(__pyx_v_self->cGameState->getFEN(__pyx_t_1, __pyx_t_2, __pyx_t_3), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_turn); if (unlikely((__pyx_t_1 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_castle); if (unlikely((__pyx_t_2 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_counts); if (unlikely((__pyx_t_3 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_decode_cpp_string(__pyx_v_self->cGameState->getFEN(__pyx_t_1, __pyx_t_2, __pyx_t_3), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":51
+  /* "aiarena/chess/gameState.pyx":52
  *         return self.cGameState.getFEN(True, True, True).decode('UTF-8')
  * 
  *     def toString(self, turn=True, castle=True, counts=False):             # <<<<<<<<<<<<<<
@@ -2458,7 +2467,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_12toString(struc
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":54
+/* "aiarena/chess/gameState.pyx":55
  *         return self.cGameState.getFEN(turn, castle, counts).decode('UTF-8')
  * 
  *     def RCtoIndex(self, int r, int c):             # <<<<<<<<<<<<<<
@@ -2497,11 +2506,11 @@ static PyObject *__pyx_pw_7aiarena_5chess_9gameState_9GameState_15RCtoIndex(PyOb
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_c)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("RCtoIndex", 1, 2, 2, 1); __PYX_ERR(0, 54, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("RCtoIndex", 1, 2, 2, 1); __PYX_ERR(0, 55, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "RCtoIndex") < 0)) __PYX_ERR(0, 54, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "RCtoIndex") < 0)) __PYX_ERR(0, 55, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2509,12 +2518,12 @@ static PyObject *__pyx_pw_7aiarena_5chess_9gameState_9GameState_15RCtoIndex(PyOb
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_r = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_r == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L3_error)
-    __pyx_v_c = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_c == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L3_error)
+    __pyx_v_r = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_r == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 55, __pyx_L3_error)
+    __pyx_v_c = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_c == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 55, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("RCtoIndex", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 54, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("RCtoIndex", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 55, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.chess.gameState.GameState.RCtoIndex", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2533,7 +2542,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_14RCtoIndex(stru
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("RCtoIndex", 0);
 
-  /* "aiarena/chess/gameState.pyx":55
+  /* "aiarena/chess/gameState.pyx":56
  * 
  *     def RCtoIndex(self, int r, int c):
  *         return self.cGameState.RCtoIndex(r,c)             # <<<<<<<<<<<<<<
@@ -2541,13 +2550,13 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_14RCtoIndex(stru
  *     def indexToRC(self, int i):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->RCtoIndex(__pyx_v_r, __pyx_v_c)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->RCtoIndex(__pyx_v_r, __pyx_v_c)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":54
+  /* "aiarena/chess/gameState.pyx":55
  *         return self.cGameState.getFEN(turn, castle, counts).decode('UTF-8')
  * 
  *     def RCtoIndex(self, int r, int c):             # <<<<<<<<<<<<<<
@@ -2566,7 +2575,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_14RCtoIndex(stru
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":57
+/* "aiarena/chess/gameState.pyx":58
  *         return self.cGameState.RCtoIndex(r,c)
  * 
  *     def indexToRC(self, int i):             # <<<<<<<<<<<<<<
@@ -2582,7 +2591,7 @@ static PyObject *__pyx_pw_7aiarena_5chess_9gameState_9GameState_17indexToRC(PyOb
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("indexToRC (wrapper)", 0);
   assert(__pyx_arg_i); {
-    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 57, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2603,7 +2612,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_16indexToRC(stru
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("indexToRC", 0);
 
-  /* "aiarena/chess/gameState.pyx":58
+  /* "aiarena/chess/gameState.pyx":59
  * 
  *     def indexToRC(self, int i):
  *         return self.cGameState.indexToRC(i)             # <<<<<<<<<<<<<<
@@ -2611,13 +2620,13 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_16indexToRC(stru
  *     '''
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_convert_pair_to_py_int____int(__pyx_v_self->cGameState->indexToRC(__pyx_v_i)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_pair_to_py_int____int(__pyx_v_self->cGameState->indexToRC(__pyx_v_i)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":57
+  /* "aiarena/chess/gameState.pyx":58
  *         return self.cGameState.RCtoIndex(r,c)
  * 
  *     def indexToRC(self, int i):             # <<<<<<<<<<<<<<
@@ -2636,7 +2645,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_16indexToRC(stru
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":64
+/* "aiarena/chess/gameState.pyx":65
  *     '''
  * 
  *     def findPossibleMoves(self):             # <<<<<<<<<<<<<<
@@ -2669,7 +2678,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_18findPossibleMo
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("findPossibleMoves", 0);
 
-  /* "aiarena/chess/gameState.pyx":65
+  /* "aiarena/chess/gameState.pyx":66
  * 
  *     def findPossibleMoves(self):
  *         cdef vector[CMove*] cmoves = self.cGameState.findPossibleMoves()             # <<<<<<<<<<<<<<
@@ -2680,11 +2689,11 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_18findPossibleMo
     __pyx_t_1 = __pyx_v_self->cGameState->findPossibleMoves();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 65, __pyx_L1_error)
+    __PYX_ERR(0, 66, __pyx_L1_error)
   }
   __pyx_v_cmoves = __pyx_t_1;
 
-  /* "aiarena/chess/gameState.pyx":66
+  /* "aiarena/chess/gameState.pyx":67
  *     def findPossibleMoves(self):
  *         cdef vector[CMove*] cmoves = self.cGameState.findPossibleMoves()
  *         return [Move.wrap(m) for m in cmoves]             # <<<<<<<<<<<<<<
@@ -2693,7 +2702,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_18findPossibleMo
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_3 = __pyx_v_cmoves.begin();
     for (;;) {
@@ -2701,9 +2710,9 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_18findPossibleMo
       __pyx_t_4 = *__pyx_t_3;
       ++__pyx_t_3;
       __pyx_8genexpr1__pyx_v_m = __pyx_t_4;
-      __pyx_t_5 = __pyx_vtabptr_7aiarena_5chess_4move_Move->wrap(__pyx_8genexpr1__pyx_v_m); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 66, __pyx_L1_error)
+      __pyx_t_5 = __pyx_vtabptr_7aiarena_5chess_4move_Move->wrap(__pyx_8genexpr1__pyx_v_m); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_5))) __PYX_ERR(0, 66, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_5))) __PYX_ERR(0, 67, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   } /* exit inner scope */
@@ -2711,7 +2720,7 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_18findPossibleMo
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":64
+  /* "aiarena/chess/gameState.pyx":65
  *     '''
  * 
  *     def findPossibleMoves(self):             # <<<<<<<<<<<<<<
@@ -2731,12 +2740,12 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_18findPossibleMo
   return __pyx_r;
 }
 
-/* "aiarena/chess/gameState.pyx":68
+/* "aiarena/chess/gameState.pyx":69
  *         return [Move.wrap(m) for m in cmoves]
  * 
  *     def doMove(self, Move move):             # <<<<<<<<<<<<<<
- *         cdef CMove* c = move.cMove
- *         self.cGameState.doMove( deref(c) )
+ *         self.cGameState.doMove( deref(move.cMove) )
+ *         return self
  */
 
 /* Python wrapper */
@@ -2745,7 +2754,7 @@ static PyObject *__pyx_pw_7aiarena_5chess_9gameState_9GameState_21doMove(PyObjec
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("doMove (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_move), __pyx_ptype_7aiarena_5chess_4move_Move, 1, "move", 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_move), __pyx_ptype_7aiarena_5chess_4move_Move, 1, "move", 0))) __PYX_ERR(0, 69, __pyx_L1_error)
   __pyx_r = __pyx_pf_7aiarena_5chess_9gameState_9GameState_20doMove(((struct __pyx_obj_7aiarena_5chess_9gameState_GameState *)__pyx_v_self), ((struct __pyx_obj_7aiarena_5chess_4move_Move *)__pyx_v_move));
 
   /* function exit code */
@@ -2758,39 +2767,27 @@ static PyObject *__pyx_pw_7aiarena_5chess_9gameState_9GameState_21doMove(PyObjec
 }
 
 static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_20doMove(struct __pyx_obj_7aiarena_5chess_9gameState_GameState *__pyx_v_self, struct __pyx_obj_7aiarena_5chess_4move_Move *__pyx_v_move) {
-  Chess::CMove *__pyx_v_c;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  Chess::CMove *__pyx_t_1;
   __Pyx_RefNannySetupContext("doMove", 0);
 
-  /* "aiarena/chess/gameState.pyx":69
+  /* "aiarena/chess/gameState.pyx":70
  * 
  *     def doMove(self, Move move):
- *         cdef CMove* c = move.cMove             # <<<<<<<<<<<<<<
- *         self.cGameState.doMove( deref(c) )
- *         return self
- */
-  __pyx_t_1 = __pyx_v_move->cMove;
-  __pyx_v_c = __pyx_t_1;
-
-  /* "aiarena/chess/gameState.pyx":70
- *     def doMove(self, Move move):
- *         cdef CMove* c = move.cMove
- *         self.cGameState.doMove( deref(c) )             # <<<<<<<<<<<<<<
+ *         self.cGameState.doMove( deref(move.cMove) )             # <<<<<<<<<<<<<<
  *         return self
  * 
  */
   try {
-    __pyx_v_self->cGameState->doMove((*__pyx_v_c));
+    __pyx_v_self->cGameState->doMove((*__pyx_v_move->cMove));
   } catch(...) {
     __Pyx_CppExn2PyErr();
     __PYX_ERR(0, 70, __pyx_L1_error)
   }
 
   /* "aiarena/chess/gameState.pyx":71
- *         cdef CMove* c = move.cMove
- *         self.cGameState.doMove( deref(c) )
+ *     def doMove(self, Move move):
+ *         self.cGameState.doMove( deref(move.cMove) )
  *         return self             # <<<<<<<<<<<<<<
  * 
  *     def findNextStates(self):
@@ -2800,12 +2797,12 @@ static PyObject *__pyx_pf_7aiarena_5chess_9gameState_9GameState_20doMove(struct 
   __pyx_r = ((PyObject *)__pyx_v_self);
   goto __pyx_L0;
 
-  /* "aiarena/chess/gameState.pyx":68
+  /* "aiarena/chess/gameState.pyx":69
  *         return [Move.wrap(m) for m in cmoves]
  * 
  *     def doMove(self, Move move):             # <<<<<<<<<<<<<<
- *         cdef CMove* c = move.cMove
- *         self.cGameState.doMove( deref(c) )
+ *         self.cGameState.doMove( deref(move.cMove) )
+ *         return self
  */
 
   /* function exit code */

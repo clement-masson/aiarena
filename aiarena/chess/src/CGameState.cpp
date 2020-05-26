@@ -462,7 +462,7 @@ std::vector<CMove*> CGameState::findPossibleMoves(const bool white){
 		// std::cout << "Searching moves for "<< piece.pieceType << " at location " << cellIndex << std::endl;
 
 		if(piece.pieceType == PieceType::pawn && piece.isWhite==white) {
-			pieceMoves = getPawnMovesFrom(cellIndex, white);
+		  pieceMoves = getPawnMovesFrom(cellIndex, white);
 		}else if(piece.pieceType == PieceType::rook && piece.isWhite==white) {
 			pieceMoves = getRookMovesFrom(cellIndex, white);
 		}else if(piece.pieceType == PieceType::knight && piece.isWhite==white) {
@@ -473,8 +473,8 @@ std::vector<CMove*> CGameState::findPossibleMoves(const bool white){
 			pieceMoves = getQueenMovesFrom(cellIndex, white);
 		}else if(piece.pieceType == PieceType::king && piece.isWhite==white) {
 			pieceMoves = getKingMovesFrom(cellIndex, white);
-        	std::vector<CMove*> castleMoves = getCastleMoves(cellIndex, white);
-        	pieceMoves.insert(pieceMoves.end(), castleMoves.begin(), castleMoves.end());
+    	std::vector<CMove*> castleMoves = getCastleMoves(cellIndex, white);
+    	pieceMoves.insert(pieceMoves.end(), castleMoves.begin(), castleMoves.end());
 		}else{
 			continue;
 		}
@@ -490,6 +490,7 @@ std::vector<CMove*> CGameState::findPossibleMoves(const bool white){
 			else
 				free(move);
 		}
+		// std::cout << "CGameState : findPossibleMoves : verification in check desactivée" << std::endl;
 	}
 	return moves;
 }
@@ -517,6 +518,7 @@ bool CGameState::isInCheck(const int position, const bool whiteKing){
 	std::vector<CMove*> pieceMoves;
 	CCell dest;
 	CMove *move;
+	bool in_check = false;
 
 	// Rook and Queen
 	pieceMoves = getRookMovesFrom(position, whiteKing);
@@ -524,7 +526,11 @@ bool CGameState::isInCheck(const int position, const bool whiteKing){
 		move = *it;
 		dest = cells[move->to_index];
 		if(dest.pieceType == PieceType::rook ||  dest.pieceType == PieceType::queen)
-			return true;
+			in_check = true;
+		free(move);
+	}
+	if (in_check){
+		return true;
 	}
 
 	// Bishop and Queen
@@ -533,7 +539,11 @@ bool CGameState::isInCheck(const int position, const bool whiteKing){
 		move = *it;
 		dest = cells[move->to_index];
 		if(dest.pieceType == PieceType::bishop ||  dest.pieceType == PieceType::queen)
-			return true;
+			in_check = true;
+		free(move);
+	}
+	if (in_check){
+		return true;
 	}
 
 	// Knight
@@ -542,7 +552,11 @@ bool CGameState::isInCheck(const int position, const bool whiteKing){
 		move = *it;
 		dest = cells[move->to_index];
 		if(dest.pieceType == PieceType::knight)
-			return true;
+			in_check = true;
+		free(move);
+	}
+	if (in_check){
+		return true;
 	}
 
 	// King
@@ -551,7 +565,11 @@ bool CGameState::isInCheck(const int position, const bool whiteKing){
 		move = *it;
 		dest = cells[move->to_index];
 		if(dest.pieceType == PieceType::king)
-			return true;
+			in_check = true;
+		free(move);
+	}
+	if (in_check){
+		return true;
 	}
 
 	// Pawn
@@ -564,10 +582,10 @@ bool CGameState::isInCheck(const int position, const bool whiteKing){
 			continue;
 		dest = getCell(r + directionRow, c + directionCol);
 		if (dest.isWhite != whiteKing && dest.pieceType == PieceType::pawn)
-			return true;
+			in_check = true;
 	}
 
-	return false;
+	return in_check;
 }
 
 

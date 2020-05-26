@@ -1837,7 +1837,7 @@ static void __pyx_pf_7aiarena_7abalone_9gameState_9GameState_2__dealloc__(struct
  * 
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         copy = GameState()
- *         copy.cGameState = new CGameState( deref(self.cGameState) )
+ *         del copy.cGameState
  */
 
 /* Python wrapper */
@@ -1865,8 +1865,8 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_4copy(struct _
  * 
  *     def copy(self):
  *         copy = GameState()             # <<<<<<<<<<<<<<
+ *         del copy.cGameState
  *         copy.cGameState = new CGameState( deref(self.cGameState) )
- *         return copy
  */
   __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7aiarena_7abalone_9gameState_GameState)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1876,6 +1876,15 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_4copy(struct _
   /* "aiarena/abalone/gameState.pyx":24
  *     def copy(self):
  *         copy = GameState()
+ *         del copy.cGameState             # <<<<<<<<<<<<<<
+ *         copy.cGameState = new CGameState( deref(self.cGameState) )
+ *         return copy
+ */
+  delete __pyx_v_copy->cGameState;
+
+  /* "aiarena/abalone/gameState.pyx":25
+ *         copy = GameState()
+ *         del copy.cGameState
  *         copy.cGameState = new CGameState( deref(self.cGameState) )             # <<<<<<<<<<<<<<
  *         return copy
  * 
@@ -1884,12 +1893,12 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_4copy(struct _
     __pyx_t_2 = new Abalone::CGameState((*__pyx_v_self->cGameState));
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 24, __pyx_L1_error)
+    __PYX_ERR(0, 25, __pyx_L1_error)
   }
   __pyx_v_copy->cGameState = __pyx_t_2;
 
-  /* "aiarena/abalone/gameState.pyx":25
- *         copy = GameState()
+  /* "aiarena/abalone/gameState.pyx":26
+ *         del copy.cGameState
  *         copy.cGameState = new CGameState( deref(self.cGameState) )
  *         return copy             # <<<<<<<<<<<<<<
  * 
@@ -1905,7 +1914,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_4copy(struct _
  * 
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         copy = GameState()
- *         copy.cGameState = new CGameState( deref(self.cGameState) )
+ *         del copy.cGameState
  */
 
   /* function exit code */
@@ -1920,7 +1929,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_4copy(struct _
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":28
+/* "aiarena/abalone/gameState.pyx":29
  * 
  *     @property
  *     def size(self):             # <<<<<<<<<<<<<<
@@ -1947,7 +1956,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_4size___get__(
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "aiarena/abalone/gameState.pyx":29
+  /* "aiarena/abalone/gameState.pyx":30
  *     @property
  *     def size(self):
  *       return self.cGameState.size             # <<<<<<<<<<<<<<
@@ -1955,13 +1964,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_4size___get__(
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":28
+  /* "aiarena/abalone/gameState.pyx":29
  * 
  *     @property
  *     def size(self):             # <<<<<<<<<<<<<<
@@ -1980,7 +1989,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_4size___get__(
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":32
+/* "aiarena/abalone/gameState.pyx":33
  * 
  *     @property
  *     def isWhiteTurn(self):             # <<<<<<<<<<<<<<
@@ -2007,7 +2016,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_11isWhiteTurn_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "aiarena/abalone/gameState.pyx":33
+  /* "aiarena/abalone/gameState.pyx":34
  *     @property
  *     def isWhiteTurn(self):
  *       return self.cGameState.isWhiteTurn             # <<<<<<<<<<<<<<
@@ -2015,13 +2024,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_11isWhiteTurn_
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->cGameState->isWhiteTurn); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->cGameState->isWhiteTurn); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":32
+  /* "aiarena/abalone/gameState.pyx":33
  * 
  *     @property
  *     def isWhiteTurn(self):             # <<<<<<<<<<<<<<
@@ -2040,7 +2049,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_11isWhiteTurn_
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":36
+/* "aiarena/abalone/gameState.pyx":37
  * 
  *     @property
  *     def capturedWhiteBalls(self):             # <<<<<<<<<<<<<<
@@ -2067,7 +2076,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_18capturedWhit
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "aiarena/abalone/gameState.pyx":37
+  /* "aiarena/abalone/gameState.pyx":38
  *     @property
  *     def capturedWhiteBalls(self):
  *       return self.cGameState.capturedWhiteBalls             # <<<<<<<<<<<<<<
@@ -2075,13 +2084,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_18capturedWhit
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->capturedWhiteBalls); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->capturedWhiteBalls); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":36
+  /* "aiarena/abalone/gameState.pyx":37
  * 
  *     @property
  *     def capturedWhiteBalls(self):             # <<<<<<<<<<<<<<
@@ -2100,7 +2109,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_18capturedWhit
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":40
+/* "aiarena/abalone/gameState.pyx":41
  * 
  *     @property
  *     def capturedBlackBalls(self):             # <<<<<<<<<<<<<<
@@ -2127,7 +2136,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_18capturedBlac
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "aiarena/abalone/gameState.pyx":41
+  /* "aiarena/abalone/gameState.pyx":42
  *     @property
  *     def capturedBlackBalls(self):
  *       return self.cGameState.capturedBlackBalls             # <<<<<<<<<<<<<<
@@ -2135,13 +2144,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_18capturedBlac
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->capturedBlackBalls); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->capturedBlackBalls); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":40
+  /* "aiarena/abalone/gameState.pyx":41
  * 
  *     @property
  *     def capturedBlackBalls(self):             # <<<<<<<<<<<<<<
@@ -2160,7 +2169,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_18capturedBlac
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":44
+/* "aiarena/abalone/gameState.pyx":45
  * 
  *     @property
  *     def cells(self):             # <<<<<<<<<<<<<<
@@ -2192,7 +2201,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_5cells___get__
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "aiarena/abalone/gameState.pyx":45
+  /* "aiarena/abalone/gameState.pyx":46
  *     @property
  *     def cells(self):
  *       return [Cell.wrap(e) for e in self.cGameState.cells]             # <<<<<<<<<<<<<<
@@ -2201,7 +2210,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_5cells___get__
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_3 = &__pyx_v_self->cGameState->cells;
     __pyx_t_2 = __pyx_t_3->begin();
@@ -2210,9 +2219,9 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_5cells___get__
       __pyx_t_4 = *__pyx_t_2;
       ++__pyx_t_2;
       __pyx_7genexpr__pyx_v_e = __pyx_t_4;
-      __pyx_t_5 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_7genexpr__pyx_v_e); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 45, __pyx_L1_error)
+      __pyx_t_5 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_7genexpr__pyx_v_e); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 46, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_5))) __PYX_ERR(0, 45, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_5))) __PYX_ERR(0, 46, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   } /* exit inner scope */
@@ -2220,7 +2229,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_5cells___get__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":44
+  /* "aiarena/abalone/gameState.pyx":45
  * 
  *     @property
  *     def cells(self):             # <<<<<<<<<<<<<<
@@ -2240,7 +2249,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_5cells___get__
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":47
+/* "aiarena/abalone/gameState.pyx":48
  *       return [Cell.wrap(e) for e in self.cGameState.cells]
  * 
  *     def getCell(self, int i, int j):             # <<<<<<<<<<<<<<
@@ -2279,11 +2288,11 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_7getCell(PyObj
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_j)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("getCell", 1, 2, 2, 1); __PYX_ERR(0, 47, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("getCell", 1, 2, 2, 1); __PYX_ERR(0, 48, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getCell") < 0)) __PYX_ERR(0, 47, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getCell") < 0)) __PYX_ERR(0, 48, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2291,12 +2300,12 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_7getCell(PyObj
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_i = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
-    __pyx_v_j = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L3_error)
+    __pyx_v_j = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("getCell", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 47, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("getCell", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 48, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.abalone.gameState.GameState.getCell", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2316,7 +2325,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_6getCell(struc
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("getCell", 0);
 
-  /* "aiarena/abalone/gameState.pyx":48
+  /* "aiarena/abalone/gameState.pyx":49
  * 
  *     def getCell(self, int i, int j):
  *       return Cell.wrap(self.cGameState.getCell(i, j))             # <<<<<<<<<<<<<<
@@ -2328,15 +2337,15 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_6getCell(struc
     __pyx_t_1 = __pyx_v_self->cGameState->getCell(__pyx_v_i, __pyx_v_j);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 48, __pyx_L1_error)
+    __PYX_ERR(0, 49, __pyx_L1_error)
   }
-  __pyx_t_2 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_2 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":47
+  /* "aiarena/abalone/gameState.pyx":48
  *       return [Cell.wrap(e) for e in self.cGameState.cells]
  * 
  *     def getCell(self, int i, int j):             # <<<<<<<<<<<<<<
@@ -2355,7 +2364,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_6getCell(struc
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":50
+/* "aiarena/abalone/gameState.pyx":51
  *       return Cell.wrap(self.cGameState.getCell(i, j))
  * 
  *     def getRow(self, int i):             # <<<<<<<<<<<<<<
@@ -2371,7 +2380,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_9getRow(PyObje
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("getRow (wrapper)", 0);
   assert(__pyx_arg_i); {
-    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 50, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 51, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2397,7 +2406,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_8getRow(struct
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("getRow", 0);
 
-  /* "aiarena/abalone/gameState.pyx":51
+  /* "aiarena/abalone/gameState.pyx":52
  * 
  *     def getRow(self, int i):
  *       cdef vector[CCell] temp_var = self.cGameState.getRow(i)             # <<<<<<<<<<<<<<
@@ -2406,7 +2415,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_8getRow(struct
  */
   __pyx_v_temp_var = __pyx_v_self->cGameState->getRow(__pyx_v_i);
 
-  /* "aiarena/abalone/gameState.pyx":52
+  /* "aiarena/abalone/gameState.pyx":53
  *     def getRow(self, int i):
  *       cdef vector[CCell] temp_var = self.cGameState.getRow(i)
  *       return [Cell.wrap(e) for e in temp_var]             # <<<<<<<<<<<<<<
@@ -2415,7 +2424,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_8getRow(struct
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_2 = __pyx_v_temp_var.begin();
     for (;;) {
@@ -2423,9 +2432,9 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_8getRow(struct
       __pyx_t_3 = *__pyx_t_2;
       ++__pyx_t_2;
       __pyx_8genexpr1__pyx_v_e = __pyx_t_3;
-      __pyx_t_4 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_8genexpr1__pyx_v_e); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 52, __pyx_L1_error)
+      __pyx_t_4 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_8genexpr1__pyx_v_e); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 53, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 52, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 53, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
   } /* exit inner scope */
@@ -2433,7 +2442,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_8getRow(struct
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":50
+  /* "aiarena/abalone/gameState.pyx":51
  *       return Cell.wrap(self.cGameState.getCell(i, j))
  * 
  *     def getRow(self, int i):             # <<<<<<<<<<<<<<
@@ -2453,7 +2462,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_8getRow(struct
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":54
+/* "aiarena/abalone/gameState.pyx":55
  *       return [Cell.wrap(e) for e in temp_var]
  * 
  *     def getColumn(self, int i):             # <<<<<<<<<<<<<<
@@ -2469,7 +2478,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_11getColumn(Py
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("getColumn (wrapper)", 0);
   assert(__pyx_arg_i); {
-    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 55, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2495,7 +2504,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_10getColumn(st
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("getColumn", 0);
 
-  /* "aiarena/abalone/gameState.pyx":55
+  /* "aiarena/abalone/gameState.pyx":56
  * 
  *     def getColumn(self, int i):
  *       cdef vector[CCell] temp_var = self.cGameState.getColumn(i)             # <<<<<<<<<<<<<<
@@ -2504,7 +2513,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_10getColumn(st
  */
   __pyx_v_temp_var = __pyx_v_self->cGameState->getColumn(__pyx_v_i);
 
-  /* "aiarena/abalone/gameState.pyx":56
+  /* "aiarena/abalone/gameState.pyx":57
  *     def getColumn(self, int i):
  *       cdef vector[CCell] temp_var = self.cGameState.getColumn(i)
  *       return [Cell.wrap(e) for e in temp_var]             # <<<<<<<<<<<<<<
@@ -2513,7 +2522,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_10getColumn(st
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_2 = __pyx_v_temp_var.begin();
     for (;;) {
@@ -2521,9 +2530,9 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_10getColumn(st
       __pyx_t_3 = *__pyx_t_2;
       ++__pyx_t_2;
       __pyx_8genexpr2__pyx_v_e = __pyx_t_3;
-      __pyx_t_4 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_8genexpr2__pyx_v_e); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
+      __pyx_t_4 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_8genexpr2__pyx_v_e); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 56, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 57, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
   } /* exit inner scope */
@@ -2531,7 +2540,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_10getColumn(st
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":54
+  /* "aiarena/abalone/gameState.pyx":55
  *       return [Cell.wrap(e) for e in temp_var]
  * 
  *     def getColumn(self, int i):             # <<<<<<<<<<<<<<
@@ -2551,7 +2560,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_10getColumn(st
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":58
+/* "aiarena/abalone/gameState.pyx":59
  *       return [Cell.wrap(e) for e in temp_var]
  * 
  *     def getDiagonal(self, int i):             # <<<<<<<<<<<<<<
@@ -2567,7 +2576,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_13getDiagonal(
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("getDiagonal (wrapper)", 0);
   assert(__pyx_arg_i); {
-    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2593,7 +2602,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_12getDiagonal(
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("getDiagonal", 0);
 
-  /* "aiarena/abalone/gameState.pyx":59
+  /* "aiarena/abalone/gameState.pyx":60
  * 
  *     def getDiagonal(self, int i):
  *       cdef vector[CCell] temp_var = self.cGameState.getDiagonal(i)             # <<<<<<<<<<<<<<
@@ -2602,7 +2611,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_12getDiagonal(
  */
   __pyx_v_temp_var = __pyx_v_self->cGameState->getDiagonal(__pyx_v_i);
 
-  /* "aiarena/abalone/gameState.pyx":60
+  /* "aiarena/abalone/gameState.pyx":61
  *     def getDiagonal(self, int i):
  *       cdef vector[CCell] temp_var = self.cGameState.getDiagonal(i)
  *       return [Cell.wrap(e) for e in temp_var]             # <<<<<<<<<<<<<<
@@ -2611,7 +2620,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_12getDiagonal(
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_2 = __pyx_v_temp_var.begin();
     for (;;) {
@@ -2619,9 +2628,9 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_12getDiagonal(
       __pyx_t_3 = *__pyx_t_2;
       ++__pyx_t_2;
       __pyx_8genexpr3__pyx_v_e = __pyx_t_3;
-      __pyx_t_4 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_8genexpr3__pyx_v_e); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+      __pyx_t_4 = __pyx_vtabptr_7aiarena_7abalone_4cell_Cell->wrap(__pyx_8genexpr3__pyx_v_e); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 60, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
   } /* exit inner scope */
@@ -2629,7 +2638,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_12getDiagonal(
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":58
+  /* "aiarena/abalone/gameState.pyx":59
  *       return [Cell.wrap(e) for e in temp_var]
  * 
  *     def getDiagonal(self, int i):             # <<<<<<<<<<<<<<
@@ -2649,7 +2658,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_12getDiagonal(
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":62
+/* "aiarena/abalone/gameState.pyx":63
  *       return [Cell.wrap(e) for e in temp_var]
  * 
  *     def reverse(self):             # <<<<<<<<<<<<<<
@@ -2675,7 +2684,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_14reverse(stru
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("reverse", 0);
 
-  /* "aiarena/abalone/gameState.pyx":63
+  /* "aiarena/abalone/gameState.pyx":64
  * 
  *     def reverse(self):
  *         self.cGameState.reverse()             # <<<<<<<<<<<<<<
@@ -2684,7 +2693,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_14reverse(stru
  */
   __pyx_v_self->cGameState->reverse();
 
-  /* "aiarena/abalone/gameState.pyx":64
+  /* "aiarena/abalone/gameState.pyx":65
  *     def reverse(self):
  *         self.cGameState.reverse()
  *         return self             # <<<<<<<<<<<<<<
@@ -2696,7 +2705,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_14reverse(stru
   __pyx_r = ((PyObject *)__pyx_v_self);
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":62
+  /* "aiarena/abalone/gameState.pyx":63
  *       return [Cell.wrap(e) for e in temp_var]
  * 
  *     def reverse(self):             # <<<<<<<<<<<<<<
@@ -2711,7 +2720,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_14reverse(stru
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":66
+/* "aiarena/abalone/gameState.pyx":67
  *         return self
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -2738,7 +2747,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_16__repr__(str
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "aiarena/abalone/gameState.pyx":67
+  /* "aiarena/abalone/gameState.pyx":68
  * 
  *     def __repr__(self):
  *         return self.cGameState.toString().decode('UTF-8')             # <<<<<<<<<<<<<<
@@ -2746,13 +2755,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_16__repr__(str
  *     def toString(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cGameState->toString(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cGameState->toString(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":66
+  /* "aiarena/abalone/gameState.pyx":67
  *         return self
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -2771,7 +2780,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_16__repr__(str
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":69
+/* "aiarena/abalone/gameState.pyx":70
  *         return self.cGameState.toString().decode('UTF-8')
  * 
  *     def toString(self):             # <<<<<<<<<<<<<<
@@ -2798,7 +2807,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_18toString(str
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("toString", 0);
 
-  /* "aiarena/abalone/gameState.pyx":70
+  /* "aiarena/abalone/gameState.pyx":71
  * 
  *     def toString(self):
  *         return self.cGameState.toString().decode('UTF-8')             # <<<<<<<<<<<<<<
@@ -2806,13 +2815,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_18toString(str
  *     def RCtoIndex(self, int r, int c):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cGameState->toString(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->cGameState->toString(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":69
+  /* "aiarena/abalone/gameState.pyx":70
  *         return self.cGameState.toString().decode('UTF-8')
  * 
  *     def toString(self):             # <<<<<<<<<<<<<<
@@ -2831,7 +2840,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_18toString(str
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":72
+/* "aiarena/abalone/gameState.pyx":73
  *         return self.cGameState.toString().decode('UTF-8')
  * 
  *     def RCtoIndex(self, int r, int c):             # <<<<<<<<<<<<<<
@@ -2870,11 +2879,11 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_21RCtoIndex(Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_c)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("RCtoIndex", 1, 2, 2, 1); __PYX_ERR(0, 72, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("RCtoIndex", 1, 2, 2, 1); __PYX_ERR(0, 73, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "RCtoIndex") < 0)) __PYX_ERR(0, 72, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "RCtoIndex") < 0)) __PYX_ERR(0, 73, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2882,12 +2891,12 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_21RCtoIndex(Py
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_r = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_r == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 72, __pyx_L3_error)
-    __pyx_v_c = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_c == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 72, __pyx_L3_error)
+    __pyx_v_r = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_r == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
+    __pyx_v_c = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_c == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("RCtoIndex", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 72, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("RCtoIndex", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 73, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.abalone.gameState.GameState.RCtoIndex", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2906,7 +2915,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_20RCtoIndex(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("RCtoIndex", 0);
 
-  /* "aiarena/abalone/gameState.pyx":73
+  /* "aiarena/abalone/gameState.pyx":74
  * 
  *     def RCtoIndex(self, int r, int c):
  *         return self.cGameState.RCtoIndex(r,c)             # <<<<<<<<<<<<<<
@@ -2914,13 +2923,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_20RCtoIndex(st
  *     def indexToRC(self, int i):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->RCtoIndex(__pyx_v_r, __pyx_v_c)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->RCtoIndex(__pyx_v_r, __pyx_v_c)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":72
+  /* "aiarena/abalone/gameState.pyx":73
  *         return self.cGameState.toString().decode('UTF-8')
  * 
  *     def RCtoIndex(self, int r, int c):             # <<<<<<<<<<<<<<
@@ -2939,7 +2948,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_20RCtoIndex(st
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":75
+/* "aiarena/abalone/gameState.pyx":76
  *         return self.cGameState.RCtoIndex(r,c)
  * 
  *     def indexToRC(self, int i):             # <<<<<<<<<<<<<<
@@ -2955,7 +2964,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_23indexToRC(Py
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("indexToRC (wrapper)", 0);
   assert(__pyx_arg_i); {
-    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 75, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 76, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2976,7 +2985,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_22indexToRC(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("indexToRC", 0);
 
-  /* "aiarena/abalone/gameState.pyx":76
+  /* "aiarena/abalone/gameState.pyx":77
  * 
  *     def indexToRC(self, int i):
  *         return self.cGameState.indexToRC(i)             # <<<<<<<<<<<<<<
@@ -2984,13 +2993,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_22indexToRC(st
  *     '''
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_convert_pair_to_py_int____int(__pyx_v_self->cGameState->indexToRC(__pyx_v_i)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_pair_to_py_int____int(__pyx_v_self->cGameState->indexToRC(__pyx_v_i)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":75
+  /* "aiarena/abalone/gameState.pyx":76
  *         return self.cGameState.RCtoIndex(r,c)
  * 
  *     def indexToRC(self, int i):             # <<<<<<<<<<<<<<
@@ -3009,7 +3018,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_22indexToRC(st
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":82
+/* "aiarena/abalone/gameState.pyx":83
  *     '''
  * 
  *     def findPossibleMoves(self):             # <<<<<<<<<<<<<<
@@ -3042,7 +3051,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_24findPossible
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("findPossibleMoves", 0);
 
-  /* "aiarena/abalone/gameState.pyx":83
+  /* "aiarena/abalone/gameState.pyx":84
  * 
  *     def findPossibleMoves(self):
  *         cdef vector[CMove*] cmoves = self.cGameState.findPossibleMoves()             # <<<<<<<<<<<<<<
@@ -3053,11 +3062,11 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_24findPossible
     __pyx_t_1 = __pyx_v_self->cGameState->findPossibleMoves();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 83, __pyx_L1_error)
+    __PYX_ERR(0, 84, __pyx_L1_error)
   }
   __pyx_v_cmoves = __pyx_t_1;
 
-  /* "aiarena/abalone/gameState.pyx":84
+  /* "aiarena/abalone/gameState.pyx":85
  *     def findPossibleMoves(self):
  *         cdef vector[CMove*] cmoves = self.cGameState.findPossibleMoves()
  *         return [Move.wrap(m) for m in cmoves]             # <<<<<<<<<<<<<<
@@ -3066,7 +3075,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_24findPossible
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_3 = __pyx_v_cmoves.begin();
     for (;;) {
@@ -3074,9 +3083,9 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_24findPossible
       __pyx_t_4 = *__pyx_t_3;
       ++__pyx_t_3;
       __pyx_8genexpr4__pyx_v_m = __pyx_t_4;
-      __pyx_t_5 = __pyx_vtabptr_7aiarena_7abalone_4move_Move->wrap(__pyx_8genexpr4__pyx_v_m); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __pyx_t_5 = __pyx_vtabptr_7aiarena_7abalone_4move_Move->wrap(__pyx_8genexpr4__pyx_v_m); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_5))) __PYX_ERR(0, 84, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_5))) __PYX_ERR(0, 85, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   } /* exit inner scope */
@@ -3084,7 +3093,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_24findPossible
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":82
+  /* "aiarena/abalone/gameState.pyx":83
  *     '''
  * 
  *     def findPossibleMoves(self):             # <<<<<<<<<<<<<<
@@ -3104,7 +3113,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_24findPossible
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":86
+/* "aiarena/abalone/gameState.pyx":87
  *         return [Move.wrap(m) for m in cmoves]
  * 
  *     def doMove(self, Move move):             # <<<<<<<<<<<<<<
@@ -3118,7 +3127,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_27doMove(PyObj
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("doMove (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_move), __pyx_ptype_7aiarena_7abalone_4move_Move, 1, "move", 0))) __PYX_ERR(0, 86, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_move), __pyx_ptype_7aiarena_7abalone_4move_Move, 1, "move", 0))) __PYX_ERR(0, 87, __pyx_L1_error)
   __pyx_r = __pyx_pf_7aiarena_7abalone_9gameState_9GameState_26doMove(((struct __pyx_obj_7aiarena_7abalone_9gameState_GameState *)__pyx_v_self), ((struct __pyx_obj_7aiarena_7abalone_4move_Move *)__pyx_v_move));
 
   /* function exit code */
@@ -3137,7 +3146,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_26doMove(struc
   Abalone::CMove *__pyx_t_1;
   __Pyx_RefNannySetupContext("doMove", 0);
 
-  /* "aiarena/abalone/gameState.pyx":87
+  /* "aiarena/abalone/gameState.pyx":88
  * 
  *     def doMove(self, Move move):
  *         cdef CMove* c = move.cMove             # <<<<<<<<<<<<<<
@@ -3147,7 +3156,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_26doMove(struc
   __pyx_t_1 = __pyx_v_move->cMove;
   __pyx_v_c = __pyx_t_1;
 
-  /* "aiarena/abalone/gameState.pyx":88
+  /* "aiarena/abalone/gameState.pyx":89
  *     def doMove(self, Move move):
  *         cdef CMove* c = move.cMove
  *         self.cGameState.doMove( deref(c) )             # <<<<<<<<<<<<<<
@@ -3158,10 +3167,10 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_26doMove(struc
     __pyx_v_self->cGameState->doMove((*__pyx_v_c));
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 88, __pyx_L1_error)
+    __PYX_ERR(0, 89, __pyx_L1_error)
   }
 
-  /* "aiarena/abalone/gameState.pyx":89
+  /* "aiarena/abalone/gameState.pyx":90
  *         cdef CMove* c = move.cMove
  *         self.cGameState.doMove( deref(c) )
  *         return self             # <<<<<<<<<<<<<<
@@ -3173,7 +3182,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_26doMove(struc
   __pyx_r = ((PyObject *)__pyx_v_self);
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":86
+  /* "aiarena/abalone/gameState.pyx":87
  *         return [Move.wrap(m) for m in cmoves]
  * 
  *     def doMove(self, Move move):             # <<<<<<<<<<<<<<
@@ -3191,7 +3200,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_26doMove(struc
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":91
+/* "aiarena/abalone/gameState.pyx":92
  *         return self
  * 
  *     def findNextStates(self):             # <<<<<<<<<<<<<<
@@ -3228,14 +3237,14 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
   int __pyx_t_8;
   __Pyx_RefNannySetupContext("findNextStates", 0);
 
-  /* "aiarena/abalone/gameState.pyx":92
+  /* "aiarena/abalone/gameState.pyx":93
  * 
  *     def findNextStates(self):
  *         moves = self.findPossibleMoves()             # <<<<<<<<<<<<<<
  *         nextStates = []
  *         for m in moves:
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_findPossibleMoves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_findPossibleMoves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3249,25 +3258,25 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_moves = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":93
+  /* "aiarena/abalone/gameState.pyx":94
  *     def findNextStates(self):
  *         moves = self.findPossibleMoves()
  *         nextStates = []             # <<<<<<<<<<<<<<
  *         for m in moves:
  *             nextStates.append( self.copy().doMove(m) )
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_nextStates = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":94
+  /* "aiarena/abalone/gameState.pyx":95
  *         moves = self.findPossibleMoves()
  *         nextStates = []
  *         for m in moves:             # <<<<<<<<<<<<<<
@@ -3278,26 +3287,26 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
     __pyx_t_1 = __pyx_v_moves; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 95, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_5)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 95, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 95, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -3307,7 +3316,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 94, __pyx_L1_error)
+          else __PYX_ERR(0, 95, __pyx_L1_error)
         }
         break;
       }
@@ -3316,14 +3325,14 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
     __Pyx_XDECREF_SET(__pyx_v_m, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":95
+    /* "aiarena/abalone/gameState.pyx":96
  *         nextStates = []
  *         for m in moves:
  *             nextStates.append( self.copy().doMove(m) )             # <<<<<<<<<<<<<<
  *         return nextStates
  * 
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 95, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3337,10 +3346,10 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
     }
     __pyx_t_3 = (__pyx_t_7) ? __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_7) : __Pyx_PyObject_CallNoArg(__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_doMove); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 95, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_doMove); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -3355,13 +3364,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
     }
     __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_3, __pyx_v_m) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_m);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_nextStates, __pyx_t_2); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 95, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_nextStates, __pyx_t_2); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":94
+    /* "aiarena/abalone/gameState.pyx":95
  *         moves = self.findPossibleMoves()
  *         nextStates = []
  *         for m in moves:             # <<<<<<<<<<<<<<
@@ -3371,7 +3380,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":96
+  /* "aiarena/abalone/gameState.pyx":97
  *         for m in moves:
  *             nextStates.append( self.copy().doMove(m) )
  *         return nextStates             # <<<<<<<<<<<<<<
@@ -3383,7 +3392,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
   __pyx_r = __pyx_v_nextStates;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":91
+  /* "aiarena/abalone/gameState.pyx":92
  *         return self
  * 
  *     def findNextStates(self):             # <<<<<<<<<<<<<<
@@ -3409,7 +3418,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_28findNextStat
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":98
+/* "aiarena/abalone/gameState.pyx":99
  *         return nextStates
  * 
  *     def checkTermination(self):             # <<<<<<<<<<<<<<
@@ -3437,7 +3446,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_30checkTermina
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("checkTermination", 0);
 
-  /* "aiarena/abalone/gameState.pyx":99
+  /* "aiarena/abalone/gameState.pyx":100
  * 
  *     def checkTermination(self):
  *         return self.cGameState.checkTermination()             # <<<<<<<<<<<<<<
@@ -3449,15 +3458,15 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_30checkTermina
     __pyx_t_1 = __pyx_v_self->cGameState->checkTermination();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 99, __pyx_L1_error)
+    __PYX_ERR(0, 100, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":98
+  /* "aiarena/abalone/gameState.pyx":99
  *         return nextStates
  * 
  *     def checkTermination(self):             # <<<<<<<<<<<<<<
@@ -3476,7 +3485,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_30checkTermina
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":105
+/* "aiarena/abalone/gameState.pyx":106
  *     Visualization methods
  *     '''
  *     def toDisplay(self, showBoard=True):             # <<<<<<<<<<<<<<
@@ -3514,7 +3523,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_33toDisplay(Py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "toDisplay") < 0)) __PYX_ERR(0, 105, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "toDisplay") < 0)) __PYX_ERR(0, 106, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -3528,7 +3537,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_33toDisplay(Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("toDisplay", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 105, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("toDisplay", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 106, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.abalone.gameState.GameState.toDisplay", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3574,35 +3583,35 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   Py_UCS4 __pyx_t_16;
   __Pyx_RefNannySetupContext("toDisplay", 0);
 
-  /* "aiarena/abalone/gameState.pyx":108
+  /* "aiarena/abalone/gameState.pyx":109
  *         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
  *         If showBard is True, then a board with cell indices is shown next to the state'''
  *         max_width = self.cGameState.getWidth(self.size-1)             # <<<<<<<<<<<<<<
  *         piece_asci_len = 1 if ASCI_TXT else 1
  *         number_len = 2
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->getWidth(__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->getWidth(__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_max_width = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":109
+  /* "aiarena/abalone/gameState.pyx":110
  *         If showBard is True, then a board with cell indices is shown next to the state'''
  *         max_width = self.cGameState.getWidth(self.size-1)
  *         piece_asci_len = 1 if ASCI_TXT else 1             # <<<<<<<<<<<<<<
  *         number_len = 2
  *         formater = '{0:'+str(number_len)+'d}'
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ASCI_TXT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ASCI_TXT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
     __Pyx_INCREF(__pyx_int_1);
@@ -3614,7 +3623,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   __pyx_v_piece_asci_len = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":110
+  /* "aiarena/abalone/gameState.pyx":111
  *         max_width = self.cGameState.getWidth(self.size-1)
  *         piece_asci_len = 1 if ASCI_TXT else 1
  *         number_len = 2             # <<<<<<<<<<<<<<
@@ -3624,86 +3633,86 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   __Pyx_INCREF(__pyx_int_2);
   __pyx_v_number_len = __pyx_int_2;
 
-  /* "aiarena/abalone/gameState.pyx":111
+  /* "aiarena/abalone/gameState.pyx":112
  *         piece_asci_len = 1 if ASCI_TXT else 1
  *         number_len = 2
  *         formater = '{0:'+str(number_len)+'d}'             # <<<<<<<<<<<<<<
  * 
  *         s = " ,"+('-'*piece_asci_len*(2*max_width))+","
  */
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_number_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_number_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_kp_u_0, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_kp_u_0, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_t_1, __pyx_kp_u_d); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_t_1, __pyx_kp_u_d); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_formater = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":113
+  /* "aiarena/abalone/gameState.pyx":114
  *         formater = '{0:'+str(number_len)+'d}'
  * 
  *         s = " ,"+('-'*piece_asci_len*(2*max_width))+","             # <<<<<<<<<<<<<<
  *         if showBoard:
  *             s+= "    ,"+('-'*piece_asci_len*(2*max_width))+","
  */
-  __pyx_t_2 = PyNumber_Multiply(__pyx_kp_u__3, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_kp_u__3, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_v_max_width); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_v_max_width); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Add(__pyx_kp_u__2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_kp_u__2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_s = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":114
+  /* "aiarena/abalone/gameState.pyx":115
  * 
  *         s = " ,"+('-'*piece_asci_len*(2*max_width))+","
  *         if showBoard:             # <<<<<<<<<<<<<<
  *             s+= "    ,"+('-'*piece_asci_len*(2*max_width))+","
  *         s +="\n"
  */
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 115, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "aiarena/abalone/gameState.pyx":115
+    /* "aiarena/abalone/gameState.pyx":116
  *         s = " ,"+('-'*piece_asci_len*(2*max_width))+","
  *         if showBoard:
  *             s+= "    ,"+('-'*piece_asci_len*(2*max_width))+","             # <<<<<<<<<<<<<<
  *         s +="\n"
  *         for r in reversed(range(2*self.size-1)):
  */
-    __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__3, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__3, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_v_max_width); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_v_max_width); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_kp_u__5, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_kp_u__5, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":114
+    /* "aiarena/abalone/gameState.pyx":115
  * 
  *         s = " ,"+('-'*piece_asci_len*(2*max_width))+","
  *         if showBoard:             # <<<<<<<<<<<<<<
@@ -3712,46 +3721,46 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
  */
   }
 
-  /* "aiarena/abalone/gameState.pyx":116
+  /* "aiarena/abalone/gameState.pyx":117
  *         if showBoard:
  *             s+= "    ,"+('-'*piece_asci_len*(2*max_width))+","
  *         s +="\n"             # <<<<<<<<<<<<<<
  *         for r in reversed(range(2*self.size-1)):
  *             padding = max_width - self.cGameState.getWidth(r)
  */
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":117
+  /* "aiarena/abalone/gameState.pyx":118
  *             s+= "    ,"+('-'*piece_asci_len*(2*max_width))+","
  *         s +="\n"
  *         for r in reversed(range(2*self.size-1)):             # <<<<<<<<<<<<<<
  *             padding = max_width - self.cGameState.getWidth(r)
  *             line = ' |' + ' '*padding
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_reversed, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_reversed, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 117, __pyx_L1_error)
+    __pyx_t_7 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 118, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -3759,17 +3768,17 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 117, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 118, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 117, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 118, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -3779,7 +3788,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 117, __pyx_L1_error)
+          else __PYX_ERR(0, 118, __pyx_L1_error)
         }
         break;
       }
@@ -3788,45 +3797,45 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
     __Pyx_XDECREF_SET(__pyx_v_r, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":118
+    /* "aiarena/abalone/gameState.pyx":119
  *         s +="\n"
  *         for r in reversed(range(2*self.size-1)):
  *             padding = max_width - self.cGameState.getWidth(r)             # <<<<<<<<<<<<<<
  *             line = ' |' + ' '*padding
  *             for cell in self.getRow(r):
  */
-    __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_r); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 118, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->getWidth(__pyx_t_3)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_r); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 119, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->getWidth(__pyx_t_3)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = PyNumber_Subtract(__pyx_v_max_width, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 118, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Subtract(__pyx_v_max_width, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_padding, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":119
+    /* "aiarena/abalone/gameState.pyx":120
  *         for r in reversed(range(2*self.size-1)):
  *             padding = max_width - self.cGameState.getWidth(r)
  *             line = ' |' + ' '*padding             # <<<<<<<<<<<<<<
  *             for cell in self.getRow(r):
  *                 line +=  get_ascii(cell) + ' '
  */
-    __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__8, __pyx_v_padding); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 119, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__8, __pyx_v_padding); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_1 = PyNumber_Add(__pyx_kp_u__7, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_kp_u__7, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_XDECREF_SET(__pyx_v_line, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":120
+    /* "aiarena/abalone/gameState.pyx":121
  *             padding = max_width - self.cGameState.getWidth(r)
  *             line = ' |' + ' '*padding
  *             for cell in self.getRow(r):             # <<<<<<<<<<<<<<
  *                 line +=  get_ascii(cell) + ' '
  *             s += line
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getRow); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 120, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getRow); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_8 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -3840,16 +3849,16 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
     }
     __pyx_t_1 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_8, __pyx_v_r) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_r);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
       __pyx_t_5 = __pyx_t_1; __Pyx_INCREF(__pyx_t_5); __pyx_t_9 = 0;
       __pyx_t_10 = NULL;
     } else {
-      __pyx_t_9 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 120, __pyx_L1_error)
+      __pyx_t_9 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_10 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 120, __pyx_L1_error)
+      __pyx_t_10 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 121, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
@@ -3857,17 +3866,17 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
         if (likely(PyList_CheckExact(__pyx_t_5))) {
           if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 120, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 121, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 120, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 121, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
@@ -3877,7 +3886,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 120, __pyx_L1_error)
+            else __PYX_ERR(0, 121, __pyx_L1_error)
           }
           break;
         }
@@ -3886,14 +3895,14 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
       __Pyx_XDECREF_SET(__pyx_v_cell, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "aiarena/abalone/gameState.pyx":121
+      /* "aiarena/abalone/gameState.pyx":122
  *             line = ' |' + ' '*padding
  *             for cell in self.getRow(r):
  *                 line +=  get_ascii(cell) + ' '             # <<<<<<<<<<<<<<
  *             s += line
  *             s += Style.RESET_ALL + ' '*padding + '|'
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_get_ascii); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 121, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_get_ascii); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __pyx_t_11 = NULL;
       if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_8))) {
@@ -3907,19 +3916,19 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
       }
       __pyx_t_1 = (__pyx_t_11) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_11, __pyx_v_cell) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_v_cell);
       __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_8 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 121, __pyx_L1_error)
+      __pyx_t_8 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_line, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_line, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF_SET(__pyx_v_line, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "aiarena/abalone/gameState.pyx":120
+      /* "aiarena/abalone/gameState.pyx":121
  *             padding = max_width - self.cGameState.getWidth(r)
  *             line = ' |' + ' '*padding
  *             for cell in self.getRow(r):             # <<<<<<<<<<<<<<
@@ -3929,83 +3938,83 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":122
+    /* "aiarena/abalone/gameState.pyx":123
  *             for cell in self.getRow(r):
  *                 line +=  get_ascii(cell) + ' '
  *             s += line             # <<<<<<<<<<<<<<
  *             s += Style.RESET_ALL + ' '*padding + '|'
  *             if showBoard:
  */
-    __pyx_t_5 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_v_line); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 122, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_v_line); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 123, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":123
+    /* "aiarena/abalone/gameState.pyx":124
  *                 line +=  get_ascii(cell) + ' '
  *             s += line
  *             s += Style.RESET_ALL + ' '*padding + '|'             # <<<<<<<<<<<<<<
  *             if showBoard:
  *                 s+='    |'
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Style); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Style); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__8, __pyx_v_padding); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__8, __pyx_v_padding); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_8 = PyNumber_Add(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_8 = PyNumber_Add(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyNumber_Add(__pyx_t_8, __pyx_kp_u__9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Add(__pyx_t_8, __pyx_kp_u__9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_8);
     __pyx_t_8 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":124
+    /* "aiarena/abalone/gameState.pyx":125
  *             s += line
  *             s += Style.RESET_ALL + ' '*padding + '|'
  *             if showBoard:             # <<<<<<<<<<<<<<
  *                 s+='    |'
  *                 s += ' '*padding
  */
-    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 124, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 125, __pyx_L1_error)
     if (__pyx_t_4) {
 
-      /* "aiarena/abalone/gameState.pyx":125
+      /* "aiarena/abalone/gameState.pyx":126
  *             s += Style.RESET_ALL + ' '*padding + '|'
  *             if showBoard:
  *                 s+='    |'             # <<<<<<<<<<<<<<
  *                 s += ' '*padding
  *                 for c, cell in enumerate(self.getRow(r)):
  */
-      __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__10); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 125, __pyx_L1_error)
+      __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__10); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 126, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_8);
       __pyx_t_8 = 0;
 
-      /* "aiarena/abalone/gameState.pyx":126
+      /* "aiarena/abalone/gameState.pyx":127
  *             if showBoard:
  *                 s+='    |'
  *                 s += ' '*padding             # <<<<<<<<<<<<<<
  *                 for c, cell in enumerate(self.getRow(r)):
  *                     col = c + self.cGameState.getStartOffset(r)
  */
-      __pyx_t_8 = PyNumber_Multiply(__pyx_kp_u__8, __pyx_v_padding); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 126, __pyx_L1_error)
+      __pyx_t_8 = PyNumber_Multiply(__pyx_kp_u__8, __pyx_v_padding); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 127, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_5 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 126, __pyx_L1_error)
+      __pyx_t_5 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 127, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "aiarena/abalone/gameState.pyx":127
+      /* "aiarena/abalone/gameState.pyx":128
  *                 s+='    |'
  *                 s += ' '*padding
  *                 for c, cell in enumerate(self.getRow(r)):             # <<<<<<<<<<<<<<
@@ -4014,7 +4023,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
  */
       __Pyx_INCREF(__pyx_int_0);
       __pyx_t_5 = __pyx_int_0;
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getRow); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getRow); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_11 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -4028,16 +4037,16 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
       }
       __pyx_t_8 = (__pyx_t_11) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_11, __pyx_v_r) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_r);
       __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 127, __pyx_L1_error)
+      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 128, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (likely(PyList_CheckExact(__pyx_t_8)) || PyTuple_CheckExact(__pyx_t_8)) {
         __pyx_t_1 = __pyx_t_8; __Pyx_INCREF(__pyx_t_1); __pyx_t_9 = 0;
         __pyx_t_10 = NULL;
       } else {
-        __pyx_t_9 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+        __pyx_t_9 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_10 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 127, __pyx_L1_error)
+        __pyx_t_10 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 128, __pyx_L1_error)
       }
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       for (;;) {
@@ -4045,17 +4054,17 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
           if (likely(PyList_CheckExact(__pyx_t_1))) {
             if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_1)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_8 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 127, __pyx_L1_error)
+            __pyx_t_8 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 128, __pyx_L1_error)
             #else
-            __pyx_t_8 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 127, __pyx_L1_error)
+            __pyx_t_8 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 128, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_8);
             #endif
           } else {
             if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_8 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 127, __pyx_L1_error)
+            __pyx_t_8 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 128, __pyx_L1_error)
             #else
-            __pyx_t_8 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 127, __pyx_L1_error)
+            __pyx_t_8 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 128, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_8);
             #endif
           }
@@ -4065,7 +4074,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(0, 127, __pyx_L1_error)
+              else __PYX_ERR(0, 128, __pyx_L1_error)
             }
             break;
           }
@@ -4075,56 +4084,56 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
         __pyx_t_8 = 0;
         __Pyx_INCREF(__pyx_t_5);
         __Pyx_XDECREF_SET(__pyx_v_c, __pyx_t_5);
-        __pyx_t_8 = __Pyx_PyInt_AddObjC(__pyx_t_5, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 127, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyInt_AddObjC(__pyx_t_5, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 128, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_5);
         __pyx_t_5 = __pyx_t_8;
         __pyx_t_8 = 0;
 
-        /* "aiarena/abalone/gameState.pyx":128
+        /* "aiarena/abalone/gameState.pyx":129
  *                 s += ' '*padding
  *                 for c, cell in enumerate(self.getRow(r)):
  *                     col = c + self.cGameState.getStartOffset(r)             # <<<<<<<<<<<<<<
  *                     back = Back.BLUE if col%2 != r%2 else Back.LIGHTBLUE_EX
  *                     s += back + formater.format(self.RCtoIndex(r,col))
  */
-        __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_r); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 128, __pyx_L1_error)
-        __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->getStartOffset(__pyx_t_3)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 128, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_r); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->cGameState->getStartOffset(__pyx_t_3)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 129, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_11 = PyNumber_Add(__pyx_v_c, __pyx_t_8); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 128, __pyx_L1_error)
+        __pyx_t_11 = PyNumber_Add(__pyx_v_c, __pyx_t_8); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 129, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_XDECREF_SET(__pyx_v_col, __pyx_t_11);
         __pyx_t_11 = 0;
 
-        /* "aiarena/abalone/gameState.pyx":129
+        /* "aiarena/abalone/gameState.pyx":130
  *                 for c, cell in enumerate(self.getRow(r)):
  *                     col = c + self.cGameState.getStartOffset(r)
  *                     back = Back.BLUE if col%2 != r%2 else Back.LIGHTBLUE_EX             # <<<<<<<<<<<<<<
  *                     s += back + formater.format(self.RCtoIndex(r,col))
  *                 s += Style.RESET_ALL + ' '*padding + '|'
  */
-        __pyx_t_8 = __Pyx_PyInt_RemainderObjC(__pyx_v_col, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 129, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyInt_RemainderObjC(__pyx_v_col, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 130, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_12 = __Pyx_PyInt_RemainderObjC(__pyx_v_r, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 129, __pyx_L1_error)
+        __pyx_t_12 = __Pyx_PyInt_RemainderObjC(__pyx_v_r, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 130, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_12);
-        __pyx_t_13 = PyObject_RichCompare(__pyx_t_8, __pyx_t_12, Py_NE); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 129, __pyx_L1_error)
+        __pyx_t_13 = PyObject_RichCompare(__pyx_t_8, __pyx_t_12, Py_NE); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 130, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 129, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 130, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         if (__pyx_t_4) {
-          __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_Back); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 129, __pyx_L1_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_Back); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 130, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_13);
-          __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_BLUE); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 129, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_BLUE); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 130, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
           __pyx_t_11 = __pyx_t_12;
           __pyx_t_12 = 0;
         } else {
-          __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_n_s_Back); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 129, __pyx_L1_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_n_s_Back); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 130, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
-          __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_LIGHTBLUE_EX); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 129, __pyx_L1_error)
+          __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_LIGHTBLUE_EX); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 130, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_13);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           __pyx_t_11 = __pyx_t_13;
@@ -4133,16 +4142,16 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
         __Pyx_XDECREF_SET(__pyx_v_back, __pyx_t_11);
         __pyx_t_11 = 0;
 
-        /* "aiarena/abalone/gameState.pyx":130
+        /* "aiarena/abalone/gameState.pyx":131
  *                     col = c + self.cGameState.getStartOffset(r)
  *                     back = Back.BLUE if col%2 != r%2 else Back.LIGHTBLUE_EX
  *                     s += back + formater.format(self.RCtoIndex(r,col))             # <<<<<<<<<<<<<<
  *                 s += Style.RESET_ALL + ' '*padding + '|'
  *             s += '\n'
  */
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_formater, __pyx_n_s_format); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 130, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_formater, __pyx_n_s_format); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 131, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
-        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_RCtoIndex); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 130, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_RCtoIndex); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 131, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __pyx_t_14 = NULL;
         __pyx_t_3 = 0;
@@ -4159,7 +4168,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_8)) {
           PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_v_r, __pyx_v_col};
-          __pyx_t_12 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_3, 2+__pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 130, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_3, 2+__pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 131, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_GOTREF(__pyx_t_12);
         } else
@@ -4167,13 +4176,13 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_8)) {
           PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_v_r, __pyx_v_col};
-          __pyx_t_12 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_3, 2+__pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 130, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_3, 2+__pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 131, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_GOTREF(__pyx_t_12);
         } else
         #endif
         {
-          __pyx_t_15 = PyTuple_New(2+__pyx_t_3); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 130, __pyx_L1_error)
+          __pyx_t_15 = PyTuple_New(2+__pyx_t_3); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 131, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_15);
           if (__pyx_t_14) {
             __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_14); __pyx_t_14 = NULL;
@@ -4184,7 +4193,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
           __Pyx_INCREF(__pyx_v_col);
           __Pyx_GIVEREF(__pyx_v_col);
           PyTuple_SET_ITEM(__pyx_t_15, 1+__pyx_t_3, __pyx_v_col);
-          __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_15, NULL); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 130, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_15, NULL); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 131, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
         }
@@ -4202,19 +4211,19 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
         __pyx_t_11 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_13, __pyx_t_8, __pyx_t_12) : __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_t_12);
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 130, __pyx_L1_error)
+        if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 131, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        __pyx_t_13 = PyNumber_Add(__pyx_v_back, __pyx_t_11); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 130, __pyx_L1_error)
+        __pyx_t_13 = PyNumber_Add(__pyx_v_back, __pyx_t_11); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 131, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        __pyx_t_11 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_13); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 130, __pyx_L1_error)
+        __pyx_t_11 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_13); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 131, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_11);
         __pyx_t_11 = 0;
 
-        /* "aiarena/abalone/gameState.pyx":127
+        /* "aiarena/abalone/gameState.pyx":128
  *                 s+='    |'
  *                 s += ' '*padding
  *                 for c, cell in enumerate(self.getRow(r)):             # <<<<<<<<<<<<<<
@@ -4225,34 +4234,34 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "aiarena/abalone/gameState.pyx":131
+      /* "aiarena/abalone/gameState.pyx":132
  *                     back = Back.BLUE if col%2 != r%2 else Back.LIGHTBLUE_EX
  *                     s += back + formater.format(self.RCtoIndex(r,col))
  *                 s += Style.RESET_ALL + ' '*padding + '|'             # <<<<<<<<<<<<<<
  *             s += '\n'
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*(2*max_width))+"'"
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Style); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Style); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 132, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__8, __pyx_v_padding); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
+      __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__8, __pyx_v_padding); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 132, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_11 = PyNumber_Add(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 131, __pyx_L1_error)
+      __pyx_t_11 = PyNumber_Add(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 132, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = PyNumber_Add(__pyx_t_11, __pyx_kp_u__9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
+      __pyx_t_5 = PyNumber_Add(__pyx_t_11, __pyx_kp_u__9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 132, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      __pyx_t_11 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_5); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 131, __pyx_L1_error)
+      __pyx_t_11 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_5); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 132, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_11);
       __pyx_t_11 = 0;
 
-      /* "aiarena/abalone/gameState.pyx":124
+      /* "aiarena/abalone/gameState.pyx":125
  *             s += line
  *             s += Style.RESET_ALL + ' '*padding + '|'
  *             if showBoard:             # <<<<<<<<<<<<<<
@@ -4261,19 +4270,19 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
  */
     }
 
-    /* "aiarena/abalone/gameState.pyx":132
+    /* "aiarena/abalone/gameState.pyx":133
  *                     s += back + formater.format(self.RCtoIndex(r,col))
  *                 s += Style.RESET_ALL + ' '*padding + '|'
  *             s += '\n'             # <<<<<<<<<<<<<<
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*(2*max_width))+"'"
  *         if showBoard:
  */
-    __pyx_t_11 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__6); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 132, __pyx_L1_error)
+    __pyx_t_11 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__6); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_11);
     __pyx_t_11 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":117
+    /* "aiarena/abalone/gameState.pyx":118
  *             s+= "    ,"+('-'*piece_asci_len*(2*max_width))+","
  *         s +="\n"
  *         for r in reversed(range(2*self.size-1)):             # <<<<<<<<<<<<<<
@@ -4283,80 +4292,80 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":133
+  /* "aiarena/abalone/gameState.pyx":134
  *                 s += Style.RESET_ALL + ' '*padding + '|'
  *             s += '\n'
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*(2*max_width))+"'"             # <<<<<<<<<<<<<<
  *         if showBoard:
  *             s += "    '"+('-'*piece_asci_len*(2*max_width))+"'"
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Style); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Style); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RESET_ALL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Add(__pyx_t_11, __pyx_kp_u__11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_t_11, __pyx_kp_u__11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-  __pyx_t_11 = PyNumber_Multiply(__pyx_kp_u__3, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_11 = PyNumber_Multiply(__pyx_kp_u__3, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_5 = PyNumber_Multiply(__pyx_int_2, __pyx_v_max_width); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_int_2, __pyx_v_max_width); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_t_11, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_11, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Add(__pyx_t_5, __pyx_kp_u__12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_t_5, __pyx_kp_u__12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":134
+  /* "aiarena/abalone/gameState.pyx":135
  *             s += '\n'
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*(2*max_width))+"'"
  *         if showBoard:             # <<<<<<<<<<<<<<
  *             s += "    '"+('-'*piece_asci_len*(2*max_width))+"'"
  *         # s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
  */
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_showBoard); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "aiarena/abalone/gameState.pyx":135
+    /* "aiarena/abalone/gameState.pyx":136
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*(2*max_width))+"'"
  *         if showBoard:
  *             s += "    '"+('-'*piece_asci_len*(2*max_width))+"'"             # <<<<<<<<<<<<<<
  *         # s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
  *         s += '\n'
  */
-    __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__3, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_kp_u__3, __pyx_v_piece_asci_len); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_v_max_width); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_v_max_width); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_kp_u__13, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_kp_u__13, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_kp_u__12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":134
+    /* "aiarena/abalone/gameState.pyx":135
  *             s += '\n'
  *         s += Style.RESET_ALL + " '"+('-'*piece_asci_len*(2*max_width))+"'"
  *         if showBoard:             # <<<<<<<<<<<<<<
@@ -4365,44 +4374,44 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
  */
   }
 
-  /* "aiarena/abalone/gameState.pyx":137
+  /* "aiarena/abalone/gameState.pyx":138
  *             s += "    '"+('-'*piece_asci_len*(2*max_width))+"'"
  *         # s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
  *         s += '\n'             # <<<<<<<<<<<<<<
  *         if self.isWhiteTurn:
  *             s += "White's turn to play."
  */
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u__6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":138
+  /* "aiarena/abalone/gameState.pyx":139
  *         # s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
  *         s += '\n'
  *         if self.isWhiteTurn:             # <<<<<<<<<<<<<<
  *             s += "White's turn to play."
  *         else:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_isWhiteTurn); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_isWhiteTurn); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
 
-    /* "aiarena/abalone/gameState.pyx":139
+    /* "aiarena/abalone/gameState.pyx":140
  *         s += '\n'
  *         if self.isWhiteTurn:
  *             s += "White's turn to play."             # <<<<<<<<<<<<<<
  *         else:
  *             s += "Black's turn to play."
  */
-    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u_White_s_turn_to_play); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u_White_s_turn_to_play); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":138
+    /* "aiarena/abalone/gameState.pyx":139
  *         # s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
  *         s += '\n'
  *         if self.isWhiteTurn:             # <<<<<<<<<<<<<<
@@ -4412,7 +4421,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
     goto __pyx_L12;
   }
 
-  /* "aiarena/abalone/gameState.pyx":141
+  /* "aiarena/abalone/gameState.pyx":142
  *             s += "White's turn to play."
  *         else:
  *             s += "Black's turn to play."             # <<<<<<<<<<<<<<
@@ -4420,21 +4429,21 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
  *         return s
  */
   /*else*/ {
-    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u_Black_s_turn_to_play); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u_Black_s_turn_to_play); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_1);
     __pyx_t_1 = 0;
   }
   __pyx_L12:;
 
-  /* "aiarena/abalone/gameState.pyx":142
+  /* "aiarena/abalone/gameState.pyx":143
  *         else:
  *             s += "Black's turn to play."
  *         s += f" ({self.capturedWhiteBalls}:{self.capturedBlackBalls})"             # <<<<<<<<<<<<<<
  *         return s
  * 
  */
-  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_6 = 0;
   __pyx_t_16 = 127;
@@ -4442,9 +4451,9 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   __pyx_t_6 += 2;
   __Pyx_GIVEREF(__pyx_kp_u__14);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u__14);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_capturedWhiteBalls); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_capturedWhiteBalls); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_16 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) > __pyx_t_16) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) : __pyx_t_16;
@@ -4456,9 +4465,9 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   __pyx_t_6 += 1;
   __Pyx_GIVEREF(__pyx_kp_u__15);
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u__15);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_capturedBlackBalls); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_capturedBlackBalls); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_16 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) > __pyx_t_16) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) : __pyx_t_16;
@@ -4470,16 +4479,16 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   __pyx_t_6 += 1;
   __Pyx_GIVEREF(__pyx_kp_u__16);
   PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u__16);
-  __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 5, __pyx_t_6, __pyx_t_16); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 5, __pyx_t_6, __pyx_t_16); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":143
+  /* "aiarena/abalone/gameState.pyx":144
  *             s += "Black's turn to play."
  *         s += f" ({self.capturedWhiteBalls}:{self.capturedBlackBalls})"
  *         return s             # <<<<<<<<<<<<<<
@@ -4491,7 +4500,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   __pyx_r = __pyx_v_s;
   goto __pyx_L0;
 
-  /* "aiarena/abalone/gameState.pyx":105
+  /* "aiarena/abalone/gameState.pyx":106
  *     Visualization methods
  *     '''
  *     def toDisplay(self, showBoard=True):             # <<<<<<<<<<<<<<
@@ -4530,7 +4539,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":145
+/* "aiarena/abalone/gameState.pyx":146
  *         return s
  * 
  *     def display(self, showBoard=True):             # <<<<<<<<<<<<<<
@@ -4567,7 +4576,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_35display(PyOb
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "display") < 0)) __PYX_ERR(0, 145, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "display") < 0)) __PYX_ERR(0, 146, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -4581,7 +4590,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_35display(PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("display", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 145, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("display", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 146, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("aiarena.abalone.gameState.GameState.display", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4602,14 +4611,14 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(stru
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("display", 0);
 
-  /* "aiarena/abalone/gameState.pyx":146
+  /* "aiarena/abalone/gameState.pyx":147
  * 
  *     def display(self, showBoard=True):
  *         print(self.toDisplay(showBoard))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_toDisplay); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_toDisplay); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4623,15 +4632,15 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(stru
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_showBoard) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_showBoard);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":145
+  /* "aiarena/abalone/gameState.pyx":146
  *         return s
  * 
  *     def display(self, showBoard=True):             # <<<<<<<<<<<<<<
@@ -4761,7 +4770,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_38__setstate_c
   return __pyx_r;
 }
 
-/* "aiarena/abalone/gameState.pyx":156
+/* "aiarena/abalone/gameState.pyx":157
  * #
  * #
  * def get_ascii(piece):             # <<<<<<<<<<<<<<
@@ -4795,18 +4804,18 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
   PyObject *__pyx_t_6 = NULL;
   __Pyx_RefNannySetupContext("get_ascii", 0);
 
-  /* "aiarena/abalone/gameState.pyx":157
+  /* "aiarena/abalone/gameState.pyx":158
  * #
  * def get_ascii(piece):
  *   if piece.color is cell.WHITE:             # <<<<<<<<<<<<<<
  *     fore = Fore.WHITE
  *   elif piece.color is cell.BLACK:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_n_s_color); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_n_s_color); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_cell); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_cell); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_4 = (__pyx_t_1 == __pyx_t_3);
@@ -4815,22 +4824,22 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
   __pyx_t_5 = (__pyx_t_4 != 0);
   if (__pyx_t_5) {
 
-    /* "aiarena/abalone/gameState.pyx":158
+    /* "aiarena/abalone/gameState.pyx":159
  * def get_ascii(piece):
  *   if piece.color is cell.WHITE:
  *     fore = Fore.WHITE             # <<<<<<<<<<<<<<
  *   elif piece.color is cell.BLACK:
  *     fore = Fore.RED
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Fore); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Fore); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 159, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_fore = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":157
+    /* "aiarena/abalone/gameState.pyx":158
  * #
  * def get_ascii(piece):
  *   if piece.color is cell.WHITE:             # <<<<<<<<<<<<<<
@@ -4840,18 +4849,18 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
     goto __pyx_L3;
   }
 
-  /* "aiarena/abalone/gameState.pyx":159
+  /* "aiarena/abalone/gameState.pyx":160
  *   if piece.color is cell.WHITE:
  *     fore = Fore.WHITE
  *   elif piece.color is cell.BLACK:             # <<<<<<<<<<<<<<
  *     fore = Fore.RED
  *   else:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_n_s_color); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_n_s_color); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_cell); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_cell); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_BLACK); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_BLACK); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = (__pyx_t_1 == __pyx_t_2);
@@ -4860,22 +4869,22 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
   __pyx_t_4 = (__pyx_t_5 != 0);
   if (__pyx_t_4) {
 
-    /* "aiarena/abalone/gameState.pyx":160
+    /* "aiarena/abalone/gameState.pyx":161
  *     fore = Fore.WHITE
  *   elif piece.color is cell.BLACK:
  *     fore = Fore.RED             # <<<<<<<<<<<<<<
  *   else:
  *     fore = Fore.BLACK
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Fore); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Fore); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_fore = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "aiarena/abalone/gameState.pyx":159
+    /* "aiarena/abalone/gameState.pyx":160
  *   if piece.color is cell.WHITE:
  *     fore = Fore.WHITE
  *   elif piece.color is cell.BLACK:             # <<<<<<<<<<<<<<
@@ -4885,7 +4894,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
     goto __pyx_L3;
   }
 
-  /* "aiarena/abalone/gameState.pyx":162
+  /* "aiarena/abalone/gameState.pyx":163
  *     fore = Fore.RED
  *   else:
  *     fore = Fore.BLACK             # <<<<<<<<<<<<<<
@@ -4893,9 +4902,9 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
  *     return Style.BRIGHT + fore + 'o'
  */
   /*else*/ {
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Fore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Fore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_BLACK); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_BLACK); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_fore = __pyx_t_2;
@@ -4903,20 +4912,20 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
   }
   __pyx_L3:;
 
-  /* "aiarena/abalone/gameState.pyx":163
+  /* "aiarena/abalone/gameState.pyx":164
  *   else:
  *     fore = Fore.BLACK
  *   if ASCI_TXT:             # <<<<<<<<<<<<<<
  *     return Style.BRIGHT + fore + 'o'
  *   else:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ASCI_TXT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ASCI_TXT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_4) {
 
-    /* "aiarena/abalone/gameState.pyx":164
+    /* "aiarena/abalone/gameState.pyx":165
  *     fore = Fore.BLACK
  *   if ASCI_TXT:
  *     return Style.BRIGHT + fore + 'o'             # <<<<<<<<<<<<<<
@@ -4924,22 +4933,22 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
  *     return Style.BRIGHT + fore + asci_symbols[piece.color]
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Style); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Style); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_BRIGHT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_BRIGHT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_v_fore); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_v_fore); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_n_u_o); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_n_u_o); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "aiarena/abalone/gameState.pyx":163
+    /* "aiarena/abalone/gameState.pyx":164
  *   else:
  *     fore = Fore.BLACK
  *   if ASCI_TXT:             # <<<<<<<<<<<<<<
@@ -4948,30 +4957,30 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
  */
   }
 
-  /* "aiarena/abalone/gameState.pyx":166
+  /* "aiarena/abalone/gameState.pyx":167
  *     return Style.BRIGHT + fore + 'o'
  *   else:
  *     return Style.BRIGHT + fore + asci_symbols[piece.color]             # <<<<<<<<<<<<<<
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Style); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Style); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_BRIGHT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_BRIGHT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_v_fore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_v_fore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_asci_symbols); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_asci_symbols); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_n_s_color); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_n_s_color); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 167, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -4980,7 +4989,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_get_ascii(CYTHON_UNUSED P
     goto __pyx_L0;
   }
 
-  /* "aiarena/abalone/gameState.pyx":156
+  /* "aiarena/abalone/gameState.pyx":157
  * #
  * #
  * def get_ascii(piece):             # <<<<<<<<<<<<<<
@@ -5600,10 +5609,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_reversed = __Pyx_GetBuiltinName(__pyx_n_s_reversed); if (!__pyx_builtin_reversed) __PYX_ERR(0, 117, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 117, __pyx_L1_error)
-  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 127, __pyx_L1_error)
-  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_builtin_reversed = __Pyx_GetBuiltinName(__pyx_n_s_reversed); if (!__pyx_builtin_reversed) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 147, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -5633,17 +5642,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
 
-  /* "aiarena/abalone/gameState.pyx":156
+  /* "aiarena/abalone/gameState.pyx":157
  * #
  * #
  * def get_ascii(piece):             # <<<<<<<<<<<<<<
  *   if piece.color is cell.WHITE:
  *     fore = Fore.WHITE
  */
-  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_n_s_piece, __pyx_n_s_fore); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_n_s_piece, __pyx_n_s_fore); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_aiarena_abalone_gameState_pyx, __pyx_n_s_get_ascii, 156, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_aiarena_abalone_gameState_pyx, __pyx_n_s_get_ascii, 157, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -6028,65 +6037,65 @@ if (!__Pyx_RefNanny) {
  */
   __pyx_k_ = Abalone::DEFAULT_SIZE;
 
-  /* "aiarena/abalone/gameState.pyx":150
+  /* "aiarena/abalone/gameState.pyx":151
  * 
  * asci_symbols = {
  *   cell.NONE: '\u25CF',             # <<<<<<<<<<<<<<
  *   cell.WHITE: '\u25CF',
  *   cell.BLACK: '\u25CF',
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_cell); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_cell); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_NONE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_NONE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_kp_u__20) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_kp_u__20) < 0) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":151
+  /* "aiarena/abalone/gameState.pyx":152
  * asci_symbols = {
  *   cell.NONE: '\u25CF',
  *   cell.WHITE: '\u25CF',             # <<<<<<<<<<<<<<
  *   cell.BLACK: '\u25CF',
  * }
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_cell); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_cell); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_WHITE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_t_2, __pyx_kp_u__20) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_t_2, __pyx_kp_u__20) < 0) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":152
+  /* "aiarena/abalone/gameState.pyx":153
  *   cell.NONE: '\u25CF',
  *   cell.WHITE: '\u25CF',
  *   cell.BLACK: '\u25CF',             # <<<<<<<<<<<<<<
  * }
  * #
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_cell); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_cell); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_BLACK); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_BLACK); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_kp_u__20) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_kp_u__20) < 0) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_asci_symbols, __pyx_t_1) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_asci_symbols, __pyx_t_1) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "aiarena/abalone/gameState.pyx":156
+  /* "aiarena/abalone/gameState.pyx":157
  * #
  * #
  * def get_ascii(piece):             # <<<<<<<<<<<<<<
  *   if piece.color is cell.WHITE:
  *     fore = Fore.WHITE
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7aiarena_7abalone_9gameState_1get_ascii, NULL, __pyx_n_s_aiarena_abalone_gameState); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7aiarena_7abalone_9gameState_1get_ascii, NULL, __pyx_n_s_aiarena_abalone_gameState); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_ascii, __pyx_t_1) < 0) __PYX_ERR(0, 156, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_ascii, __pyx_t_1) < 0) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "aiarena/abalone/gameState.pyx":1

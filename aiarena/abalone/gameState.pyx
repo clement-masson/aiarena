@@ -21,6 +21,7 @@ cdef class GameState:
 
     def copy(self):
         copy = GameState()
+        del copy.cGameState
         copy.cGameState = new CGameState( deref(self.cGameState) )
         return copy
 

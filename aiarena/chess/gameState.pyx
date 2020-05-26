@@ -23,6 +23,7 @@ cdef class GameState:
 
     def copy(self):
         copy = GameState()
+        del copy.cGameState
         copy.cGameState = new CGameState( deref(self.cGameState) )
         return copy
 
@@ -66,8 +67,7 @@ cdef class GameState:
         return [Move.wrap(m) for m in cmoves]
 
     def doMove(self, Move move):
-        cdef CMove* c = move.cMove
-        self.cGameState.doMove( deref(c) )
+        self.cGameState.doMove( deref(move.cMove) )
         return self
 
     def findNextStates(self):
