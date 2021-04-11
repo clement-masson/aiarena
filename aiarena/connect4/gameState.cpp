@@ -1507,8 +1507,8 @@ static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_findPossibleMoves[] = "findPossibleMoves";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_Black_s_turn_to_play[] = "Black's turn to play.";
-static const char __pyx_k_White_s_turn_to_play[] = "White's turn to play.";
+static const char __pyx_k_Black_s_turn_to_play[] = "\nBlack's turn to play.";
+static const char __pyx_k_White_s_turn_to_play[] = "\nWhite's turn to play.";
 static const char __pyx_k_aiarena_connect4_gameState[] = "aiarena.connect4.gameState";
 static const char __pyx_k_aiarena_connect4_gameState_pyx[] = "aiarena/connect4/gameState.pyx";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
@@ -3701,7 +3701,7 @@ static PyObject *__pyx_pf_7aiarena_8connect4_9gameState_9GameState_26toDisplay(s
  *             s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
  * 
  *         if self.isWhiteTurn:             # <<<<<<<<<<<<<<
- *             s += "White's turn to play."
+ *             s += "\nWhite's turn to play."
  *         else:
  */
   __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_isWhiteTurn); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
@@ -3713,9 +3713,9 @@ static PyObject *__pyx_pf_7aiarena_8connect4_9gameState_9GameState_26toDisplay(s
     /* "aiarena/connect4/gameState.pyx":109
  * 
  *         if self.isWhiteTurn:
- *             s += "White's turn to play."             # <<<<<<<<<<<<<<
+ *             s += "\nWhite's turn to play."             # <<<<<<<<<<<<<<
  *         else:
- *             s += "Black's turn to play."
+ *             s += "\nBlack's turn to play."
  */
     __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_kp_u_White_s_turn_to_play); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
@@ -3726,16 +3726,16 @@ static PyObject *__pyx_pf_7aiarena_8connect4_9gameState_9GameState_26toDisplay(s
  *             s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
  * 
  *         if self.isWhiteTurn:             # <<<<<<<<<<<<<<
- *             s += "White's turn to play."
+ *             s += "\nWhite's turn to play."
  *         else:
  */
     goto __pyx_L14;
   }
 
   /* "aiarena/connect4/gameState.pyx":111
- *             s += "White's turn to play."
+ *             s += "\nWhite's turn to play."
  *         else:
- *             s += "Black's turn to play."             # <<<<<<<<<<<<<<
+ *             s += "\nBlack's turn to play."             # <<<<<<<<<<<<<<
  *         return s
  * 
  */
@@ -3749,7 +3749,7 @@ static PyObject *__pyx_pf_7aiarena_8connect4_9gameState_9GameState_26toDisplay(s
 
   /* "aiarena/connect4/gameState.pyx":112
  *         else:
- *             s += "Black's turn to play."
+ *             s += "\nBlack's turn to play."
  *         return s             # <<<<<<<<<<<<<<
  * 
  *     def display(self, showBoard=False):

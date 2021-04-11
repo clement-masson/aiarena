@@ -106,9 +106,9 @@ cdef class GameState:
             s += "\n  " + ''.join([('{:'+str(piece_asci_len)+'s}').format(str(k)) for k in range(self.width)]) + " "
 
         if self.isWhiteTurn:
-            s += "White's turn to play."
+            s += "\nWhite's turn to play."
         else:
-            s += "Black's turn to play."
+            s += "\nBlack's turn to play."
         return s
 
     def display(self, showBoard=False):

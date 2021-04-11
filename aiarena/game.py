@@ -1,3 +1,4 @@
+import os
 import time
 import traceback
 from .player import Player, TimeOutException, InvalidMoveException
@@ -111,6 +112,7 @@ class Game:
 
             # log the computing time and game state
             self.logCompuTime(player.computingTimes[-1])
+            os.system('clear')
             self.logState()
 
         # create the PGN of the game

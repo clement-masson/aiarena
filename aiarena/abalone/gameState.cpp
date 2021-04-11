@@ -3488,7 +3488,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_30checkTermina
 /* "aiarena/abalone/gameState.pyx":106
  *     Visualization methods
  *     '''
- *     def toDisplay(self, showBoard=True):             # <<<<<<<<<<<<<<
+ *     def toDisplay(self, showBoard=False):             # <<<<<<<<<<<<<<
  *         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
  *         If showBard is True, then a board with cell indices is shown next to the state'''
  */
@@ -3504,7 +3504,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_33toDisplay(Py
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_showBoard,0};
     PyObject* values[1] = {0};
-    values[0] = ((PyObject *)Py_True);
+    values[0] = ((PyObject *)Py_False);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -4493,7 +4493,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
  *         s += f" ({self.capturedWhiteBalls}:{self.capturedBlackBalls})"
  *         return s             # <<<<<<<<<<<<<<
  * 
- *     def display(self, showBoard=True):
+ *     def display(self, showBoard=False):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_s);
@@ -4503,7 +4503,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
   /* "aiarena/abalone/gameState.pyx":106
  *     Visualization methods
  *     '''
- *     def toDisplay(self, showBoard=True):             # <<<<<<<<<<<<<<
+ *     def toDisplay(self, showBoard=False):             # <<<<<<<<<<<<<<
  *         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
  *         If showBard is True, then a board with cell indices is shown next to the state'''
  */
@@ -4542,7 +4542,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_32toDisplay(st
 /* "aiarena/abalone/gameState.pyx":146
  *         return s
  * 
- *     def display(self, showBoard=True):             # <<<<<<<<<<<<<<
+ *     def display(self, showBoard=False):             # <<<<<<<<<<<<<<
  *         print(self.toDisplay(showBoard))
  * 
  */
@@ -4557,7 +4557,7 @@ static PyObject *__pyx_pw_7aiarena_7abalone_9gameState_9GameState_35display(PyOb
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_showBoard,0};
     PyObject* values[1] = {0};
-    values[0] = ((PyObject *)Py_True);
+    values[0] = ((PyObject *)Py_False);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -4613,7 +4613,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(stru
 
   /* "aiarena/abalone/gameState.pyx":147
  * 
- *     def display(self, showBoard=True):
+ *     def display(self, showBoard=False):
  *         print(self.toDisplay(showBoard))             # <<<<<<<<<<<<<<
  * 
  * 
@@ -4643,7 +4643,7 @@ static PyObject *__pyx_pf_7aiarena_7abalone_9gameState_9GameState_34display(stru
   /* "aiarena/abalone/gameState.pyx":146
  *         return s
  * 
- *     def display(self, showBoard=True):             # <<<<<<<<<<<<<<
+ *     def display(self, showBoard=False):             # <<<<<<<<<<<<<<
  *         print(self.toDisplay(showBoard))
  * 
  */

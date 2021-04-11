@@ -103,7 +103,7 @@ cdef class GameState:
     '''
     Visualization methods
     '''
-    def toDisplay(self, showBoard=True):
+    def toDisplay(self, showBoard=False):
         ''' Return a string suitable for state visualization in text mode (like the one at the top of this file)
         If showBard is True, then a board with cell indices is shown next to the state'''
         max_width = self.cGameState.getWidth(self.size-1)
@@ -143,7 +143,7 @@ cdef class GameState:
         s += f" ({self.capturedWhiteBalls}:{self.capturedBlackBalls})"
         return s
 
-    def display(self, showBoard=True):
+    def display(self, showBoard=False):
         print(self.toDisplay(showBoard))
 
 
