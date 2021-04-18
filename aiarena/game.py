@@ -22,6 +22,7 @@ class Game:
         self.player2 = Player(False, ia2, timeLimit2)
 
         self.displayLevel = 0
+        self.clearBeforeDisplaying = True
         self.pause = 0
         self.log = ""
         self.status = {'success': False, 'draw': None,
@@ -32,7 +33,7 @@ class Game:
         self.addToLog(str(self.player1) + ' (starts) has ' +
                       str(self.player1.timeLimit) + ' secs/turn to play')
         self.addToLog(str(self.player2) + ' has ' +
-                      str(self.player1.timeLimit) + ' secs/turn to play')
+                      str(self.player2.timeLimit) + ' secs/turn to play')
         self.logState()
 
     def start(self):
@@ -112,7 +113,8 @@ class Game:
 
             # log the computing time and game state
             self.logCompuTime(player.computingTimes[-1])
-            os.system('clear')
+            if self.clearBeforeDisplaying:
+                os.system('clear')
             self.logState()
 
         # create the PGN of the game
