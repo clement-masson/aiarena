@@ -44,7 +44,7 @@ class Game:
         result = None
         startTime = time.ctime()
         time.sleep(self.pause)
-        t = time.time() + self.pause
+        display_current_state_until = time.time() + self.pause
 
         # shortcut variables to acces faster white and black players
         whitePlayer = self.player1 if self.player1.isWhite else self.player2
@@ -72,10 +72,14 @@ class Game:
                 self.addToLog('End of Game !', 1)
                 break
             possibleMoves = self.gameState.findPossibleMoves()
-            self.logChoices(possibleMoves)
 
-            time.sleep(max(0, t - time.time()))
-            t = time.time() + self.pause
+            # log and display current state
+            time.sleep(max(0, display_current_state_until - time.time()))
+            if self.clearBeforeDisplaying:
+                os.system('clear')
+            self.logState()
+            self.logChoices(possibleMoves)
+            display_current_state_until = time.time() + self.pause
 
             # make the player play
             try:
@@ -113,9 +117,6 @@ class Game:
 
             # log the computing time and game state
             self.logCompuTime(player.computingTimes[-1])
-            if self.clearBeforeDisplaying:
-                os.system('clear')
-            self.logState()
 
         # create the PGN of the game
         self.pgn = self.makePGN(startTime, pgnMoves, result)
@@ -125,7 +126,7 @@ class Game:
 
     stateDisplayLevel = 1
     choiceDisplayLevel = 2
-    decisionDisplayLevel = 2
+    decisionDisplayLevel = 1
 
     def addToLog(self, txt, displayLevel=1):
         self.log += txt + '\n'
@@ -142,7 +143,7 @@ class Game:
         self.addToLog(recap, Game.choiceDisplayLevel)
 
     def logCompuTime(self, t):
-        self.addToLog("Computing time : " + str(t) + " sec(s)", Game.choiceDisplayLevel)
+        self.addToLog("Computing time : " + str(t) + " sec(s)", Game.decisionDisplayLevel)
 
     def makePGN(self, startTime, pgnMoves, result):
         # shortcut variables to acces faster white and black players
