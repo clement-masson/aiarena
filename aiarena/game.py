@@ -34,7 +34,6 @@ class Game:
                       str(self.player1.timeLimit) + ' secs/turn to play')
         self.addToLog(str(self.player2) + ' has ' +
                       str(self.player2.timeLimit) + ' secs/turn to play')
-        self.logState()
 
     def start(self):
         # setup
@@ -72,6 +71,7 @@ class Game:
                 self.addToLog('End of Game !', 1)
                 break
             possibleMoves = self.gameState.findPossibleMoves()
+            all_possibleStates = [repr(self.gameState.copy().doMove(move)) for move in possibleMoves]
 
             # log and display current state
             time.sleep(max(0, display_current_state_until - time.time()))
@@ -83,7 +83,7 @@ class Game:
 
             # make the player play
             try:
-                chosenState = player.play(self.gameState.copy())
+                self.gameState = player.play(self.gameState.copy())
             except TimeOutException as exc:
                 self.status['playerError'] = playerNumber
                 self.status['errorID'] = 'T0'
@@ -101,23 +101,17 @@ class Game:
                 return
 
             # find and add the chosen move to pgn
-            chosenStateRepr = repr(chosenState)
-            possibleRepr = [repr(self.gameState.copy().doMove(move)) for move in possibleMoves]
-            if chosenStateRepr not in possibleRepr:
-                print('Player returned an invalid state.')
-                self.gameState.display()
-                chosenState.display()
-                raise Exception(chosenStateRepr + '\n not in \n' + '\n'.join(possibleRepr))
-            move = possibleMoves[possibleRepr.index(chosenStateRepr)]
+            move = possibleMoves[all_possibleStates.index(repr(self.gameState))]
             if player is self.player1:
                 pgnMoves += str(turn // 2 + 1) + "."
             pgnMoves += str(move) + " "
 
-            self.gameState = chosenState
-
             # log the computing time and game state
             self.logCompuTime(player.computingTimes[-1])
 
+        # log de l'état final du jeu
+        self.logState()
+        
         # create the PGN of the game
         self.pgn = self.makePGN(startTime, pgnMoves, result)
         self.log += "\n#PGN#\n" + self.pgn
