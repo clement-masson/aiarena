@@ -235,9 +235,8 @@ std::vector<CMove*> CGameState::getLineMoves(std::vector<CCell> line1, std::vect
 	int offset = size1 < size2 ? 0 : -1;
 
 	char color = white ? CCell::WHITE : CCell::BLACK;
-	int linestart;
 	for(int delta=offset; delta<=offset+1; delta++) {
-        linestart = -1;
+        int linestart = -1;
         // printf("delta=%i\n", delta);
 		for(int i=0; i<size1; i++) {
 			if(!(line1[i].color == color &&
@@ -249,11 +248,11 @@ std::vector<CMove*> CGameState::getLineMoves(std::vector<CCell> line1, std::vect
 			if(linestart<0) { // c'est le debut d'un nouvel allignement
 				linestart = i;
 			}else{
-                // printf("%i, %i, %i\n", linestart, i, linestart+delta);
-				all_moves.push_back(new CMove(linestart, i, linestart+delta));
-    			if(i>linestart+1) {
-                    // printf("%i, %i, %i\n", linestart+1, i, linestart+1+delta);
-    				all_moves.push_back(new CMove(linestart+1, i, linestart+1+delta));
+                // printf("%i, %i, %i\n", i-1, i, linestart+delta);
+				all_moves.push_back(new CMove(i-1, i, i-1+delta));
+    			if(i-2>=linestart) {
+                    // printf("%i, %i, %i\n", i-2, i, linestart+1+delta);
+					all_moves.push_back(new CMove(i-2, i, i-2+delta));
     			}
 			}
 		}
@@ -361,7 +360,7 @@ void CGameState::doMove(const CMove& move){
 	/* Update the state according to the specified move
 
 	   Note that this function does not check if the move is valid*/
-	std::cout << "CGameState : domove " << move.toString() << std::endl;
+	// std::cout << "CGameState : domove " << move.toString() << std::endl;
 	isWhiteTurn = !isWhiteTurn;
 	turnCounter++;
 
