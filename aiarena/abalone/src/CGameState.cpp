@@ -15,7 +15,7 @@ CGameState::CGameState(int s) {
 	turnCounter = 0;
 
 	// initialisation des tableaux de conversion
-	int index = 0;
+	unsigned int index = 0;
     int diag;
 	_IndexToRC = std::vector<std::pair<int,int> >(cells.size());
 	for(int row=0; row<2*size-1; row++) {
@@ -87,7 +87,7 @@ void CGameState::reverse(){
  */
 
 bool CGameState::isValidIndex(const int cellIndex){
-	return (0<=cellIndex && cellIndex<cells.size());
+	return (0<=cellIndex && (unsigned int)cellIndex<cells.size());
 }
 
 bool CGameState::isValidRC(const int r, const int c){
@@ -173,7 +173,7 @@ std::vector<CMove*> CGameState::getPushMoves(int cellindex){
 	if(color == CCell::NONE) {
 		return all_moves;
 	}
-	int dx;
+	
 	std::pair<int,int> rc = indexToRC(cellindex);
 	int row = rc.first;
 	int col = rc.second;
@@ -219,6 +219,7 @@ std::vector<CMove*> CGameState::getPushMoves(int cellindex){
 			}
 		}
 	}
+	return all_moves;
 }
 
 std::vector<CMove*> CGameState::getLineMoves(std::vector<CCell> line1, std::vector<CCell> line2, bool white){
@@ -270,7 +271,7 @@ std::vector<CMove*> CGameState::getLineMoves(bool white){
 
         // printf("getLineMoves Row %i->%i\n", row, row+1);
 		moves = getLineMoves(line1, line2, white);
-        for(int k=0; k<moves.size(); k++){
+        for(unsigned int k=0; k<moves.size(); k++){
             moves[k]->from_start = RCtoIndex(row, moves[k]->from_start + getStartOffset(row));
             moves[k]->from_end = RCtoIndex(row, moves[k]->from_end + getStartOffset(row));
             moves[k]->to_start = RCtoIndex(row+1, moves[k]->to_start + getStartOffset(row+1));
@@ -278,7 +279,7 @@ std::vector<CMove*> CGameState::getLineMoves(bool white){
         }
         // printf("getLineMoves Row %i->%i\n", row+1, row);
 		moves = getLineMoves(line2, line1, white);
-        for(int k=0; k<moves.size(); k++){
+        for(unsigned int k=0; k<moves.size(); k++){
             moves[k]->from_start = RCtoIndex(row+1, moves[k]->from_start + getStartOffset(row+1));
             moves[k]->from_end = RCtoIndex(row+1, moves[k]->from_end + getStartOffset(row+1));
             moves[k]->to_start = RCtoIndex(row, moves[k]->to_start + getStartOffset(row));
@@ -292,7 +293,7 @@ std::vector<CMove*> CGameState::getLineMoves(bool white){
 
         // printf("getLineMoves Column %i->%i\n", col, col+1);
 		moves = getLineMoves(line1, line2, white);
-        for(int k=0; k<moves.size(); k++){
+        for(unsigned int k=0; k<moves.size(); k++){
             moves[k]->from_start = RCtoIndex(moves[k]->from_start + getStartOffset(col), col);
             moves[k]->from_end = RCtoIndex(moves[k]->from_end + getStartOffset(col), col);
             moves[k]->to_start = RCtoIndex(moves[k]->to_start + getStartOffset(col+1), col+1);
@@ -300,7 +301,7 @@ std::vector<CMove*> CGameState::getLineMoves(bool white){
         }
         // printf("getLineMoves Column %i->%i\n", col+1, col);
 		moves = getLineMoves(line2, line1, white);
-        for(int k=0; k<moves.size(); k++){
+        for(unsigned int k=0; k<moves.size(); k++){
             moves[k]->from_start = RCtoIndex(moves[k]->from_start + getStartOffset(col+1), col+1);
             moves[k]->from_end = RCtoIndex(moves[k]->from_end + getStartOffset(col+1), col+1);
             moves[k]->to_start = RCtoIndex(moves[k]->to_start + getStartOffset(col), col);
@@ -314,7 +315,7 @@ std::vector<CMove*> CGameState::getLineMoves(bool white){
 
         // printf("getLineMoves Diagonal %i->%i\n", diag, diag+1);
 		moves = getLineMoves(line1, line2, white);
-        for(int k=0; k<moves.size(); k++){
+        for(unsigned int k=0; k<moves.size(); k++){
             moves[k]->from_start = RDtoIndex(moves[k]->from_start + getStartOffset(diag), diag);
             moves[k]->from_end = RDtoIndex(moves[k]->from_end + getStartOffset(diag), diag);
             moves[k]->to_start = RDtoIndex(moves[k]->to_start + getStartOffset(diag+1), diag+1);
@@ -323,7 +324,7 @@ std::vector<CMove*> CGameState::getLineMoves(bool white){
 
         // printf("getLineMoves Diagonal %i->%i\n", diag+1, diag);
 		moves = getLineMoves(line2, line1, white);
-        for(int k=0; k<moves.size(); k++){
+        for(unsigned int k=0; k<moves.size(); k++){
             moves[k]->from_start = RDtoIndex(moves[k]->from_start + getStartOffset(diag+1), diag+1);
             moves[k]->from_end = RDtoIndex(moves[k]->from_end + getStartOffset(diag+1), diag+1);
             moves[k]->to_start = RDtoIndex(moves[k]->to_start + getStartOffset(diag), diag);
@@ -341,7 +342,7 @@ std::vector<CMove*> CGameState::findPossibleMoves(){
 		return all_moves;
 	}
 
-	for(int cellindex=0; cellindex<cells.size(); cellindex++) {
+	for(unsigned int cellindex=0; cellindex<cells.size(); cellindex++) {
 		if(cells[cellindex].color == color) {
 			// printf("Looking at moves from %i\n", cellindex);
 			moves = getPushMoves(cellindex);
