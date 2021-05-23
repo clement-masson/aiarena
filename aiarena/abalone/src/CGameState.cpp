@@ -361,24 +361,23 @@ void CGameState::doMove(const CMove& move){
 	/* Update the state according to the specified move
 
 	   Note that this function does not check if the move is valid*/
-	// std::cout << "CGameState : domove " << move.toString() << std::endl;
+	std::cout << "CGameState : domove " << move.toString() << std::endl;
 	isWhiteTurn = !isWhiteTurn;
 	turnCounter++;
-	if(move.from_end<0) {
-		std::pair<int,int> rc_from = indexToRC(move.from_start);
-		int row_from = rc_from.first;
-		int col_from = rc_from.second;
-		std::pair<int,int> rc_to = indexToRC(move.to_start);
-		int drow = rc_to.first - row_from;
-		int dcol = rc_to.second - col_from;
 
-		int r,c;
-		CCell prev = cells[move.from_start];
+	std::pair<int,int> rc_from_start = indexToRC(move.from_start);
+	int from_start_row = rc_from_start.first;
+	int from_start_col = rc_from_start.second;
+	std::pair<int,int> rc_to = indexToRC(move.to_start);
+	int drow = rc_to.first - from_start_row;
+	int dcol = rc_to.second - from_start_col;
+
+	if(move.from_end<0) {
+		CCell prev = CCell(CCell::NONE);
 		CCell curr;
-		setCell(move.from_start, CCell(CCell::NONE));
-		for(int dx=1; true; dx++) {
-			r = row_from + drow*dx;
-			c = col_from + dcol*dx;
+		for(int dx=0; true; dx++) {
+			int r = from_start_row + drow*dx;
+			int c = from_start_col + dcol*dx;
 			if(!isValidRC(r,c)) {
 				if(prev.color == CCell::WHITE) {
 					capturedWhiteBalls++;
@@ -396,8 +395,29 @@ void CGameState::doMove(const CMove& move){
 				break;
 			}
 		}
+	}else{
+		std::pair<int,int> rc_from_end = indexToRC(move.from_end);
+		int from_end_row = rc_from_end.first;
+		int from_end_col = rc_from_end.second;
+
+		int urow = sign(from_end_row - from_start_row);
+		int ucol = sign(from_end_col - from_start_col);
+		int len = std::max(abs(from_end_row - from_start_row), abs(from_end_col - from_start_col));
+
+		// on parcourt la ligne "from"
+		for(int dx=0; dx<=len; dx++) {
+			int r = from_start_row + urow*dx; // la ligne de la cell courante dans la ligne de départ
+			int c = from_start_col + ucol*dx; // la colonne de la cell courante dans la ligne de départ
+			setCell(r+drow, c+dcol, getCell(r, c)); // on commence par mettre le contenu de (r,c) dans (r+drow, c+dcol)
+			setCell(r, c, CCell(CCell::NONE)); // // puis on met NONE dans (r,c)
+		}
 	}
 	// std::cout << "CGameState : domove " << move.toString() << " SUCCESSFUL" << std::endl;
+}
+
+int CGameState::sign(const int x){
+	if (x==0) return 0;
+	return (x>0) ? 1 : -1;
 }
 
 int CGameState::checkTermination(){

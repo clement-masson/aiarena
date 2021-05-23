@@ -51,6 +51,7 @@ std::vector<CMove*> getLineMoves(std::vector<CCell> line1, std::vector<CCell> li
 std::vector<CMove*> getLineMoves(bool white);
 std::vector<CMove*> findPossibleMoves();
 void doMove(const CMove& move);
+int sign(const int x);
 int checkTermination();
 };
 }
