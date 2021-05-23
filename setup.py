@@ -1,10 +1,9 @@
-import os
 from setuptools import setup, find_packages
 import distutils.sysconfig
-import setup_chess
-import setup_checkers
-import setup_connect4
-import setup_abalone
+from setup_checkers import extensions as checkers_extensions
+from setup_chess import extensions as chess_extensions
+from setup_connect4 import extensions as connect4_extensions
+from setup_abalone import extensions as abalone_extensions
 
 print("Configuring distutils")
 # Remove the "-Wstrict-prototypes" compiler option, which isn't valid for C++.
@@ -16,16 +15,12 @@ for key, value in cfg_vars.items():
         value = value.replace("-DNDEBUG", "")
         cfg_vars[key] = value
 
-print("Gathering extensions")
-use_cython = int(os.getenv('USE_CYTHON', '0'))
-extensions = []
-for module in [setup_chess, setup_checkers, setup_connect4, setup_abalone]:
-    extensions += module.get_extensions(use_cython)
-
-if use_cython:
-    print("Cythonizing extensions")
-    from Cython.Build import cythonize
-    extensions = cythonize(extensions, language_level="3")
+extensions = (
+      checkers_extensions 
+    + chess_extensions
+    + connect4_extensions
+    + abalone_extensions
+)
 
 print('Installing package')
 setup(name='aiarena',
@@ -36,8 +31,6 @@ setup(name='aiarena',
       url='',
       license='MIT',
       packages=find_packages(),
-      install_requires=[
-          'colorama',
-      ],
+      install_requires=['colorama'],
       ext_modules=extensions
       )
