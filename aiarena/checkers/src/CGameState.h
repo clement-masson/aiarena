@@ -10,17 +10,17 @@
 namespace Checkers {
     class CGameState {
     public:
-        int nRows, nCells, nPieces, rulesID;
+        int nRows, nCells, nPieces;
         bool menCaptureBackward, kingsCanFly, menMustStop;
         bool isWhiteTurn;
-        int noCaptureCounter;
+        unsigned int noCaptureCounter;
         std::vector<CCell> cells;
 
         CGameState();
         CGameState(const int nR, const int nP, const bool menBack, const bool kingsFly, const bool menStop);
         void initBoard();
         void reverse();
-        std::string toString(const bool turn, const bool counts);
+        std::string toString();
 
         bool isValidIndex(const int i);
         bool isValidRC(const int r, const int c);
@@ -30,6 +30,7 @@ namespace Checkers {
         CCell getCell(const int r, const int c);
         void setCell(const int i, const CCell c);
         void setCell(const int r, const int c, const CCell cell);
+        void setCellsFromString(const std::string & repr);
 
         std::vector<CCaptureMove*> tryJumpFrom(const int cellIndex);
         std::vector<CCaptureMove*> tryJumpFrom(const int cellIndex, const int initPos, const CCell piece, std::set<int>& previousCaptures);

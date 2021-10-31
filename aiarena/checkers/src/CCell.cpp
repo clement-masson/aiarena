@@ -11,7 +11,7 @@ CCell::CCell(){
 }
 
 CCell::CCell(const char type, const bool white){
-	assert(isValidType(type));
+	if (!isValidType(type)) throw "Non valid piece type";
 	pieceType = type;
 	isWhite = white;
 }
@@ -34,5 +34,23 @@ CCell CCell::invertColor(){
 
 std::string CCell::toString(){
 	return std::string(1, pieceType + (isWhite ? 0 : 32));
+}
+
+CCell CCell::fromString(const std::string& s){
+	if(s.size() != 1) throw('[CCell::fromString] string must have length 1');
+	switch(s[0]) {
+		case PieceType::none :
+			return CCell();
+		case PieceType::man :
+			return CCell(PieceType::man, true);
+		case PieceType::man + 32 :
+			return CCell(PieceType::man, false);
+		case PieceType::king :
+			return CCell(PieceType::king, true);
+		case PieceType::king + 32 :
+			return CCell(PieceType::king, false);
+		default :
+			throw('[CCell::fromString] Invalid character');
+	}
 }
 }

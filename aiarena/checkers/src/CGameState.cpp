@@ -39,19 +39,31 @@ namespace Checkers {
         }
     }
 
-    std::string CGameState::toString(const bool turn, const bool counts){
+    std::string CGameState::toString(){
         std::string result = "";
       	for(int i = 0; i<nCells; ++i) {
             result += cells[i].toString();
         }
-        if(turn)
-            result += isWhiteTurn ? " w" : " b";
-
-        if(counts){
-            result += " ";
-            result += std::to_string(noCaptureCounter);
-        }
+        result += isWhiteTurn ? "/w" : "/b";
+        result += "/" + std::to_string(noCaptureCounter);
         return result;
+    }
+
+    void CGameState::setCellsFromString(const std::string & repr){
+        if(repr.size() < nCells + 4) throw std::runtime_error("Invalid size of string representation");
+        size_t cells_delimiter_pos = repr.find("/");
+        if(cells_delimiter_pos == std::string::npos) throw std::runtime_error("No end of cells found");
+
+        std::string cells = repr.substr(0, cells_delimiter_pos);
+        std::string turn = repr.substr(cells_delimiter_pos+1, 1);
+        std::string noCaptures = repr.substr(cells_delimiter_pos+3);
+
+        if(cells.size() != nCells) throw std::runtime_error("Invalid number of cells");
+      	for(int i = 0; i<nCells; ++i) {
+            setCell(i, CCell::fromString(cells.substr(i,1)));
+        }
+        isWhiteTurn = turn == "w";
+        noCaptureCounter = stoi(noCaptures);
     }
 
 /*

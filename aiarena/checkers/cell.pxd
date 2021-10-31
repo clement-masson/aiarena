@@ -8,6 +8,7 @@ cdef extern from "CCell.h" namespace "Checkers":
 
         CCell() except +
         CCell(char, bool) except +
+        string toString()
 
 cdef extern from "CCell.h" namespace "Checkers::PieceType":
     cdef const char none

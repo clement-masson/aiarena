@@ -3,7 +3,7 @@
 
 namespace Checkers {
 namespace PieceType {
-const char none = ' ';
+const char none = '_';
 const char man = 'M';
 const char king = 'K';
 }
@@ -19,5 +19,6 @@ CCell(const char pieceType, const bool isWhite=true);
 static bool isValidType(const char type);
 CCell invertColor();
 std::string toString();
+static CCell fromString(const std::string& s);
 };
 }

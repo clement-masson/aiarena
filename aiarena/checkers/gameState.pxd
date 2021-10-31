@@ -17,11 +17,15 @@ cdef extern from "CGameState.h" namespace "Checkers":
         int noCaptureCounter
 
         void reverse()
-        string toString(bool, bool)
+        string toString()
 
         bool isValidIndex(int)
         bool isValidRC(int, int)
+        CCell getCell(int) except +
         CCell getCell(int, int) except +
+        void setCell(int, CCell) except +
+        void setCell(int, int, CCell) except +
+        void setCellsFromString(string) except +
         int RCtoIndex(int, int)
         pair[int,int] indexToRC(int)
 
@@ -31,4 +35,3 @@ cdef extern from "CGameState.h" namespace "Checkers":
 
 cdef class GameState:
     cdef CGameState* cGameState      # hold a C++ instance which we're wrapping
-    cdef debug
