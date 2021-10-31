@@ -23,5 +23,7 @@ CCell(const char pieceType, const bool isWhite=true);
 static bool isValidType(const char type);
 CCell invertColor();
 std::string toString();
+static CCell fromChar(char s);
+static CCell fromString(const std::string& s);
 };
 }

@@ -6,11 +6,26 @@
 
 namespace Chess {
 
+std::vector<std::string> splitString(const std::string & string, const std::string & sep){
+	std::vector<std::string> result;
+	std::string remaining = string;
+	size_t sep_pos = remaining.find(sep);
+
+	while(sep_pos != std::string::npos){
+		result.push_back(remaining.substr(0, sep_pos));
+		remaining = remaining.substr(sep_pos + sep.size());
+		sep_pos = remaining.find(sep);
+	}
+	result.push_back(remaining);
+
+	return result;
+}
+
 CGameState::CGameState() {
 	cells = std::vector<CCell>(64);
 	initBoard();
 	isWhiteTurn = true;
-  turnCounter = 0;
+  	turnCounter = 0;
 	noPawnNoCapture = 0; // 50 moves rule
 
     // en passant
@@ -73,65 +88,111 @@ void CGameState::reverse(){
 	black_king_castle_A_side = tmp;
 }
 
-std::string CGameState::getFEN(bool turn, bool castle, bool counts){
-  std::string result = "";
+std::string CGameState::toString(){
+	std::string result = "";
 	CCell cell;
-  int empty_counter;
+	int empty_counter;
 	for(int row = NROWS-1; row>=0; --row) {
-    empty_counter = 0;
-  	for(int column = 0; column<NCOLUMNS; ++column) {
-  		cell = getCell(row, column);
-      if (cell.pieceType == PieceType::none){
-        empty_counter ++;
-      }else{
-        if (empty_counter>0){
-          result += std::to_string(empty_counter);
-        }
-        empty_counter = 0;
-        result += cell.toString();
-      }
-    }
-    if (empty_counter>0){
-      result += std::to_string(empty_counter);
-    }
-    if (row>0){
-      result += "/";
-    }
-  }
+		empty_counter = 0;
+		for(int column = 0; column<NCOLUMNS; ++column) {
+			cell = getCell(row, column);
+			if (cell.pieceType == PieceType::none){
+				empty_counter ++;
+			}else{
+				if (empty_counter>0){
+					result += std::to_string(empty_counter);
+				}
+				empty_counter = 0;
+				result += cell.toString();
+			}
+		}
+		if (empty_counter>0){
+			result += std::to_string(empty_counter);
+		}
+		if (row>0){
+			result += "/";
+		}
+	}
 
-  if(turn)
     result += isWhiteTurn ? " w" : " b";
 
-  if(castle){
-    result += " ";
-    if (!(white_king_castle_A_side || white_king_castle_H_side || black_king_castle_A_side || black_king_castle_H_side)){
-      result += "-";
-    }else{
-      if (white_king_castle_H_side)
-        result += "K";
-      if (white_king_castle_A_side)
-        result += "Q";
-      if (black_king_castle_H_side)
-        result += "k";
-      if (black_king_castle_A_side)
-        result += "q";
-    }
-  }
+	// Ajout des info de roque
+	result += " ";
+	if (!(white_king_castle_A_side || white_king_castle_H_side || black_king_castle_A_side || black_king_castle_H_side)){
+		result += "-";
+	}else{
+		if (white_king_castle_H_side)
+			result += "K";
+		if (white_king_castle_A_side)
+			result += "Q";
+		if (black_king_castle_H_side)
+			result += "k";
+		if (black_king_castle_A_side)
+			result += "q";
+	}
 
-  result += " ";
-  if (pawn_pushed_by_two){
-      result += std::to_string(pawn_pushed_col);
-  }else{
-      result += "-";
-  }
+	// ajout de l'info pour l'éventualité de prise en passant
+	result += " ";
+	if (pawn_pushed_by_two){
+		result += std::to_string(pawn_pushed_col);
+	}else{
+		result += "-";
+	}
 
-  if(counts){
-      result += " ";
-      result += std::to_string(noPawnNoCapture);
-      result += " ";
-      result += std::to_string(turnCounter/2 + 1);
-  }
+	// Ajout des infos de compteurs
+	result += " ";
+	result += std::to_string(noPawnNoCapture);
+	result += " ";
+    result += std::to_string(turnCounter/2 + 1);
 	return result;
+}
+    
+void CGameState::setCellsFromString(const std::string & repr){
+	std::vector<std::string> substrings = splitString(repr, " ");
+	if(substrings.size() != 6) throw std::runtime_error("Bad FEN formatting");
+
+	unsigned int row = NROWS-1;
+	unsigned int col = 0;
+	for(const char & c : substrings[0]) {
+		if(c == '/'){
+			row--;
+			col = 0;
+		}else if(isdigit(c)){
+			for(unsigned int k = 0; k<std::atoi(&c); k++){
+				setCell(row, col, CCell());
+				col++;
+			}
+		}else{
+			setCell(row, col, CCell::fromChar(c));
+			col++;
+		}
+	}
+	if(!(row==0 && col==NROWS )) throw std::runtime_error("Bad board description");
+
+	// info de tour
+	if(substrings[1].size() != 1) throw std::runtime_error("Bad FEN formatting");
+	isWhiteTurn = substrings[1] == "w";
+
+	// infos de roque
+	white_king_castle_H_side = substrings[2].find('K') != std::string::npos;
+	white_king_castle_A_side = substrings[2].find('Q') != std::string::npos;
+	black_king_castle_H_side = substrings[2].find('k') != std::string::npos;
+	black_king_castle_A_side = substrings[2].find('q') != std::string::npos;
+
+	// info en passant
+	if(substrings[3].size() != 1) throw std::runtime_error("Bad FEN formatting");
+	if(isdigit(substrings[3][0])){
+		pawn_pushed_by_two = true;
+		pawn_pushed_col = std::stoi(substrings[3]);
+	}else{
+		pawn_pushed_by_two = false;
+		pawn_pushed_col = -1;
+	}
+
+	// infos de compteurs
+	noPawnNoCapture = std::stoi(substrings[4]);
+	turnCounter = (std::stoi(substrings[5]) - 1) * 2;
+	turnCounter += (0 ? isWhiteTurn : 1);	
 }
 
 /*

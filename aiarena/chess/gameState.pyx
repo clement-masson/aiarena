@@ -2,6 +2,7 @@
 from cython.operator cimport dereference as deref
 from .gameState cimport *
 from colorama import Fore, Back, Style
+from . import cell
 
 ASCI_TXT = False
 
@@ -31,26 +32,52 @@ cdef class GameState:
     def isWhiteTurn(self):
       return self.cGameState.isWhiteTurn
 
+    def setIsWhiteTurn(self, bool b):
+      self.cGameState.isWhiteTurn = b
+
     @property
     def noPawnNoCapture(self):
       return self.cGameState.noPawnNoCapture
 
+    def setNoPawnNoCapture(self, unsigned int c):
+      self.cGameState.noPawnNoCapture = c
+
     @property
     def cells(self):
-      return [Cell.wrap(e) for e in self.cGameState.cells]
+      return self.getCells()
 
-    def getCell(self, int i, int j):
-      return Cell.wrap(self.cGameState.getCell(i, j))
+    def getCell(self, int r, int c):
+        return Cell.wrap(self.cGameState.getCell(r, c))
+
+    def getCellById(self, int id):
+        return Cell.wrap(self.cGameState.getCell(id))
+
+    def getCells(self):
+        return [Cell.wrap(e) for e in self.cGameState.cells]
+
+    def setCell(self, int r, int c, Cell cell):
+        return self.cGameState.setCell(r, c, cell.cCell)
+
+    def setCellById(self, int id, Cell cell):
+        return self.cGameState.setCell(id, cell.cCell)
+
+    def setCells(self, cells):
+        assert len(cells) == self.nCells
+        for id, cell in enumerate(cells):
+            self.setCellById(id, cell)
+
+    def setCellsFromString(self, repr):
+        return self.cGameState.setCellsFromString(repr.encode('UTF-8'))
 
     def reverse(self):
         self.cGameState.reverse()
         return self
 
-    def __repr__(self):
-        return self.cGameState.getFEN(True, True, True).decode('UTF-8')
+    def toString(self):
+        return self.cGameState.toString().decode('UTF-8')
 
-    def toString(self, turn=True, castle=True, counts=False):
-        return self.cGameState.getFEN(turn, castle, counts).decode('UTF-8')
+    def __repr__(self):
+        return self.toString()
 
     def RCtoIndex(self, int r, int c):
         return self.cGameState.RCtoIndex(r,c)
@@ -107,9 +134,8 @@ cdef class GameState:
         for r in reversed(range(NROWS)):
             s += str(r+1) + '|'
             for c in range(NCOLUMNS):
-                cell = self.cGameState.getCell(r,c)
                 back = Back.BLUE if c%2 == r%2 else Back.LIGHTBLUE_EX
-                s +=  back + get_ascii(chr(cell.pieceType), cell.isWhite)
+                s +=  back + get_ascii(self.getCell(r,c))
             s += Style.RESET_ALL + '|'
             if showBoard:
                 s+='    |'
@@ -134,27 +160,27 @@ cdef class GameState:
 
 
 asci_symbols = {
-  ('R', True): '\u2656 ',
-  ('N', True): '\u2658 ',
-  ('B', True): '\u2657 ',
-  ('Q', True): '\u2655 ',
-  ('K', True): '\u2654 ',
-  ('P', True): '\u2659 ',
-  ('R', False): '\u265C ',
-  ('N', False): '\u265E ',
-  ('B', False): '\u265D ',
-  ('Q', False): '\u265B ',
-  ('K', False): '\u265A ',
-  ('P', False): '\u265F ',
-  (' ', True): '  ',
-  (' ', False): '  '
+  (cell.ROOK, True): '\u2656 ',
+  (cell.KNIGHT, True): '\u2658 ',
+  (cell.BISHOP, True): '\u2657 ',
+  (cell.QUEEN, True): '\u2655 ',
+  (cell.KING, True): '\u2654 ',
+  (cell.PAWN, True): '\u2659 ',
+  (cell.ROOK, False): '\u265C ',
+  (cell.KNIGHT, False): '\u265E ',
+  (cell.BISHOP, False): '\u265D ',
+  (cell.QUEEN, False): '\u265B ',
+  (cell.KING, False): '\u265A ',
+  (cell.PAWN, False): '\u265F ',
+  (cell.NONE, True): '  ',
+  (cell.NONE, False): '  '
 }
 
 
-def get_ascii(piece, isWhite):
+def get_ascii(cell):
   if ASCI_TXT:
-    fore = Fore.WHITE if isWhite else Fore.RED
-    return Style.BRIGHT + fore + ' ' + piece + ' '
+    fore = Fore.WHITE if cell.isWhite else Fore.RED
+    return Style.BRIGHT + fore + ' ' + cell.type + ' '
   else:
-    fore = Fore.WHITE if isWhite else Fore.RED
-    return Style.BRIGHT + fore + asci_symbols[(piece, False)]
+    fore = Fore.WHITE if cell.isWhite else Fore.RED
+    return Style.BRIGHT + fore + asci_symbols[(cell.type, False)]

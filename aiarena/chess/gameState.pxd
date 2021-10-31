@@ -21,12 +21,15 @@ cdef extern from "CGameState.h" namespace "Chess":
         int noPawnNoCapture
 
         void reverse()
-        string getFEN(bool, bool, bool);
+        string toString();
 
         bool isValidIndex(int)
         bool isValidRC(int, int)
         CCell getCell(int) except +
         CCell getCell(int, int) except +
+        void setCell(int, CCell) except +
+        void setCell(int, int, CCell) except +
+        void setCellsFromString(string) except +
         int RCtoIndex(int, int)
         pair[int,int] indexToRC(int)
 

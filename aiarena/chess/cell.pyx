@@ -11,6 +11,11 @@ KING = chr(king)
 
 cdef class Cell:
 
+    def __cinit__(self, piece_type=None, is_white=None):
+        if piece_type is not None:
+            if is_white is None: raise Exception('You must provide a piece type AND a color')
+            self.cCell = CCell(ord(piece_type), is_white)
+
     @staticmethod
     cdef wrap(CCell c):
         result = Cell()
@@ -26,6 +31,7 @@ cdef class Cell:
         return chr(self.cCell.pieceType)
 
     def __repr__(self):
-        if self.type is NONE:
-            return '_'
-        return ('w' if self.isWhite else 'b') + '_' + self.type
+        return self.toString()
+
+    def toString(self):
+        return self.cCell.toString().decode('UTF-8')
