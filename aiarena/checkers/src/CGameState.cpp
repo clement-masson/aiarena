@@ -91,7 +91,7 @@ Convertissors, checkers and getters
     CCell CGameState::getCell(const int i){
         if(!isValidIndex(i)){
             std::cout << "Non valid index : " << i << "\n";
-            throw "Non valid index";
+            throw std::runtime_error("Non valid index");
         }
         return cells[i];
     }
@@ -99,25 +99,25 @@ Convertissors, checkers and getters
     CCell CGameState::getCell(const int r, const int c){
         if(!isValidRC(r,c)){
             std::cout << "Non valid coordinates : " << r << ", " << c << "\n";
-            throw "Non valid coordinates";
+            throw std::runtime_error("Non valid coordinates");
         }
         return cells[RCtoIndex(r,c)];
     }
 
     void CGameState::setCell(const int i, const CCell c){
-        if(!isValidIndex(i)) throw "Non valid coordinates";
+        if(!isValidIndex(i)) throw std::runtime_error("Non valid coordinates");
         cells[i] = c;
     }
 
       void CGameState::setCell(const int r, const int c, const CCell cell){
-          if(!isValidRC(r,c)) throw "Non valid coordinates";
+          if(!isValidRC(r,c)) throw std::runtime_error("Non valid coordinates");
           cells[RCtoIndex(r,c)] = cell;
       }
 
 
     std::vector<CCaptureMove*> CGameState::tryJumpFrom(const int cellIndex){
         CCell piece = cells[cellIndex];
-        if (piece.pieceType == PieceType::none) throw "Error, the starting position contains no piece";
+        if (piece.pieceType == PieceType::none) throw std::runtime_error("Error, the starting position contains no piece");
         std::set<int> previousCaptures;
         std::vector<CCaptureMove*> possibleMoves = tryJumpFrom(cellIndex, cellIndex, piece, previousCaptures);
         return possibleMoves;
@@ -238,7 +238,7 @@ Convertissors, checkers and getters
     std::vector<CSimpleMove*> CGameState::tryMoveFrom(const int cellIndex){
         CCell piece = cells[cellIndex];
         std::vector<CSimpleMove*> possibleMoves;
-        if (piece.pieceType==PieceType::none) throw "Error, the starting position contains no piece";
+        if (piece.pieceType==PieceType::none) throw std::runtime_error("Error, the starting position contains no piece");
 
         std::pair<int,int> rc = indexToRC(cellIndex);
         int r = rc.first;
@@ -322,7 +322,7 @@ Convertissors, checkers and getters
         Note that this function does not check if the move is valid*/
         std::list<int> mCells = move.getCells();
         int start = mCells.front();
-        if (!isValidIndex(start)) {throw "Invalid Index !";}
+        if (!isValidIndex(start)) {throw std::runtime_error("Invalid Index !");}
         int end = mCells.back();
         CCell piece = cells[start];
         int diff1,diff2,tr,tc,current_r,current_c;
@@ -332,12 +332,12 @@ Convertissors, checkers and getters
             std::pair<int,int> RC = indexToRC(start);
             std::pair<int,int> nextRC;
             for (std::list<int>::iterator it = ++mCells.begin(); it != mCells.end(); ++it){
-                if (!isValidIndex(*it)) {throw "Invalid Index !";}
+                if (!isValidIndex(*it)) {throw std::runtime_error("Invalid Index !");}
                 nextRC = indexToRC(*it);
 
                 diff1 = nextRC.first-RC.first;
                 diff2 = nextRC.second-RC.second;
-                if(!( abs(diff1)==abs(diff2) )) {throw "Invalid Move !";}
+                if(!( abs(diff1)==abs(diff2) )) {throw std::runtime_error("Invalid Move !");}
                 tr = sign(diff1);
                 tc = sign(diff2);
                 current_r = RC.first + tr;

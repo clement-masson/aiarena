@@ -107,7 +107,7 @@ std::pair<int,int> CGameState::indexToRC(const int cellIndex){
 CCell CGameState::getCell(const int cellIndex){
 	if(!isValidIndex(cellIndex)) {
 		std::cout << "Non valid index : " << cellIndex << "\n";
-		throw "Non valid index";
+		throw std::runtime_error("Non valid index");
 	}
 	return cells[cellIndex];
 }
@@ -115,18 +115,18 @@ CCell CGameState::getCell(const int cellIndex){
 CCell CGameState::getCell(const int r, const int c){
 	if(!isValidRC(r,c)) {
 		std::cout << "Non valid coordinates : " << r << ", " << c << "\n";
-		throw "Non valid coordinates";
+		throw std::runtime_error("Non valid coordinates");
 	}
 	return cells[RCtoIndex(r,c)];
 }
 
 void CGameState::setCell(const int cellIndex, const CCell c){
-	if(!isValidIndex(cellIndex)) throw "Non valid coordinates in CGameState::setCell";
+	if(!isValidIndex(cellIndex)) throw std::runtime_error("Non valid coordinates in CGameState::setCell");
 	cells[cellIndex] = c;
 }
 
 void CGameState::setCell(const int r, const int c, const CCell cell){
-	if(!isValidRC(r,c)) throw "Non valid coordinates in CGameState::setCell";
+	if(!isValidRC(r,c)) throw std::runtime_error("Non valid coordinates in CGameState::setCell");
 	cells[RCtoIndex(r,c)] = cell;
 }
 

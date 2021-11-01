@@ -114,24 +114,24 @@ bool CGameState::isValidRD(const int r, const int d){
 }
 
 std::pair<int,int> CGameState::indexToRC(const int cellIndex){
-	assert(isValidIndex(cellIndex));
+	if(!isValidIndex(cellIndex)) throw std::runtime_error("Invalid cell location");;
 	return _IndexToRC[cellIndex];
 }
 
 int CGameState::RCtoIndex(const int r, const int c){
-	assert(isValidRC(r, c));
+	if(!isValidRC(r, c)) throw std::runtime_error("Invalid cell location");;
 	return _RCtoIndex[r][c];
 }
 
 int CGameState::RDtoIndex(const int r, const int d){
-	assert(isValidRD(r, d));
+	if(!isValidRD(r, d)) throw std::runtime_error("Invalid cell location");;
 	return _RDtoIndex[r][d];
 }
 
 CCell CGameState::getCell(const int cellIndex){
 	if(!isValidIndex(cellIndex)) {
 		std::cout << "Non valid index : " << cellIndex << "\n";
-		throw "Non valid index";
+		throw std::runtime_error("Non valid index");
 	}
 	return cells[cellIndex];
 }
@@ -139,18 +139,18 @@ CCell CGameState::getCell(const int cellIndex){
 CCell CGameState::getCell(const int r, const int c){
 	if(!isValidRC(r,c)) {
 		std::cout << "Non valid coordinates : " << r << ", " << c << "\n";
-		throw "Non valid coordinates";
+		throw std::runtime_error("Non valid coordinates");
 	}
 	return cells[RCtoIndex(r,c)];
 }
 
 void CGameState::setCell(const int cellIndex, const CCell c){
-	if(!isValidIndex(cellIndex)) throw "Non valid coordinates in CGameState::setCell";
+	if(!isValidIndex(cellIndex)) throw std::runtime_error("Non valid coordinates in CGameState::setCell");
 	cells[cellIndex] = c;
 }
 
 void CGameState::setCell(const int r, const int c, const CCell cell){
-	if(!isValidRC(r,c)) throw "Non valid coordinates in CGameState::setCell";
+	if(!isValidRC(r,c)) throw std::runtime_error("Non valid coordinates in CGameState::setCell");
 	cells[RCtoIndex(r,c)] = cell;
 }
 
@@ -398,7 +398,7 @@ void CGameState::doMove(const CMove& move){
 				}else if(prev.color == CCell::BLACK) {
 					capturedBlackBalls++;
 				}else{
-					throw "Erreur dans doMove";
+					throw std::runtime_error("Erreur dans doMove");
 				}
 				break;
 			}

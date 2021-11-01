@@ -11,7 +11,7 @@ CCell::CCell(){
 }
 
 CCell::CCell(const char type, const bool white){
-	if (!isValidType(type)) throw "Non valid piece type";
+	if (!isValidType(type)) throw std::runtime_error("Non valid piece type");
 	pieceType = type;
 	isWhite = white;
 }
@@ -37,7 +37,7 @@ std::string CCell::toString(){
 }
 
 CCell CCell::fromString(const std::string& s){
-	if(s.size() != 1) throw('[CCell::fromString] string must have length 1');
+	if(s.size() != 1) throw std::runtime_error("[CCell::fromString] string must have length 1");
 	switch(s[0]) {
 		case PieceType::none :
 			return CCell();
@@ -50,7 +50,7 @@ CCell CCell::fromString(const std::string& s){
 		case PieceType::king + 32 :
 			return CCell(PieceType::king, false);
 		default :
-			throw('[CCell::fromString] Invalid character');
+			throw std::runtime_error("[CCell::fromString] Invalid character");
 	}
 }
 }

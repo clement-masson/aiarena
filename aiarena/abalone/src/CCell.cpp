@@ -10,7 +10,7 @@ CCell::CCell(){
 }
 
 CCell::CCell(const char c){
-	assert(isValidType(c));
+	if(!isValidType(c)) throw std::runtime_error("Invalid character type");;
 	color = c;
 }
 
