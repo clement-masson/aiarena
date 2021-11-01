@@ -7,6 +7,7 @@ cdef extern from "CCell.h" namespace "Abalone":
 
         CCell() except +
         CCell(char) except +
+        string toString()
 
 cdef extern from "CCell.h" :
     cdef const char cNONE "Abalone::CCell::NONE"

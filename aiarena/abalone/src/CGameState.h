@@ -45,6 +45,7 @@ std::vector<CCell> getColumn(int col);
 std::vector<CCell> getDiagonal(int col);
 void setCell(const int i, const CCell c);
 void setCell(const int r, const int c, const CCell cell);
+void setCellsFromString(const std::string & repr);
 
 std::vector<CMove*> getPushMoves(int cellindex);
 std::vector<CMove*> getLineMoves(std::vector<CCell> line1, std::vector<CCell> line2, bool white);

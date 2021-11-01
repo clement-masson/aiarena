@@ -6,6 +6,21 @@
 
 namespace Abalone {
 
+std::vector<std::string> splitString(const std::string & string, const std::string & sep){
+	std::vector<std::string> result;
+	std::string remaining = string;
+	size_t sep_pos = remaining.find(sep);
+
+	while(sep_pos != std::string::npos){
+		result.push_back(remaining.substr(0, sep_pos));
+		remaining = remaining.substr(sep_pos + sep.size());
+		sep_pos = remaining.find(sep);
+	}
+	result.push_back(remaining);
+
+	return result;
+}
+
 CGameState::CGameState(int s) {
 	size = s;
 	cells = std::vector<CCell>(3*s*(s-1) + 1);
@@ -464,8 +479,39 @@ std::string CGameState::toString(){
 	}
 	result += isWhiteTurn ? " w" : " b";
 
-	result += " " + std::to_string(capturedWhiteBalls) + ":" + std::to_string(capturedBlackBalls);
+	result += " " + std::to_string(capturedWhiteBalls) + " " + std::to_string(capturedBlackBalls);
 	return result;
+}
+
+void CGameState::setCellsFromString(const std::string & repr){
+	std::vector<std::string> substrings = splitString(repr, " ");
+	if(substrings.size() != 4) throw std::runtime_error("Bad string formatting");
+
+	unsigned int row = 2*size-2;
+	unsigned int col = getStartOffset(row);
+	for(const char & c : substrings[0]) {
+		if(c == '/'){
+			row--;
+			col = getStartOffset(row);
+		}else if(isdigit(c)){
+			for(unsigned int k = 0; k<std::atoi(&c); k++){
+				setCell(row, col, CCell());
+				col++;
+			}
+		}else{
+			setCell(row, col, CCell::fromChar(c));
+			col++;
+		}
+	}
+	if(!(row==0 && col==(getEndIndex(0)+1) )) throw std::runtime_error("Bad board description");
+
+	// info de tour
+	if(substrings[1].size() != 1) throw std::runtime_error("Bad string formatting");
+	isWhiteTurn = substrings[1] == "w";
+
+	// infos de compteurs
+	capturedWhiteBalls = std::stoi(substrings[2]);
+	capturedBlackBalls = std::stoi(substrings[3]);
 }
 
 }

@@ -26,6 +26,9 @@ cdef extern from "CGameState.h" namespace "Abalone":
         bool isValidRC(int, int)
         CCell getCell(int) except +
         CCell getCell(int, int) except +
+        void setCell(int, CCell) except +
+        void setCell(int, int, CCell) except +
+        void setCellsFromString(string) except +
         vector[CCell] getRow(int)
         vector[CCell] getColumn(int)
         vector[CCell] getDiagonal(int)

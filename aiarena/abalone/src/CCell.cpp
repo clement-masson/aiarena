@@ -31,4 +31,8 @@ CCell CCell::invertColor(){
 std::string CCell::toString(){
 	return std::string(1, color);
 }
+
+CCell CCell::fromChar(char c){
+	return CCell(c);
+}
 }

@@ -14,7 +14,7 @@ cdef class GameState:
     '''
 
     def __cinit__(self, int size=DEFAULT_SIZE):
-          self.cGameState = new CGameState(size)
+        self.cGameState = new CGameState(size)
 
     def __dealloc__(self):
         del self.cGameState
@@ -27,38 +27,67 @@ cdef class GameState:
 
     @property
     def size(self):
-      return self.cGameState.size
+        return self.cGameState.size
 
     @property
     def isWhiteTurn(self):
-      return self.cGameState.isWhiteTurn
+        return self.cGameState.isWhiteTurn
+
+    def setIsWhiteTurn(self, bool b):
+        self.cGameState.isWhiteTurn = b
 
     @property
     def capturedWhiteBalls(self):
-      return self.cGameState.capturedWhiteBalls
+        return self.cGameState.capturedWhiteBalls
+
+    def setCapturedWhiteBalls(self, unsigned int n):
+        self.cGameState.capturedWhiteBalls = n
 
     @property
     def capturedBlackBalls(self):
-      return self.cGameState.capturedBlackBalls
+        return self.cGameState.capturedBlackBalls
+
+    def setCapturedBlackBalls(self, unsigned int n):
+        self.cGameState.capturedBlackBalls = n
 
     @property
     def cells(self):
-      return [Cell.wrap(e) for e in self.cGameState.cells]
+        return self.getCells()
 
     def getCell(self, int i, int j):
-      return Cell.wrap(self.cGameState.getCell(i, j))
+        return Cell.wrap(self.cGameState.getCell(i, j))
+
+    def getCellById(self, int id):
+        return Cell.wrap(self.cGameState.getCell(id))
+
+    def getCells(self):
+        return [Cell.wrap(e) for e in self.cGameState.cells]
+
+    def setCell(self, int r, int c, Cell cell):
+        return self.cGameState.setCell(r, c, cell.cCell)
+
+    def setCellById(self, int id, Cell cell):
+        return self.cGameState.setCell(id, cell.cCell)
+
+    def setCells(self, cells):
+        assert len(cells) == self.nCells
+        for id, cell in enumerate(cells):
+            self.setCellById(id, cell)
+
+    def setCellsFromString(self, repr):
+        return self.cGameState.setCellsFromString(repr.encode('UTF-8'))
 
     def getRow(self, int i):
-      cdef vector[CCell] temp_var = self.cGameState.getRow(i)
-      return [Cell.wrap(e) for e in temp_var]
+        cdef vector[CCell] temp_var = self.cGameState.getRow(i)
+        return [Cell.wrap(e) for e in temp_var]
 
     def getColumn(self, int i):
-      cdef vector[CCell] temp_var = self.cGameState.getColumn(i)
-      return [Cell.wrap(e) for e in temp_var]
+        cdef vector[CCell] temp_var = self.cGameState.getColumn(i)
+        return [Cell.wrap(e) for e in temp_var]
 
     def getDiagonal(self, int i):
-      cdef vector[CCell] temp_var = self.cGameState.getDiagonal(i)
-      return [Cell.wrap(e) for e in temp_var]
+        cdef vector[CCell] temp_var = self.cGameState.getDiagonal(i)
+        return [Cell.wrap(e) for e in temp_var]
 
     def reverse(self):
         self.cGameState.reverse()
@@ -90,9 +119,8 @@ cdef class GameState:
         return self
 
     def findNextStates(self):
-        moves = self.findPossibleMoves()
         nextStates = []
-        for m in moves:
+        for m in self.findPossibleMoves():
             nextStates.append( self.copy().doMove(m) )
         return nextStates
 
