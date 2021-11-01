@@ -48,6 +48,7 @@ namespace Chess {
         bool isInCheck();
         bool isInCheck(const bool whiteKing);
         bool isInCheck(const int position, const bool whiteKing);
+        int checkTermination();
 
         std::vector<CMove*> getPawnMovesFrom(const int cellIndex, const bool isWhite);
         std::vector<CMove*> getRookMovesFrom(const int cellIndex, const bool isWhite);

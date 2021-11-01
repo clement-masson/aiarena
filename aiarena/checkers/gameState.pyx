@@ -141,12 +141,7 @@ cdef class GameState:
         return nextStates
 
     def checkTermination(self):
-        if len(self.findPossibleMoves()) == 0:
-            return 2 if self.isWhiteTurn else 1
-        if self.noCaptureCounter >= 25:
-            return 3
-        return 0  # NOT TERMINATED
-
+        return self.cGameState.checkTermination()
 
     '''
     Visualization methods

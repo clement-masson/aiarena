@@ -36,6 +36,7 @@ cdef extern from "CGameState.h" namespace "Chess":
         vector[CMove*] findPossibleMoves() except +
         void doMove(CMove& m) except +
         bool isInCheck()
+        int checkTermination() except +
 
 
 cdef class GameState:

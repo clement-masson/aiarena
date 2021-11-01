@@ -38,6 +38,7 @@ namespace Checkers {
         std::vector<CMove*> findPossibleMoves(const bool white);
         std::vector<CMove*> findPossibleMoves();
         void doMove(const CMove& move);
+        int checkTermination();
         int sign(const int x);
     };
  }

@@ -727,4 +727,17 @@ void CGameState::doMove(const CMove& move){
 	// std::cout << "CGameState : domove " << move.toString() << " SUCCESSFUL" << std::endl;
 }
 
+
+	int CGameState::checkTermination(){
+        if (findPossibleMoves().size() == 0){
+            if (isInCheck())
+                return (2 ? isWhiteTurn : 1);  // MAT
+			else
+                return 3;  // PAT
+		}
+        if (noPawnNoCapture >= 100)
+            return 3;  // DRAW
+        return 0;  // NOT TERMINATED
+	}
+
 }

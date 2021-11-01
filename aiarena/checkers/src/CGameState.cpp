@@ -367,6 +367,14 @@ Convertissors, checkers and getters
       	isWhiteTurn = !isWhiteTurn;
     }
 
+	int CGameState::checkTermination(){
+        if (findPossibleMoves().size() == 0)
+            return (2 ? isWhiteTurn : 1);
+        if (noCaptureCounter >= 25)
+            return 3;
+        return 0;  // NOT TERMINATED
+    }
+
     int CGameState::sign(const int x){
         if (x==0) return 0;
         return (x>0) ? 1 : -1;

@@ -31,6 +31,7 @@ cdef extern from "CGameState.h" namespace "Checkers":
 
         vector[CMove*] findPossibleMoves() except +
         void doMove(CMove& m) except +
+        int checkTermination() except +
 
 
 cdef class GameState:
