@@ -46,18 +46,18 @@ def get_function_memory_usage(function, iterations=100, max_time=None,
 
         if i >= iterations:
             if verbose:
-                print(f'\nReached maximum iteration number {iterations}')
+                print(f'Reached maximum iteration number {iterations}')
             break
 
         # Check les critere d'arret
         if total_mem.percent >= max_mem_usage:
             if verbose:
-                print(f'\nReached maximum memory usage ({max_mem_usage}%) after {i} iterations')
+                print(f'Reached maximum memory usage ({max_mem_usage}%) after {i} iterations')
             break
 
         if max_time is not None and t2 - t0 >= max_time:
             if verbose:
-                print(f'\nReached maximum duration {max_time} after {i} iterations')
+                print(f'Reached maximum duration {max_time} after {i} iterations')
             break
 
     # Preparation de la sortie
