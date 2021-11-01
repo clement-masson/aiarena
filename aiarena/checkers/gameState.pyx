@@ -88,7 +88,7 @@ cdef class GameState:
         return self.cGameState.setCell(id, cell.cCell)
 
     def setCells(self, cells):
-        assert len(cells) == self.nCells
+        assert len(cells) == len(self.cells)
         for id, cell in enumerate(cells):
             self.setCellById(id, cell)
 
