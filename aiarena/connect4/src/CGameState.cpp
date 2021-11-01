@@ -5,13 +5,28 @@
 
 namespace Connect4 {
 
+std::vector<std::string> splitString(const std::string & string, const std::string & sep){
+	std::vector<std::string> result;
+	std::string remaining = string;
+	size_t sep_pos = remaining.find(sep);
+
+	while(sep_pos != std::string::npos){
+		result.push_back(remaining.substr(0, sep_pos));
+		remaining = remaining.substr(sep_pos + sep.size());
+		sep_pos = remaining.find(sep);
+	}
+	result.push_back(remaining);
+
+	return result;
+}
+
 CGameState::CGameState(int w, int h) {
-  width = w;
-  height = h;
-	cells = std::vector<CCell>(w*h);
-	initBoard();
-	isWhiteTurn = true;
-  turnCounter = 0;
+    width = w;
+    height = h;
+    cells = std::vector<CCell>(w*h);
+    initBoard();
+    isWhiteTurn = true;
+    turnCounter = 0;
 }
 
 void CGameState::initBoard(){
@@ -27,24 +42,46 @@ void CGameState::reverse(){
 }
 
 std::string CGameState::toString(){
-  std::string result = std::to_string(height) + " ";
-	CCell cell;
-	for(int col = 0; col<width; ++col) {
-  	for(int row = 0; row<height; ++row) {
-  		cell = getCell(row, col);
-      if (cell.color == CCell::NONE){
-          break;
-      }else{
-          result += cell.toString();
-      }
+    std::string result;
+    CCell cell;
+    for(int col = 0; col<width; ++col) {
+        for(int row = 0; row<height; ++row) {
+            cell = getCell(row, col);
+            if (cell.color == CCell::NONE){
+                break;
+            }else{
+                result += cell.toString();
+            }
+        }
+        if (col < width-1){
+            result += "/";
+        }
     }
-    if (col < width-1){
-        result += "/";
-    }
-  }
 
-  result += isWhiteTurn ? " w" : " b";
+    result += isWhiteTurn ? " w" : " b";
 	return result;
+}
+
+void CGameState::setCellsFromString(const std::string & repr){
+	std::vector<std::string> substrings = splitString(repr, " ");
+	if(substrings.size() != 2) throw std::runtime_error("Bad string formatting");
+
+	unsigned int col = 0;
+	unsigned int row = 0;
+	for(const char & c : substrings[0]) {
+        if(c == '/'){
+			col++;
+			row = 0;
+		}else{
+			setCell(row, col, CCell::fromChar(c));
+			row++;
+		}
+	}
+	if(col!=(width-1)) throw std::runtime_error("Bad board description");
+
+	// info de tour
+	if(substrings[1].size() != 1) throw std::runtime_error("Bad string formatting");
+	isWhiteTurn = substrings[1] == "w";
 }
 
 /*

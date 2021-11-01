@@ -19,5 +19,6 @@ CCell(const char color);
 bool isValidType(const char c);
 CCell invertColor();
 std::string toString();
+static CCell fromChar(char s);
 };
 }

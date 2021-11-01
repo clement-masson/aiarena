@@ -37,12 +37,35 @@ cdef class GameState:
     def isWhiteTurn(self):
       return self.cGameState.isWhiteTurn
 
+    def setIsWhiteTurn(self, bool b):
+        self.cGameState.isWhiteTurn = b
+
     @property
     def cells(self):
-      return [Cell.wrap(e) for e in self.cGameState.cells]
+      return self.getCells()
 
-    def getCell(self, int i, int j):
-      return Cell.wrap(self.cGameState.getCell(i, j))
+    def getCell(self, int r, int c):
+        return Cell.wrap(self.cGameState.getCell(r, c))
+
+    def getCellById(self, int id):
+        return Cell.wrap(self.cGameState.getCell(id))
+
+    def getCells(self):
+        return [Cell.wrap(e) for e in self.cGameState.cells]
+
+    def setCell(self, int r, int c, Cell cell):
+        return self.cGameState.setCell(r, c, cell.cCell)
+
+    def setCellById(self, int id, Cell cell):
+        return self.cGameState.setCell(id, cell.cCell)
+
+    def setCells(self, cells):
+        assert len(cells) == len(self.cells)
+        for id, cell in enumerate(cells):
+            self.setCellById(id, cell)
+
+    def setCellsFromString(self, repr):
+        return self.cGameState.setCellsFromString(repr.encode('UTF-8'))
 
     def reverse(self):
         self.cGameState.reverse()

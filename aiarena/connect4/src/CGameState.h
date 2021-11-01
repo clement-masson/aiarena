@@ -33,6 +33,7 @@ CCell getCell(const int i);
 CCell getCell(const int r, const int c);
 void setCell(const int i, const CCell c);
 void setCell(const int r, const int c, const CCell cell);
+void setCellsFromString(const std::string & repr);
 
 std::vector<CMove*> findPossibleMoves();
 void doMove(const CMove& move);

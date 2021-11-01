@@ -26,6 +26,9 @@ cdef extern from "CGameState.h" namespace "Connect4":
         bool isValidRC(int, int)
         CCell getCell(int) except +
         CCell getCell(int, int) except +
+        void setCell(int, CCell) except +
+        void setCell(int, int, CCell) except +
+        void setCellsFromString(string) except +
         int RCtoIndex(int, int)
         pair[int,int] indexToRC(int)
 

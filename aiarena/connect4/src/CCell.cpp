@@ -22,13 +22,17 @@ bool CCell::isValidType(const char type){
 }
 
 CCell CCell::invertColor(){
-  if(color == CCell::NONE){
-      return CCell(CCell::NONE);
-  }
+	if(color == CCell::NONE){
+		return CCell(CCell::NONE);
+	}
 	return CCell(color == CCell::WHITE ? CCell::BLACK : CCell::WHITE);
 }
 
 std::string CCell::toString(){
 	return std::string(1, color);
+}
+
+CCell CCell::fromChar(char c){
+	return CCell(c);
 }
 }
